@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AIRUUN Paper Prototype — 8 Screens</title>
+<style>
+  :root{
+    --ink:#222;
+    --muted:#6d6d6d;
+    --paper:#f7f3ea;
+    --panel:#fffdf7;
+    --line:#282828;
+    --soft:#ddd6c6;
+    --accent:#b7b09f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: "Comic Sans MS","Segoe Print","Bradley Hand",system-ui,sans-serif;
+    line-height:1.35;
+  }
+  header{
+    padding:42px 5vw 26px;
+    border-bottom:3px solid var(--line);
+    background:
+      linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,.7)),
+      repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(0,0,0,.045) 32px);
+  }
+  h1{margin:0 0 10px;font-size:clamp(32px,5vw,64px);letter-spacing:-1px}
+  header p{margin:4px 0;max-width:980px;font-size:18px}
+  .flow{
+    margin-top:22px;
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+  .flow span{
+    border:2px solid var(--line);padding:7px 12px;border-radius:999px;background:#fff;
+    box-shadow:2px 2px 0 var(--line);font-size:14px;
+  }
+  .arrow{border:none!important;box-shadow:none!important;background:transparent!important;padding:0 4px!important}
+  main{padding:36px 4vw 70px;max-width:1600px;margin:auto}
+  .screen{
+    background:var(--panel);
+    border:3px solid var(--line);
+    border-radius:18px;
+    margin:0 0 46px;
+    padding:26px;
+    box-shadow:7px 7px 0 rgba(0,0,0,.18);
+  }
+  .screen-head{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:18px;
+    align-items:start;
+    margin-bottom:22px;
+  }
+  .num{
+    width:54px;height:54px;border:3px solid var(--line);border-radius:50%;
+    display:grid;place-items:center;font-weight:800;font-size:24px;background:#fff;
+  }
+  h2{margin:0 0 5px;font-size:30px}
+  .purpose{margin:0;color:var(--muted);font-size:16px}
+  .frames{
+    display:grid;
+    grid-template-columns:minmax(280px,400px) minmax(650px,1fr);
+    gap:28px;
+    align-items:start;
+  }
+  .device-label{
+    font-weight:800;margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:1px;
+  }
+  .phone,.desktop{
+    background:#fff;
+    border:3px solid var(--line);
+    overflow:hidden;
+    box-shadow:4px 4px 0 var(--soft);
+  }
+  .phone{width:100%;max-width:390px;margin:auto;border-radius:34px;padding:12px}
+  .phone .viewport{min-height:710px;border:2px solid var(--line);border-radius:24px;overflow:hidden}
+  .desktop{border-radius:12px}
+  .desktop .viewport{min-height:520px}
+  .topbar{
+    min-height:52px;border-bottom:2px solid var(--line);display:flex;align-items:center;justify-content:space-between;
+    padding:10px 16px;background:#fafafa;font-family:Arial,sans-serif;font-weight:700;
+  }
+  .logo{border:2px solid var(--line);padding:5px 9px;border-radius:6px}
+  .nav{display:flex;gap:16px;font-size:13px}
+  .icon{width:28px;height:28px;border:2px solid var(--line);border-radius:50%}
+  .content{padding:18px}
+  .hero{
+    border:2px solid var(--line);border-radius:12px;min-height:150px;padding:18px;margin-bottom:14px;
+    background:repeating-linear-gradient(135deg,#fff,#fff 12px,#f3f0e8 13px,#f3f0e8 14px);
+  }
+  .hero.tall{min-height:230px}
+  .kicker{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#555}
+  .big{font-size:28px;line-height:1.15;margin:10px 0;font-weight:800}
+  .sub{font-size:14px;color:#555}
+  .btn{
+    display:inline-block;border:2px solid var(--line);padding:10px 16px;border-radius:999px;background:#fff;
+    box-shadow:2px 2px 0 var(--line);font-weight:800;margin:7px 7px 0 0;
+  }
+  .btn.dark{background:#222;color:#fff}
+  .btn.full{display:block;text-align:center;width:100%;margin-top:12px}
+  .card{
+    border:2px solid var(--line);border-radius:10px;padding:14px;background:#fff;margin-bottom:10px;
+  }
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .pill{
+    border:2px solid var(--line);border-radius:12px;padding:12px;text-align:center;min-height:90px;
+    display:flex;align-items:center;justify-content:center;font-weight:800;background:#fff;
+  }
+  .circle{
+    width:56px;height:56px;border:2px solid var(--line);border-radius:50%;display:grid;place-items:center;margin:auto auto 8px;
+  }
+  .row{display:flex;gap:10px;align-items:center}
+  .thumb{
+    min-width:90px;height:70px;border:2px dashed var(--line);border-radius:8px;background:#f3f0e8;
+    display:grid;place-items:center;font-size:12px;color:#555;
+  }
+  .line{height:9px;border-radius:10px;background:#d8d4cb;margin:8px 0}
+  .line.w70{width:70%}.line.w50{width:50%}.line.w30{width:30%}
+  .progress{height:14px;border:2px solid var(--line);border-radius:999px;overflow:hidden;margin:10px 0}
+  .progress i{display:block;height:100%;width:42%;background:#999}
+  .steps{display:grid;gap:10px}
+  .step{
+    display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;border:2px solid var(--line);
+    border-radius:10px;padding:10px;background:#fff;
+  }
+  .step b{width:28px;height:28px;border:2px solid var(--line);border-radius:50%;display:grid;place-items:center}
+  .calendar{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:10px
+  }
+  .calendar span{border:1.5px solid var(--line);min-height:34px;display:grid;place-items:center;font-size:12px}
+  .note{
+    margin-top:18px;border-left:5px solid var(--line);padding:10px 14px;background:#f1eee6;
+    font-family:Arial,sans-serif;font-size:14px;
+  }
+  .note b{display:block;margin-bottom:5px}
+  .annotation{
+    border:2px dashed var(--line);padding:8px 10px;border-radius:8px;font-size:12px;margin-top:10px;background:#fffdf3;
+  }
+  .desktop .content{padding:24px}
+  .desktop .layout2{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+  .desktop .layout3{display:grid;grid-template-columns:220px 1fr 280px;gap:18px}
+  .side{
+    border-right:2px solid var(--line);padding-right:16px;
+  }
+  footer{padding:24px 5vw 44px;border-top:3px solid var(--line);background:#fff}
+  footer p{max-width:1000px}
+  @media(max-width:1050px){
+    .frames{grid-template-columns:1fr}
+    .desktop{overflow-x:auto}
+    .desktop .viewport{min-width:760px}
+  }
+  @media(max-width:650px){
+    main{padding:20px 12px 50px}
+    .screen{padding:16px}
+    .screen-head{grid-template-columns:auto 1fr}
+    h2{font-size:24px}
+    .phone{max-width:360px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">AIRUUN / Low-fidelity UX Concept</div>
+  <h1>Paper Prototype — 8 Core Screens</h1>
+  <p><b>Mobile-first + Desktop</b> สำหรับใช้คุยกับลูกค้าและบรีฟทีม UX/UI ก่อนเข้าสู่ Visual Design</p>
+  <p>หลักคิด: Value before identity · Relationship before monetization · Guest-first · LINE-ready · Digital-to-physical</p>
+  <div class="flow">
+    <span>1 Entry</span><span class="arrow">→</span><span>2 Intent</span><span class="arrow">→</span>
+    <span>3 First Value</span><span class="arrow">→</span><span>4 Practice</span><span class="arrow">→</span>
+    <span>5 Journey</span><span class="arrow">→</span><span>6 Explore</span><span class="arrow">→</span>
+    <span>7 Walk In</span><span class="arrow">→</span><span>8 Return</span>
+  </div>
+</header>
+
+<main>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">1</div>
+    <div><h2>Entry / LINE Invitation</h2><p class="purpose">เริ่มจากคำถามชีวิต ไม่เริ่มจากการแนะนำ Platform หรือขายประกัน</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span>LINE</span><span>AIRUUN</span><span>•••</span></div>
+        <div class="content">
+          <div class="card">
+            <div class="kicker">A small gift for today</div>
+            <div class="big">ช่วงนี้ คุณอยากมีอะไรเพิ่มขึ้นในชีวิต?</div>
+            <div class="sub">เลือกเพียงหนึ่งข้อ ไม่ต้องกรอกแบบฟอร์ม</div>
+            <div class="btn full">ความสงบ</div>
+            <div class="btn full">พลังงาน</div>
+            <div class="btn full">เวลาที่ดีกับครอบครัว</div>
+            <div class="btn full">ความสบายใจเรื่องเงิน</div>
+            <div class="btn full">โอกาสช่วยเหลือผู้อื่น</div>
+          </div>
+          <div class="annotation">Tap → เปิด AIRUUN พร้อมส่งค่า Intent</div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>About</span><span>Explore</span><span>Programmes</span></div><div class="icon"></div></div>
+        <div class="content layout2">
+          <div class="hero tall">
+            <div class="kicker">A small gift for today</div>
+            <div class="big">ช่วงนี้ คุณอยากมีอะไรเพิ่มขึ้นในชีวิต?</div>
+            <p>เริ่มจากสิ่งที่คุณต้องการในวันนี้ AIRUUN จะเลือกประสบการณ์สั้น ๆ ที่เกี่ยวข้องให้</p>
+            <span class="btn dark">เริ่มต้น</span><span class="btn">สำรวจแบบ Guest</span>
+          </div>
+          <div>
+            <div class="card"><b>จาก LINE</b><p>ระบบรับ Intent และ Recognized ID ได้ทันที</p></div>
+            <div class="card"><b>จาก Search / Social</b><p>ยังรับ Value ได้ก่อน Login</p></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> ผู้ใช้ต้องเห็นประโยชน์ใน 1 tap และยังไม่ถูกขอข้อมูลส่วนตัว</div>
+</section>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">2</div>
+    <div><h2>Intent Selection / Five Needs</h2><p class="purpose">ใช้ภาษาความต้องการจริง ก่อนเปิดชื่อ 5 Pillars</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><span>ข้าม</span></div>
+        <div class="content">
+          <div class="kicker">วันนี้คุณอยากดูแลเรื่องใด?</div>
+          <div class="big">เลือกสิ่งที่สำคัญที่สุดตอนนี้</div>
+          <div class="pill">อยากสงบขึ้น<br><small>Jai</small></div>
+          <div class="pill">อยากมีพลัง<br><small>Kai</small></div>
+          <div class="pill">อยากใกล้ชิดคนที่รัก<br><small>Katanyu</small></div>
+          <div class="pill">อยากสบายใจเรื่องเงิน<br><small>Por-piang</small></div>
+          <div class="pill">อยากทำสิ่งดีให้ผู้อื่น<br><small>Nam-jai</small></div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>Why we ask</span><span>Privacy</span></div><span>ข้าม</span></div>
+        <div class="content">
+          <div class="big">วันนี้คุณอยากดูแลเรื่องใดมากที่สุด?</div>
+          <p class="sub">สิ่งที่เลือกเปลี่ยนได้ทุกครั้ง และไม่ใช่การตีตราคุณถาวร</p>
+          <div class="grid5">
+            <div class="pill">Jai<br>ความสงบ</div>
+            <div class="pill">Kai<br>พลังงาน</div>
+            <div class="pill">Katanyu<br>คนที่รัก</div>
+            <div class="pill">Por-piang<br>เรื่องเงิน</div>
+            <div class="pill">Nam-jai<br>การให้</div>
+          </div>
+          <div class="annotation">เมื่อเลือก “พลังงาน” → Rule-based recommendation = Kai + Short Practice + ≤5 นาที</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> Intent เป็นสถานะชั่วคราว เปลี่ยนได้ ไม่ใช่ Persona ถาวร</div>
+</section>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">3</div>
+    <div><h2>Personalized Home / Daily Dawn</h2><p class="purpose">ส่ง First Value ให้เร็ว และอธิบายได้ว่าทำไมจึงแนะนำ</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="icon"></div></div>
+        <div class="content">
+          <div class="sub">สวัสดีตอนเช้า</div>
+          <div class="hero tall">
+            <div class="kicker">Daily Dawn · Kai · 5 นาที</div>
+            <div class="big">ปลุกร่างกายอย่างอ่อนโยน</div>
+            <p>ท่ายืดสั้น ๆ สำหรับวันที่รู้สึกพลังน้อย</p>
+            <span class="btn dark">เริ่ม 5 นาที</span>
+            <span class="btn">บันทึก</span>
+          </div>
+          <div class="annotation">แนะนำเพราะคุณเลือก “อยากมีพลัง”</div>
+          <div class="card"><b>ทำต่อพรุ่งนี้</b><p>Better Energy · Day 1 of 7</p></div>
+          <div class="card"><b>กิจกรรมใกล้คุณ</b><p>Morning Movement at AIRUUN Space</p></div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>Today</span><span>Rooms</span><span>Programmes</span><span>Saved</span></div><div class="icon"></div></div>
+        <div class="content layout3">
+          <div class="side">
+            <b>Today</b>
+            <div class="line w70"></div>
+            <div class="line w50"></div>
+            <br><b>Your focus</b>
+            <div class="card">Kai — Energy</div>
+          </div>
+          <div>
+            <div class="hero tall">
+              <div class="kicker">Daily Dawn · Recommended for you</div>
+              <div class="big">ปลุกร่างกายอย่างอ่อนโยน</div>
+              <p>กิจกรรม 5 นาที เริ่มได้ทันทีโดยไม่ต้อง Login เพิ่ม</p>
+              <span class="btn dark">เริ่มกิจกรรม</span><span class="btn">บันทึกไว้</span>
+            </div>
+            <div class="grid2">
+              <div class="card"><b>Continue Journey</b><p>Better Energy · Day 1/7</p></div>
+              <div class="card"><b>From the Root</b><p>ภูมิปัญญาการขยับร่างกายแบบไทย</p></div>
+            </div>
+          </div>
+          <div>
+            <div class="card"><b>Upcoming</b><p>Morning Movement</p><div class="btn full">ดู Programme</div></div>
+            <div class="card"><b>Why this?</b><p>แนะนำจาก Intent และสิ่งที่คุณเคยบันทึก</p></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> Home ต้องไม่กลายเป็น Feed ยาว แต่จัดลำดับ “Today → Continue → Walk In”</div>
+</section>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">4</div>
+    <div><h2>Daily Dawn Detail / Short Practice</h2><p class="purpose">ประสบการณ์หนึ่งชิ้นต้องสมบูรณ์ในตัวเองและมี Next Action ที่อ่อนโยน</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span>←</span><span>Daily Dawn</span><span>♡</span></div>
+        <div class="content">
+          <div class="hero tall"><div class="thumb" style="height:190px;width:100%">VIDEO / AUDIO</div></div>
+          <div class="kicker">Kai · 5 minutes</div>
+          <div class="big">Morning Stretch</div>
+          <p>เลือกพื้นที่สบาย ๆ แล้วทำตาม 4 ท่าง่าย ๆ</p>
+          <div class="progress"><i style="width:25%"></i></div>
+          <div class="row"><span class="btn dark">▶ เริ่ม</span><span class="btn">บันทึก</span><span class="btn">แชร์</span></div>
+          <div class="card"><b>หลังทำเสร็จ</b><p>วันนี้คุณรู้สึกมีพลังขึ้นแค่ไหน?</p><div class="row"><span class="btn">น้อย</span><span class="btn">พอดี</span><span class="btn">มาก</span></div></div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>Today</span><span>Explore</span><span>Programmes</span></div><div class="icon"></div></div>
+        <div class="content layout2">
+          <div>
+            <div class="hero tall"><div class="thumb" style="height:260px;width:100%">VIDEO / AUDIO PLAYER</div></div>
+            <div class="progress"><i style="width:25%"></i></div>
+          </div>
+          <div>
+            <div class="kicker">Kai · 5 minutes</div>
+            <div class="big">Morning Stretch</div>
+            <p>ท่ายืดสั้น ๆ สำหรับวันพลังน้อย พร้อมคำแนะนำความปลอดภัย</p>
+            <span class="btn dark">เริ่มกิจกรรม</span><span class="btn">บันทึก</span>
+            <div class="card"><b>Source & reviewer</b><p>Reviewed by wellbeing expert</p></div>
+            <div class="card"><b>Next action</b><p>ทำต่อใน Better Energy Journey</p><div class="btn full">เริ่ม Journey</div></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> Completion, self-reflection และ next action เป็นส่วนหนึ่งของ Product ไม่ใช่แค่ Content Page</div>
+</section>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">5</div>
+    <div><h2>Guided Journey / 7-Day Programme</h2><p class="purpose">เปลี่ยน Content ให้เป็นเส้นทางต่อเนื่องที่เห็น Progress และกลับมาทำต่อได้</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span>←</span><span>Better Energy</span><span>•••</span></div>
+        <div class="content">
+          <div class="kicker">7-day journey</div>
+          <div class="big">Better Energy</div>
+          <p>กิจกรรมเล็ก ๆ วันละ 5–10 นาที</p>
+          <div class="progress"><i style="width:28%"></i></div>
+          <p><b>2 of 7 completed</b></p>
+          <div class="steps">
+            <div class="step"><b>✓</b><span>Day 1 · Energy check-in</span><span>Done</span></div>
+            <div class="step"><b>✓</b><span>Day 2 · Morning stretch</span><span>Done</span></div>
+            <div class="step"><b>3</b><span>Day 3 · Sleep reflection</span><span>Today</span></div>
+            <div class="step"><b>4</b><span>Day 4 · Move at work</span><span>Locked</span></div>
+          </div>
+          <div class="btn dark full">ทำ Day 3 ต่อ</div>
+          <div class="btn full">เตือนผ่าน LINE พรุ่งนี้</div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>Journeys</span><span>Saved</span><span>Programmes</span></div><div class="icon"></div></div>
+        <div class="content layout2">
+          <div>
+            <div class="kicker">Kai · Guided Journey</div>
+            <div class="big">Better Energy in 7 Days</div>
+            <div class="progress"><i style="width:28%"></i></div>
+            <div class="steps">
+              <div class="step"><b>✓</b><span>Energy check-in</span><span>Done</span></div>
+              <div class="step"><b>✓</b><span>Morning stretch</span><span>Done</span></div>
+              <div class="step"><b>3</b><span>Sleep reflection</span><span>Today</span></div>
+              <div class="step"><b>4</b><span>Move during work</span><span>Next</span></div>
+              <div class="step"><b>5</b><span>Food and energy</span><span>—</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="card"><b>Today</b><p>Sleep Reflection · 7 นาที</p><div class="btn dark full">เริ่มกิจกรรม</div></div>
+            <div class="card"><b>Optional reminder</b><p>รับข้อความเตือนพรุ่งนี้เวลา 08:00</p><div class="btn full">เชื่อม LINE</div></div>
+            <div class="card"><b>Related programme</b><p>Morning Movement at AIRUUN Space</p></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> ไม่ใช้ Streak หรือแรงกดดัน ผู้ใช้ Pause และ Resume ได้</div>
+</section>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">6</div>
+    <div><h2>Explore Rooms / Five-Pillar Content System</h2><p class="purpose">Curated destination แทน Infinite Feed และเชื่อม Content, Practice, Story, Programme</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><span>⌕</span></div>
+        <div class="content">
+          <div class="big">Explore</div>
+          <div class="row" style="overflow:hidden"><span class="btn dark">ทั้งหมด</span><span class="btn">Jai</span><span class="btn">Kai</span><span class="btn">Family</span></div>
+          <div class="card">
+            <div class="thumb" style="width:100%;height:110px">FEATURED</div>
+            <b>Health Room</b><p>เรื่องเล่า กิจกรรม และการดูแลร่างกายในชีวิตจริง</p>
+          </div>
+          <div class="card row"><div class="thumb">IMAGE</div><div><b>Practice</b><p>กิจกรรมสั้น ทำได้ทันที</p></div></div>
+          <div class="card row"><div class="thumb">IMAGE</div><div><b>Return to the Root</b><p>ภูมิปัญญาไทยและเรื่องราวจากวัดอรุณ</p></div></div>
+          <div class="card row"><div class="thumb">IMAGE</div><div><b>The Commons</b><p>เรื่องราวที่ผ่านการคัดสรรจากสมาชิก</p></div></div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>Today</span><span>Rooms</span><span>Programmes</span><span>Stories</span></div><div class="icon"></div></div>
+        <div class="content">
+          <div class="row" style="justify-content:space-between"><div><div class="big">Explore AIRUUN</div><p class="sub">เลือกจาก Need, Pillar, Format หรือเวลาที่มี</p></div><span class="btn">Search & Filter</span></div>
+          <div class="grid3">
+            <div class="card"><div class="thumb" style="width:100%;height:120px">ROOM</div><h3>Practice</h3><p>กิจกรรมสั้น ๆ เพื่อเริ่มลงมือ</p></div>
+            <div class="card"><div class="thumb" style="width:100%;height:120px">ROOM</div><h3>Return to the Root</h3><p>Thai wisdom, heritage and seasons</p></div>
+            <div class="card"><div class="thumb" style="width:100%;height:120px">ROOM</div><h3>Health Room</h3><p>Body, sleep, energy and healthy ageing</p></div>
+            <div class="card"><div class="thumb" style="width:100%;height:120px">ROOM</div><h3>Financial Room</h3><p>Reflection and education without selling</p></div>
+            <div class="card"><div class="thumb" style="width:100%;height:120px">ROOM</div><h3>The Commons</h3><p>Curated stories and participation</p></div>
+            <div class="card"><div class="thumb" style="width:100%;height:120px">ROOM</div><h3>Live Sessions</h3><p>Experts, workshops and group activities</p></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> แต่ละ Room ต้องตอบได้ว่า “มาที่นี่เพื่ออะไร ทำอะไรได้ตอนนี้ และไปต่ออย่างไร”</div>
+</section>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">7</div>
+    <div><h2>Programme Detail / Digital-to-Physical</h2><p class="purpose">เชื่อม Content → Booking → Reminder → Attendance → Follow-up</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span>←</span><span>Programme</span><span>♡</span></div>
+        <div class="content">
+          <div class="hero tall"><div class="thumb" style="width:100%;height:190px">EVENT IMAGE</div></div>
+          <div class="kicker">Kai · Onsite · 60 min</div>
+          <div class="big">Morning Movement</div>
+          <p>กิจกรรมขยับร่างกายอย่างอ่อนโยนที่ AIRUUN Space</p>
+          <div class="card"><b>Sat 8 Aug · 09:00</b><p>AIRUUN Space · 12 seats left</p></div>
+          <div class="card"><b>What to expect</b><p>Warm-up · movement · reflection · tea</p></div>
+          <div class="btn dark full">ลงทะเบียน</div>
+          <div class="btn full">ดูแผนที่</div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>Programmes</span><span>My bookings</span><span>Visit AIRUUN</span></div><div class="icon"></div></div>
+        <div class="content layout2">
+          <div>
+            <div class="hero tall"><div class="thumb" style="width:100%;height:260px">EVENT IMAGE / SPACE PHOTO</div></div>
+            <div class="big">Morning Movement</div>
+            <p>กิจกรรมสำหรับคนที่อยากเริ่มขยับร่างกายโดยไม่กดดันตัวเอง</p>
+            <div class="grid2"><div class="card"><b>Programme flow</b><p>Warm-up → Movement → Reflection</p></div><div class="card"><b>Facilitator</b><p>Reviewed wellbeing practitioner</p></div></div>
+          </div>
+          <div>
+            <div class="card"><b>Sat 8 Aug · 09:00–10:00</b><p>AIRUUN Space</p><p>12 seats left</p><div class="btn dark full">ลงทะเบียน</div><div class="btn full">เข้าร่วม Waitlist</div></div>
+            <div class="card"><b>After booking</b><p>Confirmation → LINE reminder → QR check-in → Follow-up Dawn</p></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> Login เกิดเมื่อ “Booking สร้างคุณค่าต่อเนื่อง” ไม่ใช่บังคับตั้งแต่ก่อนดูรายละเอียด</div>
+</section>
+
+<section class="screen">
+  <div class="screen-head">
+    <div class="num">8</div>
+    <div><h2>Member Dashboard / Reason to Return</h2><p class="purpose">รวมสิ่งที่บันทึก Journey ที่ทำอยู่ และ Programme ที่กำลังจะมาถึง</p></div>
+  </div>
+  <div class="frames">
+    <div>
+      <div class="device-label">Mobile-first</div>
+      <div class="phone"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="icon"></div></div>
+        <div class="content">
+          <div class="sub">ยินดีต้อนรับกลับมา</div>
+          <div class="big">พื้นที่ของคุณ</div>
+          <div class="card"><b>Current focus</b><p>Kai — Energy</p><div class="btn">เปลี่ยนสิ่งที่อยากดูแล</div></div>
+          <div class="card"><b>Continue</b><p>Better Energy · Day 3 of 7</p><div class="progress"><i style="width:42%"></i></div><div class="btn dark full">ทำต่อ</div></div>
+          <div class="card"><b>Upcoming programme</b><p>Morning Movement · Sat 8 Aug</p><div class="btn full">ดู Booking</div></div>
+          <div class="card"><b>Saved for later</b><p>3 items</p></div>
+          <div class="card"><b>Communication</b><p>LINE reminder · Weekly</p></div>
+        </div>
+      </div></div>
+    </div>
+    <div>
+      <div class="device-label">Desktop</div>
+      <div class="desktop"><div class="viewport">
+        <div class="topbar"><span class="logo">AIRUUN</span><div class="nav"><span>My space</span><span>Saved</span><span>Bookings</span><span>Settings</span></div><div class="icon"></div></div>
+        <div class="content layout3">
+          <div class="side">
+            <b>Your focus</b>
+            <div class="card">Kai — Energy</div>
+            <b>Preferences</b>
+            <div class="line w70"></div><div class="line w50"></div>
+          </div>
+          <div>
+            <div class="big">Welcome back</div>
+            <div class="card"><b>Continue your journey</b><p>Better Energy · Day 3 of 7</p><div class="progress"><i style="width:42%"></i></div><span class="btn dark">Continue</span></div>
+            <div class="grid2">
+              <div class="card"><b>Saved</b><p>3 practices · 2 stories</p></div>
+              <div class="card"><b>Recent activity</b><p>Morning Stretch completed</p></div>
+            </div>
+          </div>
+          <div>
+            <div class="card"><b>Upcoming</b><p>Morning Movement</p><p>Sat 8 Aug · 09:00</p><div class="btn full">View booking</div></div>
+            <div class="card"><b>Communication</b><p>Weekly LINE reminder</p><div class="btn full">Manage consent</div></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="note"><b>Interaction note</b> Dashboard ไม่ใช้คะแนนหรือ Rank แต่สะท้อน Continuity, Useful action และสิทธิ์ควบคุมข้อมูลของผู้ใช้</div>
+</section>
+
+</main>
+
+<footer>
+  <h2>Prototype Coverage</h2>
+  <p>Prototype ชุดนี้ครอบคลุม Entry → Intent → First Value → Practice → Guided Journey → Explore → Physical Programme → Return Loop และสามารถใช้เป็นฐานสำหรับ Sitemap, Wireflow, Feature Matrix และ Estimation ต่อได้</p>
+  <p><b>Assumption:</b> Responsive Web, LINE เป็น Entry/Return Channel, Guest อ่านได้ก่อน Login, Rule-based personalization, Community แบบ Curated ใน Phase 1</p>
+</footer>
+</body>
+</html>
