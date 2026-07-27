@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIRUUN Wireflows by User Journey</title>
+<style>
+:root{
+  --bg:#f4efe5;
+  --paper:#fffdf8;
+  --ink:#222;
+  --muted:#6d675f;
+  --line:#252525;
+  --soft:#ded7ca;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Arial,"Noto Sans Thai",sans-serif;
+}
+header{
+  padding:42px 5vw 26px;background:var(--paper);
+  border-bottom:3px solid var(--line);
+}
+h1{margin:0 0 10px;font-size:clamp(32px,5vw,62px)}
+header p{max-width:1050px;font-size:18px;line-height:1.5;margin:7px 0;color:var(--muted)}
+main{max-width:1700px;margin:auto;padding:34px 3vw 70px}
+.journey{
+  background:var(--paper);border:3px solid var(--line);border-radius:18px;
+  margin:0 0 44px;padding:24px;box-shadow:7px 7px 0 rgba(0,0,0,.14);
+}
+.head{display:grid;grid-template-columns:58px 1fr;gap:16px;align-items:start;margin-bottom:20px}
+.num{
+  width:54px;height:54px;border:3px solid var(--line);border-radius:50%;
+  display:grid;place-items:center;font-weight:800;font-size:23px;background:#fff;
+}
+h2{margin:0 0 5px;font-size:30px}
+.meta{color:var(--muted);font-size:15px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}
+.legend span{border:2px solid var(--line);border-radius:999px;padding:6px 10px;background:#fff;font-size:13px}
+.flow-wrap{overflow-x:auto;padding-bottom:12px}
+.flow{
+  min-width:1450px;display:grid;grid-template-columns:repeat(11,1fr);
+  gap:14px;align-items:center;
+}
+.node{
+  border:2.5px solid var(--line);background:#fff;border-radius:12px;
+  min-height:126px;padding:13px;display:flex;flex-direction:column;justify-content:center;
+  box-shadow:3px 3px 0 var(--soft);position:relative;
+}
+.node small{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.node b{font-size:16px;margin:5px 0}
+.node p{font-size:12px;line-height:1.4;margin:3px 0;color:#4e4a45}
+.node.screen{background:#fff}
+.node.system{background:#f0ede6}
+.node.action{background:#faf8f2}
+.node.decision{border-radius:50%;min-height:126px;text-align:center}
+.arrow{text-align:center;font-size:28px;font-weight:900}
+.branch{
+  margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px
+}
+.branch-box{
+  border:2px dashed var(--line);border-radius:12px;padding:14px;background:#fff;
+}
+.branch-box b{display:block;margin-bottom:8px}
+.system-map{
+  margin-top:18px;display:flex;gap:10px;flex-wrap:wrap
+}
+.system-map span{
+  border:2px solid var(--line);padding:8px 11px;border-radius:8px;background:#f4f1e9;font-size:13px
+}
+.note{
+  margin-top:18px;border-left:5px solid var(--line);padding:12px 15px;background:#efebe2;font-size:14px
+}
+footer{
+  background:var(--paper);border-top:3px solid var(--line);padding:28px 5vw 45px
+}
+footer p{max-width:1100px;color:var(--muted);line-height:1.5}
+@media(max-width:720px){
+  main{padding:20px 12px 50px}
+  .journey{padding:16px}
+  h2{font-size:24px}
+  .branch{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>AIRUUN — Wireflows by User Journey</h1>
+  <p>หนึ่ง Wireflow ต่อหนึ่ง User Journey หลัก เพื่อใช้กำหนด Scope, Screen, Decision Point, Data และ Integration ก่อนเข้าสู่ UX/UI Design</p>
+  <p><b>Coverage:</b> Anonymous Guest · Registered Non-policyholder · Recognized TGH Policyholder · Admin / Operator</p>
+</header>
+<main>
+
+<section class="journey">
+  <div class="head">
+    <div class="num">1</div>
+    <div>
+      <h2>Anonymous Guest Journey</h2>
+      <div class="meta">Goal: Give value before identity and create a natural reason to register</div>
+    </div>
+  </div>
+  <div class="legend">
+    <span>Entry: Search / Social / Shared Link / Public Event</span>
+    <span>Primary KPI: First-value completion</span>
+    <span>Conversion: Guest → Registered Member</span>
+  </div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="node action"><small>Entry</small><b>Discover AIRUUN</b><p>Search, social, shared content, public programme</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Public Landing / Content</b><p>Immediate useful content without login</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Select Current Need</b><p>Calm, Energy, Family, Money, Giving</p></div>
+      <div class="arrow">→</div>
+      <div class="node system"><small>System</small><b>Rule-based Match</b><p>Need + pillar + format + duration</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>First Useful Experience</b><p>Dawn, practice, story or programme</p></div>
+      <div class="arrow">→</div>
+      <div class="node decision"><small>Decision</small><b>Need continuity?</b><p>Save, remind, continue, book</p></div>
+    </div>
+  </div>
+  <div class="branch">
+    <div class="branch-box"><b>No — Continue as Guest</b>Read, listen, practise, browse rooms, view programme detail, share publicly.</div>
+    <div class="branch-box"><b>Yes — Registration Trigger</b>Create AIRUUN account or connect LINE only when the user wants continuity.</div>
+  </div>
+  <div class="system-map">
+    <span>Public CMS</span><span>Anonymous Analytics</span><span>Content Taxonomy</span><span>Rule Engine</span><span>Consent Layer</span>
+  </div>
+  <div class="note"><b>Design rule:</b> Registration must not block first value. The trigger is continuity, not restriction.</div>
+</section>
+
+<section class="journey">
+  <div class="head">
+    <div class="num">2</div>
+    <div>
+      <h2>Registered Non-policyholder Journey</h2>
+      <div class="meta">Goal: Build voluntary AIRUUN relationship through saved progress, reminders and programme participation</div>
+    </div>
+  </div>
+  <div class="legend">
+    <span>Entry: Saved item / Reminder / Direct login</span>
+    <span>Primary KPI: 7-day return</span>
+    <span>Relationship outcome: Voluntary member continuity</span>
+  </div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="node action"><small>Entry</small><b>Return to AIRUUN</b><p>LINE reminder, email, saved link or direct visit</p></div>
+      <div class="arrow">→</div>
+      <div class="node system"><small>System</small><b>Recognize Member</b><p>LINE Login, email link or OTP</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Personalized Home</b><p>Today, continue journey, upcoming programme</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Continue Journey</b><p>Resume day or saved practice</p></div>
+      <div class="arrow">→</div>
+      <div class="node decision"><small>Decision</small><b>Choose next action</b><p>Continue, save, book, contribute</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Programme / Contribution</b><p>Book activity or submit curated story</p></div>
+    </div>
+  </div>
+  <div class="branch">
+    <div class="branch-box"><b>Continue digitally</b>Journey progress, saved content, optional reminder, next Dawn.</div>
+    <div class="branch-box"><b>Walk In</b>Programme registration, confirmation, reminder, attendance and follow-up.</div>
+  </div>
+  <div class="system-map">
+    <span>Member Profile</span><span>Saved Content</span><span>Journey Progress</span><span>Notification Preference</span><span>Event Module</span>
+  </div>
+  <div class="note"><b>Design rule:</b> Membership creates continuity but should not produce a lower-quality public experience for guests.</div>
+</section>
+
+<section class="journey">
+  <div class="head">
+    <div class="num">3</div>
+    <div>
+      <h2>Recognized TGH Policyholder Journey</h2>
+      <div class="meta">Goal: Recognize first, personalize carefully and deepen trust without creating sales suspicion</div>
+    </div>
+  </div>
+  <div class="legend">
+    <span>Entry: LINE / CRM / SMS / Personalized Link</span>
+    <span>Primary KPI: Recognized-member activation</span>
+    <span>Guardrail: No policy sales inside wellbeing journey</span>
+  </div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="node action"><small>Entry</small><b>Personalized Invitation</b><p>Need-led message from consented channel</p></div>
+      <div class="arrow">→</div>
+      <div class="node system"><small>System</small><b>Identity Match</b><p>LINE ID / CRM token / magic link</p></div>
+      <div class="arrow">→</div>
+      <div class="node decision"><small>Decision</small><b>Match successful?</b><p>Yes = recognized member<br>No = continue as guest</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Select Current Need</b><p>No policy detail shown</p></div>
+      <div class="arrow">→</div>
+      <div class="node system"><small>System</small><b>Consent-safe Match</b><p>Need + history + editorial priority</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Relevant Experience</b><p>Practice, journey or programme</p></div>
+    </div>
+  </div>
+  <div class="branch">
+    <div class="branch-box"><b>Identity match fails</b>Do not block. Continue as guest and offer optional account connection later.</div>
+    <div class="branch-box"><b>Recognized successfully</b>Enable save, history, programme booking and permission-based reminders.</div>
+  </div>
+  <div class="system-map">
+    <span>CRM Audience</span><span>Policyholder Database</span><span>Consent Database</span><span>LINE OA</span><span>Member Profile</span><span>Analytics</span>
+  </div>
+  <div class="note"><b>Privacy rule:</b> Do not display coverage details, use fear-based targeting, or convert wellbeing activity automatically into a sales lead.</div>
+</section>
+
+<section class="journey">
+  <div class="head">
+    <div class="num">4</div>
+    <div>
+      <h2>Admin / Content / Event Operator Journey</h2>
+      <div class="meta">Goal: Operate AIRUUN continuously through controlled publishing, programme management and moderation</div>
+    </div>
+  </div>
+  <div class="legend">
+    <span>Actors: Editor / Reviewer / Event Staff / Moderator / Admin</span>
+    <span>Primary KPI: Publishing reliability and operational health</span>
+    <span>Control: Role-based access and audit trail</span>
+  </div>
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="node action"><small>Entry</small><b>Admin Login</b><p>Role-based secure access</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Operations Dashboard</b><p>Content, programmes, submissions, alerts</p></div>
+      <div class="arrow">→</div>
+      <div class="node decision"><small>Decision</small><b>Select workstream</b><p>Content / Event / Community / Analytics</p></div>
+      <div class="arrow">→</div>
+      <div class="node screen"><small>Screen</small><b>Create or Review</b><p>Draft content, programme or submission</p></div>
+      <div class="arrow">→</div>
+      <div class="node system"><small>System</small><b>Workflow Check</b><p>Expert, editorial, legal, moderation</p></div>
+      <div class="arrow">→</div>
+      <div class="node decision"><small>Decision</small><b>Approved?</b><p>Publish / return for edit / escalate</p></div>
+    </div>
+  </div>
+  <div class="branch">
+    <div class="branch-box"><b>Approved</b>Schedule or publish, trigger LINE version, update search and analytics metadata.</div>
+    <div class="branch-box"><b>Not approved / sensitive</b>Return with comment, assign reviewer, escalate incident or archive.</div>
+  </div>
+  <div class="system-map">
+    <span>CMS</span><span>Editorial Workflow</span><span>Event Management</span><span>Moderation Queue</span><span>Audit Log</span><span>Analytics Dashboard</span>
+  </div>
+  <div class="note"><b>Operational rule:</b> AIRUUN requires people, governance and workflow. Technology alone cannot operate content, events or sensitive participation safely.</div>
+</section>
+
+</main>
+<footer>
+  <h2>How to use this wireflow pack</h2>
+  <p>ใช้ Wireflow ทั้ง 4 ชุดเพื่อแตกต่อเป็น Screen Inventory, Functional Requirement, Business Rule, Integration List, Analytics Event และ Acceptance Criteria ของแต่ละ Module ก่อนประเมิน Fixed Development Scope.</p>
+</footer>
+</body>
+</html>
