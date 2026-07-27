@@ -1,0 +1,1509 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>AIRUUN Wisdom + Wellbeing Platform</title>
+  <meta
+    name="description"
+    content="AIRUUN customer-facing overview of the wisdom and wellbeing platform vision, journeys, and market context."
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #07111f;
+      --bg2: #0c1d34;
+      --bg3: #14304f;
+      --ink: #f8f1e6;
+      --body: #dce4eb;
+      --muted: #9ca9b7;
+      --gold: #f2bc73;
+      --gold-soft: #ffe0af;
+      --aqua: #89ddd6;
+      --aqua-soft: #cbf8f1;
+      --line: rgba(255, 255, 255, 0.14);
+      --panel: rgba(255, 255, 255, 0.055);
+      --panel-strong: rgba(255, 255, 255, 0.085);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(242, 188, 115, 0.08), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(137, 221, 214, 0.08), transparent 24%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 58%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "Noto Sans Thai", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, var(--gold), var(--aqua));
+    }
+
+    .brand {
+      position: fixed;
+      top: 22px;
+      left: 26px;
+      z-index: 90;
+      padding: 11px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(6, 16, 30, 0.72);
+      color: var(--gold-soft);
+      font: 800 11px/1 "Manrope";
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .nav a {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.26);
+      transition: 0.25s;
+    }
+
+    .nav a.active {
+      height: 26px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .help {
+      position: fixed;
+      right: 24px;
+      bottom: 20px;
+      z-index: 80;
+      color: rgba(255, 255, 255, 0.42);
+      font: 700 10px/1 "Manrope";
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .slide {
+      position: relative;
+      min-height: 100svh;
+      scroll-snap-align: start;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: clamp(76px, 8vh, 96px) clamp(24px, 7vw, 120px);
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.44);
+      pointer-events: none;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at 80% 16%, rgba(137, 221, 214, 0.12), transparent 23%),
+        radial-gradient(circle at 18% 82%, rgba(242, 188, 115, 0.13), transparent 28%),
+        linear-gradient(135deg, #07111f 0%, #10223d 58%, #07111f 100%);
+    }
+
+    .plain {
+      background:
+        radial-gradient(circle at 78% 20%, rgba(137, 221, 214, 0.08), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0)),
+        linear-gradient(135deg, #07111f 0%, #0b1a2e 56%, #08131f 100%);
+    }
+
+    .inner {
+      position: relative;
+      z-index: 2;
+      width: min(1380px, 100%);
+      margin: 0 auto;
+    }
+
+    .slide-no {
+      position: absolute;
+      right: clamp(24px, 6vw, 96px);
+      top: clamp(72px, 12vh, 120px);
+      z-index: 1;
+      font: 800 clamp(82px, 13vw, 188px) / 0.8 "Manrope";
+      letter-spacing: -0.08em;
+      color: rgba(255, 255, 255, 0.045);
+    }
+
+    .kicker {
+      margin-bottom: 18px;
+      color: var(--gold);
+      font: 800 12px/1.2 "Manrope";
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      max-width: 1120px;
+      font-size: clamp(40px, 5.8vw, 88px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+
+    .hero h1 {
+      max-width: 1180px;
+      font-size: clamp(56px, 8vw, 124px);
+      line-height: 0.94;
+      letter-spacing: -0.058em;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 980px;
+      color: var(--body);
+      font-size: clamp(18px, 1.7vw, 28px);
+      line-height: 1.55;
+      font-weight: 500;
+      text-wrap: pretty;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .chips span,
+    .scope-tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ecf2f2;
+      font: 700 12px/1 "Manrope";
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .decision {
+      margin-top: 24px;
+      max-width: 1080px;
+      padding: 18px 22px;
+      border: 1px solid rgba(242, 188, 115, 0.3);
+      border-radius: 22px;
+      background: linear-gradient(90deg, rgba(242, 188, 115, 0.14), rgba(137, 221, 214, 0.08));
+      color: #fff0d9;
+      font-size: clamp(16px, 1.25vw, 21px);
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .slide-note {
+      position: absolute;
+      left: clamp(24px, 7vw, 120px);
+      bottom: 26px;
+      z-index: 3;
+      color: rgba(255, 255, 255, 0.55);
+      font: 700 10px/1 "Manrope";
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .split-cards,
+    .risk-frame,
+    .phase-grid,
+    .compare-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 30px;
+      max-width: 1180px;
+    }
+
+    .split-cards,
+    .risk-frame {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .phase-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1240px;
+    }
+
+    .compare-grid {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1260px;
+    }
+
+    .card,
+    .phase-card,
+    .journey-card,
+    .metric-card,
+    .table-shell,
+    .story-step {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .card,
+    .journey-card,
+    .metric-card,
+    .story-step,
+    .phase-card {
+      padding: 22px 24px;
+    }
+
+    .label,
+    .card b,
+    .phase-card b,
+    .journey-card b,
+    .metric-card b,
+    .story-step b {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold-soft);
+      font: 800 12px/1 "Manrope";
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .action-card .label,
+    .metric-card b.aqua,
+    .story-step b.aqua {
+      color: var(--aqua-soft);
+    }
+
+    .finding-card {
+      border-left: 3px solid var(--gold);
+    }
+
+    .action-card {
+      border-left: 3px solid var(--aqua);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.15em;
+      color: #dae2e8;
+      font-size: clamp(14px, 1.08vw, 18px);
+      line-height: 1.58;
+    }
+
+    li {
+      margin: 0.25em 0;
+    }
+
+    .pillar-grid,
+    .flow-map,
+    .story-map,
+    .timeline,
+    .mini-grid,
+    .signal-path {
+      display: grid;
+      gap: 14px;
+      margin-top: 30px;
+      max-width: 1260px;
+    }
+
+    .pillar-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .flow-map {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .story-map {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .timeline {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .signal-path {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .pillar-grid > div,
+    .flow-map > div,
+    .timeline > div,
+    .mini-grid > div,
+    .signal-path > div {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+      padding: 20px;
+      backdrop-filter: blur(14px);
+    }
+
+    .story-step {
+      position: relative;
+      min-height: 240px;
+    }
+
+    .story-step::after {
+      content: "";
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      width: 20px;
+      height: 1px;
+      background: rgba(242, 188, 115, 0.38);
+    }
+
+    .story-step:last-child::after {
+      display: none;
+    }
+
+    .pillar-grid b {
+      margin-bottom: 8px;
+      font-size: clamp(20px, 2vw, 30px);
+      letter-spacing: -0.02em;
+      text-transform: none;
+    }
+
+    .pillar-grid span,
+    .flow-map span,
+    .story-step span,
+    .timeline span,
+    .mini-grid span,
+    .signal-path span,
+    .phase-card h3,
+    .journey-card span,
+    .metric-card span {
+      display: block;
+      color: #fff;
+      font-weight: 800;
+      line-height: 1.22;
+    }
+
+    .pillar-grid span {
+      font-size: clamp(13px, 1vw, 16px);
+      color: #d8e2e8;
+      font-weight: 600;
+    }
+
+    .flow-map span,
+    .story-step span,
+    .journey-card span,
+    .metric-card span {
+      margin-bottom: 8px;
+      font-size: clamp(18px, 1.35vw, 24px);
+    }
+
+    .timeline span {
+      margin: 12px 0 7px;
+      font-size: clamp(15px, 1.2vw, 20px);
+    }
+
+    .mini-grid span,
+    .signal-path span {
+      font-size: clamp(15px, 1.1vw, 19px);
+      margin-bottom: 6px;
+    }
+
+    .flow-map small,
+    .story-step small,
+    .timeline small,
+    .mini-grid small,
+    .signal-path small,
+    .phase-card p,
+    .journey-card small,
+    .metric-card small {
+      display: block;
+      color: var(--muted);
+      font-size: clamp(13px, 1vw, 16px);
+      line-height: 1.45;
+    }
+
+    .timeline > div {
+      position: relative;
+      min-height: 170px;
+      border-top: 2px solid rgba(242, 188, 115, 0.48);
+      border-radius: 0 0 18px 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent);
+    }
+
+    .timeline > div::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 10px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 28px rgba(242, 188, 115, 0.7);
+    }
+
+    .timeline b {
+      color: var(--gold);
+      font: 800 12px/1 "Manrope";
+      letter-spacing: 0.08em;
+    }
+
+    .phase-card {
+      min-height: 360px;
+    }
+
+    .phase-card.active {
+      background: linear-gradient(160deg, rgba(242, 188, 115, 0.18), rgba(255, 255, 255, 0.045));
+      border-color: rgba(242, 188, 115, 0.42);
+    }
+
+    .phase-card h3 {
+      margin: 8px 0 14px;
+      font-size: clamp(22px, 1.7vw, 30px);
+    }
+
+    .phase-card ul {
+      font-size: clamp(13px, 1vw, 16px);
+    }
+
+    .table-shell {
+      margin-top: 28px;
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 880px;
+      border-collapse: collapse;
+      color: #dce4eb;
+      font-size: clamp(13px, 1vw, 16px);
+      line-height: 1.45;
+    }
+
+    th,
+    td {
+      padding: 15px 16px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 0;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--gold-soft);
+      font: 800 12px/1.25 "Manrope";
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    td strong {
+      color: #fff;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: 0.8s cubic-bezier(0.22, 0.9, 0.28, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 980px) {
+      .slide {
+        padding: 84px 24px 58px;
+        align-items: flex-start;
+        overflow: auto;
+      }
+
+      .brand {
+        top: 16px;
+        left: 18px;
+        font-size: 10px;
+      }
+
+      .nav,
+      .help,
+      .slide-no {
+        display: none;
+      }
+
+      .split-cards,
+      .risk-frame,
+      .phase-grid,
+      .compare-grid,
+      .pillar-grid,
+      .flow-map,
+      .story-map,
+      .timeline,
+      .mini-grid,
+      .signal-path {
+        grid-template-columns: 1fr;
+      }
+
+      .story-step::after {
+        display: none;
+      }
+
+      h1 {
+        font-size: clamp(36px, 10vw, 60px);
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 15vw, 82px);
+      }
+
+      .lead {
+        font-size: 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <div class="brand">AIRUUN</div>
+  <nav class="nav" id="nav" aria-label="Slide navigation"></nav>
+  <div class="help">Arrow Keys / Page Down</div>
+
+  <section class="slide hero" id="cover">
+    <div class="slide-no">01</div>
+    <div class="inner">
+      <div class="kicker">AIRUUN</div>
+      <h1>From a microsite<br>to a living wisdom + wellbeing platform.</h1>
+      <p class="lead">
+        A customer-facing view of how AIRUUN can become a trusted digital and physical wellbeing experience.
+      </p>
+      <div class="chips">
+        <span>Thai Wisdom</span>
+        <span>Whole-life Wellbeing</span>
+        <span>320,000 Policyholders</span>
+        <span>Long-term Relationship</span>
+      </div>
+    </div>
+    <div class="slide-note">July 2026</div>
+  </section>
+
+  <section class="slide plain" id="objective">
+    <div class="slide-no">02</div>
+    <div class="inner">
+      <div class="kicker">Why AIRUUN</div>
+      <h1>AIRUUN is more than a website.</h1>
+      <p class="lead">
+        AIRUUN brings together content, guided journeys, member continuity, events, and community participation in one long-term platform.
+      </p>
+      <div class="split-cards">
+        <div class="card finding-card">
+          <div class="label">What AIRUUN Includes</div>
+          <ul>
+            <li>Daily Dawn and ongoing content</li>
+            <li>Five wellbeing pillars and guided journeys</li>
+            <li>Member identity, personalization, save and history</li>
+            <li>Events, physical-space programmes, and community participation</li>
+            <li>LINE, CRM, analytics, and future AI recommendation</li>
+          </ul>
+        </div>
+        <div class="card action-card">
+          <div class="label">What It Enables</div>
+          <ul>
+            <li>Useful daily experiences and return moments</li>
+            <li>Personalization, save, history, and reminders</li>
+            <li>A connected relationship across digital and physical touchpoints</li>
+          </ul>
+        </div>
+      </div>
+      <div class="decision">AIRUUN should be designed as a living platform that can operate, learn, and grow over time.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="relationship">
+    <div class="slide-no">03</div>
+    <div class="inner">
+      <div class="kicker">Relationship Opportunity</div>
+      <h1>Create value between insurance transactions.</h1>
+      <p class="lead">
+        Insurance relationships are usually visible only at purchase, premium, renewal, service, claim, or promotion moments. AIRUUN adds a useful relationship layer between them.
+      </p>
+      <div class="risk-frame">
+        <div class="card">
+          <b>Current Relationship</b>
+          <span>Transaction-led, reactive, product-centred, communication-heavy.</span>
+          <small>Useful for service moments, weak for everyday relevance.</small>
+        </div>
+        <div class="card">
+          <b>AIRUUN Relationship</b>
+          <span>Need-led, preventive, voluntary, measurable, and life-centred.</span>
+          <small>Useful enough to earn return visits without becoming intrusive.</small>
+        </div>
+      </div>
+      <div class="mini-grid">
+        <div>
+          <b>Member Value</b>
+          <span>Relevant knowledge, small actions, family and money reflection, safe participation.</span>
+        </div>
+        <div>
+          <b>TGH Value</b>
+          <span>Brand relevance, trust, first-party insight, and permission-based continuity.</span>
+        </div>
+        <div>
+          <b>Guardrail</b>
+          <span>Every interaction must provide a useful reason for the relationship to continue.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="audience">
+    <div class="slide-no">04</div>
+    <div class="inner">
+      <div class="kicker">Audience States</div>
+      <h1>One wellbeing platform, four different user states.</h1>
+      <p class="lead">
+        AIRUUN needs clear guest, member, policyholder, and operator logic from the start because trust, access, and continuity differ by state.
+      </p>
+      <div class="flow-map">
+        <div>
+          <b>01</b>
+          <span>Anonymous Guest</span>
+          <small>Arrives through search, social, shared content, event, or partner activity. Receives value before registration.</small>
+        </div>
+        <div>
+          <b>02</b>
+          <span>Registered Member</span>
+          <small>Registers to save, continue a journey, book, connect LINE, or receive reminders.</small>
+        </div>
+        <div>
+          <b>03</b>
+          <span>Recognized Policyholder</span>
+          <small>Arrives through consented channels and receives recognition without turning the experience into policy servicing.</small>
+        </div>
+        <div>
+          <b>04</b>
+          <span>Admin &amp; Operators</span>
+          <small>Manage content, events, approvals, moderation, analytics, and LINE/CRM operations.</small>
+        </div>
+      </div>
+      <div class="decision">The major differences are trust level, identity readiness, registration threshold, and communication continuity.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="promise">
+    <div class="slide-no">05</div>
+    <div class="inner">
+      <div class="kicker">Experience Promise</div>
+      <h1>Value before identity. Relationship before monetization.</h1>
+      <p class="lead">
+        AIRUUN should feel like a gift, not a sales funnel. Public value comes first; login appears only when continuity becomes useful.
+      </p>
+      <div class="split-cards">
+        <div class="card finding-card">
+          <div class="label">Public Before Login</div>
+          <ul>
+            <li>Daily Dawn sample, article, short audio, practice</li>
+            <li>Heritage story, programme listing, and event information</li>
+            <li>Clear optional next step without pressure</li>
+          </ul>
+        </div>
+        <div class="card action-card">
+          <div class="label">Login When It Adds Value</div>
+          <ul>
+            <li>Save, progress, booking, reminder, personalization, contribution</li>
+            <li>Separate service consent from marketing consent</li>
+            <li>Avoid dark patterns, engagement farming, and forced registration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="decision">Reading-only users remain valid users. AIRUUN leads; TGH stays visible as sponsor.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="pillars">
+    <div class="slide-no">06</div>
+    <div class="inner">
+      <div class="kicker">Five Pillars</div>
+      <h1>The five pillars are not just content categories. They are product systems.</h1>
+      <p class="lead">
+        Each pillar should define its human need, experience types, recommendation logic, and measurement signals.
+      </p>
+      <div class="pillar-grid">
+        <div>
+          <b>Jai</b>
+          <span>Mind and emotion</span>
+        </div>
+        <div>
+          <b>Kai</b>
+          <span>Body and energy</span>
+        </div>
+        <div>
+          <b>Katanyu</b>
+          <span>Family and loved ones</span>
+        </div>
+        <div>
+          <b>Por-piang</b>
+          <span>Balanced relationship with money</span>
+        </div>
+        <div>
+          <b>Nam-jai</b>
+          <span>Generosity and care</span>
+        </div>
+      </div>
+      <div class="mini-grid">
+        <div>
+          <b>Possible Experiences</b>
+          <span>Mood reflection, movement, caregiver content, money reflection, kindness actions.</span>
+        </div>
+        <div>
+          <b>Required Product Translation</b>
+          <span>Taxonomy, metadata, CMS model, cross-pillar journeys, and reporting structure.</span>
+        </div>
+        <div>
+          <b>Guardrail</b>
+          <span>Financial wellbeing must remain wellbeing, not product selling.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="architecture">
+    <div class="slide-no">07</div>
+    <div class="inner">
+      <div class="kicker">Experience Architecture</div>
+      <h1>Receive. Return to the Root. Dwell. Walk In.</h1>
+      <p class="lead">
+        AIRUUN’s architecture should connect immediate value, Thai cultural grounding, deeper exploration, and physical participation in one coherent journey.
+      </p>
+      <div class="story-map">
+        <div class="story-step">
+          <b>Receive</b>
+          <span>Daily Dawn</span>
+          <small>Reflection, insight, audio, wisdom, movement, family prompt, money pause, kindness action.</small>
+        </div>
+        <div class="story-step">
+          <b>Return to the Root</b>
+          <span>Thai Wisdom</span>
+          <small>Founding story, Wat Arun connection, elder wisdom, seasonal rhythms, and heritage media.</small>
+        </div>
+        <div class="story-step">
+          <b>Dwell</b>
+          <span>Curated Rooms</span>
+          <small>Practice, Heritage, Health Room, Financial Room, The Commons, and Live Sessions.</small>
+        </div>
+        <div class="story-step">
+          <b>Walk In</b>
+          <span>Digital to Physical</span>
+          <small>Programme listing, booking, reminder, directions, check-in, attendance, and follow-up.</small>
+        </div>
+        <div class="story-step">
+          <b>Outcome</b>
+          <span>Habit + Meaning</span>
+          <small>Immediate value creates return, depth, participation, and long-term relationship value.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="journey">
+    <div class="slide-no">08</div>
+    <div class="inner">
+      <div class="kicker">Member Journey</div>
+      <h1>Entry → Identity → Intent → Value → Habit.</h1>
+      <p class="lead">
+        Phase 1 does not need advanced AI. It needs a well-defined end-to-end journey and a rule-based return mechanism.
+      </p>
+      <div class="timeline">
+        <div>
+          <b>01</b>
+          <span>Entry</span>
+          <small>LINE, CRM, SMS, email, search, social, event, or direct share.</small>
+        </div>
+        <div>
+          <b>02</b>
+          <span>Identity</span>
+          <small>LINE Login, magic link, OTP, TGH SSO, or personalized CRM link.</small>
+        </div>
+        <div>
+          <b>03</b>
+          <span>Intent</span>
+          <small>“What would you like to take care of today?” Calm, Energy, Family, Money, Giving.</small>
+        </div>
+        <div>
+          <b>04</b>
+          <span>Value</span>
+          <small>Short, understandable, actionable, complete, relevant, and low-friction.</small>
+        </div>
+        <div>
+          <b>05</b>
+          <span>Habit</span>
+          <small>Continue tomorrow, save, reminder, event, related story, reflection, or activity.</small>
+        </div>
+      </div>
+      <div class="decision">Phase 1 recommendation signals can rely on selected need, pillar, viewed content, saved content, event interest, and editorial priority.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="policyholder">
+    <div class="slide-no">09</div>
+    <div class="inner">
+      <div class="kicker">Policyholder Journey</div>
+      <h1>Recognize first. Personalize carefully.</h1>
+      <p class="lead">
+        Recognized policyholder journeys should use consented channels and light recognition, while keeping wellbeing content clearly separate from policy detail and sales triggers.
+      </p>
+      <div class="signal-path">
+        <div>
+          <b>Invitation</b>
+          <span>Consent-based LINE invitation</span>
+          <small>Example prompt: “Would you like to have more energy in your day?”</small>
+        </div>
+        <div>
+          <b>Recognition</b>
+          <span>Light member recognition</span>
+          <small>LINE Login or personalized link without showing policy detail inside the experience.</small>
+        </div>
+        <div>
+          <b>First Value</b>
+          <span>Kai-mapped recommendation</span>
+          <small>Morning stretch, sleep reflection, short article, or relevant programme.</small>
+        </div>
+        <div>
+          <b>Continuation</b>
+          <span>Digital-to-physical follow-up</span>
+          <small>Save, reminder, onsite programme, feedback, related Dawn, and next action.</small>
+        </div>
+      </div>
+      <div class="decision">Keep personalization explainable. Do not convert wellbeing actions into automatic sales leads.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="guest">
+    <div class="slide-no">10</div>
+    <div class="inner">
+      <div class="kicker">Guest Journey</div>
+      <h1>Provide value first. Earn the relationship.</h1>
+      <p class="lead">
+        Guest journeys should begin with useful public content and only invite registration when the user wants continuity.
+      </p>
+      <div class="timeline">
+        <div>
+          <b>01</b>
+          <span>Discovery</span>
+          <small>Search, shared article, social, public event, or partner activity.</small>
+        </div>
+        <div>
+          <b>02</b>
+          <span>Immediate Value</span>
+          <small>Read or complete a short experience without login.</small>
+        </div>
+        <div>
+          <b>03</b>
+          <span>Select Need</span>
+          <small>Choose a current need and receive a relevant next experience.</small>
+        </div>
+        <div>
+          <b>04</b>
+          <span>Register Only for Continuity</span>
+          <small>Save, book, get a reminder, continue a journey, or join a programme.</small>
+        </div>
+        <div>
+          <b>05</b>
+          <span>Return</span>
+          <small>Saved content, reminder, Daily Dawn, programme, or shared story.</small>
+        </div>
+      </div>
+      <div class="decision">Continuity, not restriction, should be the reason to register.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="blueprint">
+    <div class="slide-no">11</div>
+    <div class="inner">
+      <div class="kicker">Platform Blueprint</div>
+      <h1>Web-first. LINE-ready. Modular by design.</h1>
+      <p class="lead">
+        The platform should be modular enough for phased delivery, but structured enough for identity, operations, and future intelligence.
+      </p>
+      <div class="flow-map">
+        <div>
+          <b>Experience Layer</b>
+          <span>Responsive web, mobile-first UI, LINE browser, optional LIFF / MINI App.</span>
+        </div>
+        <div>
+          <b>Member Layer</b>
+          <span>Guest, registered member, recognized policyholder, admin, operator, moderator.</span>
+        </div>
+        <div>
+          <b>Product Modules</b>
+          <span>Daily Dawn, pillars, rooms, practices, events, saved items, stories, notifications.</span>
+        </div>
+        <div>
+          <b>Operation Layer</b>
+          <span>CMS, editorial workflow, programme management, moderation, reporting, audit, security.</span>
+        </div>
+      </div>
+      <div class="mini-grid">
+        <div>
+          <b>Intelligence Layer</b>
+          <span>Content taxonomy, member preferences, rule-based recommendation, behaviour events.</span>
+        </div>
+        <div>
+          <b>Integration Layer</b>
+          <span>LINE Login, Messaging API, CRM/CDP, policyholder database, consent, analytics, event system.</span>
+        </div>
+        <div>
+          <b>Technical Principles</b>
+          <span>API-ready, secure by design, consent-aware, CMS-driven, analytics-enabled, scalable by phase.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="mvp">
+    <div class="slide-no">12</div>
+    <div class="inner">
+      <div class="kicker">Phase 1 MVP</div>
+      <h1>Start with a useful platform, not the entire vision.</h1>
+      <p class="lead">
+        The MVP should prove the relationship model, not attempt every future module at launch.
+      </p>
+      <div class="split-cards">
+        <div class="card finding-card">
+          <div class="label">Core Platform</div>
+          <ul>
+            <li>Homepage, AIRUUN intro, Daily Dawn, five-pillar browsing</li>
+            <li>Root and Heritage, room landing pages, content detail, practices</li>
+            <li>Programme listing, event detail, physical-space information</li>
+            <li>Search, filter, social sharing, and basic analytics</li>
+          </ul>
+        </div>
+        <div class="card action-card">
+          <div class="label">Member + CMS Foundation</div>
+          <ul>
+            <li>Guest/member states, light login, profile, current need, preferences, saves</li>
+            <li>Structured content types, taxonomy, draft-review-approve-publish flow</li>
+            <li>Basic personalization from signals, not AI</li>
+            <li>Optional modules priced separately: booking, waitlist, QR, CRM sync, MINI App</li>
+          </ul>
+        </div>
+      </div>
+      <div class="decision">The MVP is the minimum system capable of proving the AIRUUN relationship model.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="future">
+    <div class="slide-no">13</div>
+    <div class="inner">
+      <div class="kicker">Future Expansion</div>
+      <h1>Build the foundation first. Add intelligence after learning.</h1>
+      <p class="lead">
+        AI and community should follow structured metadata, sufficient interaction data, clear objectives, and governance readiness.
+      </p>
+      <div class="phase-grid">
+        <div class="phase-card active">
+          <b>Phase 1</b>
+          <h3>Useful MVP</h3>
+          <p>Public value, member foundation, CMS, basic signals, and digital-to-physical journeys.</p>
+          <ul>
+            <li>Public content and practices</li>
+            <li>Light login and saves</li>
+            <li>Basic analytics and preference signals</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <b>Phase 2</b>
+          <h3>Engagement</h3>
+          <p>Richer profile, progress tracking, event registration, curated stories, and dashboards.</p>
+          <ul>
+            <li>Saved journeys and attendance</li>
+            <li>Limited reactions and moderated comments</li>
+            <li>Operational dashboards</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <b>Phase 3</b>
+          <h3>Intelligence + Community</h3>
+          <p>AI-assisted recommendation, advanced personalization, orchestration, and broader community capability.</p>
+          <ul>
+            <li>CRM/CDP automation</li>
+            <li>Community groups and member-led activities</li>
+            <li>Predictive re-engagement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="decision">Community maturity should move from read / save / attend into contribution only when operations and governance are ready.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="delivery">
+    <div class="slide-no">14</div>
+    <div class="inner">
+      <div class="kicker">Platform Maturity</div>
+      <h1>AIRUUN can grow in clear stages.</h1>
+      <p class="lead">
+        The platform can begin with a useful core experience, then expand into deeper engagement, stronger operations, and broader intelligence.
+      </p>
+      <div class="phase-grid">
+        <div class="phase-card active">
+          <b>Phase 1</b>
+          <h3>Core Platform</h3>
+          <ul>
+            <li>Daily Dawn, pillars, rooms, practices, and public value</li>
+            <li>Light member continuity, saves, and preferences</li>
+            <li>Basic analytics and digital-to-physical journeys</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <b>Phase 2</b>
+          <h3>Deeper Engagement</h3>
+          <ul>
+            <li>Progress tracking, event registration, and curated stories</li>
+            <li>Operational dashboards and stronger member continuity</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <b>Phase 3+</b>
+          <h3>Intelligence + Community</h3>
+          <ul>
+            <li>Advanced personalization, orchestration, and community capability</li>
+            <li>Broader integration, automation, and long-term learning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="definition">
+    <div class="slide-no">15</div>
+    <div class="inner">
+      <div class="kicker">What Needs To Be Defined</div>
+      <h1>AIRUUN needs clear operating and platform decisions.</h1>
+      <p class="lead">
+        The platform vision is clear, but several decisions determine how AIRUUN should be structured, connected, and operated.
+      </p>
+      <div class="split-cards">
+        <div class="card finding-card">
+          <div class="label">Key Platform Decisions</div>
+          <ul>
+            <li>Web only or Web + LINE MINI App</li>
+            <li>Login method and policyholder verification</li>
+            <li>CRM integration and API readiness</li>
+            <li>Event listing only or full booking, waitlist, and check-in</li>
+            <li>Community level, CMS workflow, language, hosting, security, SLA</li>
+          </ul>
+        </div>
+        <div class="card action-card">
+          <div class="label">What AIRUUN Needs</div>
+          <ul>
+            <li>Clear blueprint and MVP scope</li>
+            <li>System architecture and integration plan</li>
+            <li>CMS, data model, and measurement logic</li>
+            <li>Roadmap for launch, growth, and future intelligence</li>
+          </ul>
+        </div>
+      </div>
+      <div class="decision">These decisions shape how AIRUUN can launch with confidence and scale without avoidable rework.</div>
+    </div>
+  </section>
+
+  <section class="slide hero" id="commercial">
+    <div class="slide-no">16</div>
+    <div class="inner">
+      <div class="kicker">Long-term Direction</div>
+      <h1>Launch the core experience. Grow the relationship over time.</h1>
+      <p class="lead">
+        AIRUUN can begin with a focused first release, then expand into stronger personalization, participation, and long-term member value.
+      </p>
+      <div class="chips">
+        <span>Useful Daily Value</span>
+        <span>Member Continuity</span>
+        <span>Programmes &amp; Participation</span>
+        <span>Future Intelligence</span>
+      </div>
+      <div class="decision">AIRUUN’s long-term value comes from trusted usefulness, repeat participation, and a relationship that grows stronger over time.</div>
+    </div>
+    <div class="slide-note">A trusted, measurable, scalable relationship platform</div>
+  </section>
+
+  <section class="slide hero" id="appendix-transition">
+    <div class="slide-no">17</div>
+    <div class="inner">
+      <div class="kicker">Next Section</div>
+      <h1>Appendixes and research follow after this point.</h1>
+      <p class="lead">
+        The next slides provide supporting detail, platform logic, measurement structure, and Thailand market research for readers who want deeper context.
+      </p>
+      <div class="chips">
+        <span>Supporting Detail</span>
+        <span>Access Logic</span>
+        <span>Measurement</span>
+        <span>Thailand Research</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="appendix-intro">
+    <div class="slide-no">18</div>
+    <div class="inner">
+      <div class="kicker">Market Context</div>
+      <h1>Supporting logic, access rules, measurement, and Thailand platform benchmarks.</h1>
+      <p class="lead">
+        These supporting sections combine AIRUUN platform logic with Thailand current-practice benchmarks for additional context.
+      </p>
+      <div class="chips">
+        <span>Microsite vs Platform</span>
+        <span>Access Logic</span>
+        <span>Journey Metrics</span>
+        <span>Thailand Benchmarks</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="appendix-foundation">
+    <div class="slide-no">19</div>
+    <div class="inner">
+      <div class="kicker">Foundation</div>
+      <h1>AIRUUN can start small, but it must start on the right foundation.</h1>
+      <p class="lead">
+        Treating AIRUUN as a conventional microsite creates avoidable rework in identity, data, operations, and integration.
+      </p>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Campaign Microsite</th>
+              <th>AIRUUN Platform</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Purpose</strong></td>
+              <td>Communicate a campaign</td>
+              <td>Build an ongoing relationship</td>
+            </tr>
+            <tr>
+              <td><strong>User State</strong></td>
+              <td>Mostly anonymous</td>
+              <td>Guest, member, policyholder, admin</td>
+            </tr>
+            <tr>
+              <td><strong>Identity</strong></td>
+              <td>Usually unnecessary</td>
+              <td>Required for continuity and personalization</td>
+            </tr>
+            <tr>
+              <td><strong>Operation</strong></td>
+              <td>Limited period</td>
+              <td>Continuous editorial and programme operation</td>
+            </tr>
+            <tr>
+              <td><strong>Integration</strong></td>
+              <td>Minimal</td>
+              <td>LINE, CRM, consent, analytics, and events</td>
+            </tr>
+            <tr>
+              <td><strong>Success</strong></td>
+              <td>Visit or conversion</td>
+              <td>Usefulness, return, action, and relationship</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="appendix-access">
+    <div class="slide-no">20</div>
+    <div class="inner">
+      <div class="kicker">Access Logic</div>
+      <h1>Access logic should be explicit from day one.</h1>
+      <p class="lead">
+        Guest, registered member, and recognized policyholder journeys should share the same product language while differing in access and continuity.
+      </p>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Guest</th>
+              <th>Registered Member</th>
+              <th>Recognized Policyholder</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Read public content</strong></td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Complete short practice</strong></td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Save content / keep history</strong></td>
+              <td>No</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Receive reminder</strong></td>
+              <td>No</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Policyholder-only access</strong></td>
+              <td>No</td>
+              <td>No</td>
+              <td>Optional</td>
+            </tr>
+            <tr>
+              <td><strong>CRM continuity</strong></td>
+              <td>No</td>
+              <td>Limited</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="appendix-metrics">
+    <div class="slide-no">21</div>
+    <div class="inner">
+      <div class="kicker">Measurement</div>
+      <h1>Measure the journey, not just page views.</h1>
+      <p class="lead">
+        AIRUUN should track whether members receive first value, select a need, return, attend programmes, and participate meaningfully.
+      </p>
+      <div class="compare-grid">
+        <div class="metric-card">
+          <b>Entry</b>
+          <span>Source, campaign, device, session</span>
+          <small>Main metric: entry-to-first-value.</small>
+        </div>
+        <div class="metric-card">
+          <b>Identity</b>
+          <span>Login method, success, abandonment</span>
+          <small>Main metric: recognition success.</small>
+        </div>
+        <div class="metric-card">
+          <b>Intent</b>
+          <span>Selected need and pillar</span>
+          <small>Main metric: intent selection.</small>
+        </div>
+        <div class="metric-card">
+          <b>Habit</b>
+          <span>Return, reminder, continuation</span>
+          <small>Main metric: 7-day and 30-day return.</small>
+        </div>
+      </div>
+      <div class="decision">Avoid forced streaks, anxiety notifications, punitive resets, and engagement farming.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="appendix-practice">
+    <div class="slide-no">22</div>
+    <div class="inner">
+      <div class="kicker">Thailand Context</div>
+      <h1>Thailand already has strong pieces of the wellbeing ecosystem, but not this combination.</h1>
+      <p class="lead">
+        The visible market shows strong benchmarks in wellness rewards, policy service, healthcare access, public-health content, safe support, active ageing, and guided programmes.
+      </p>
+      <div class="flow-map">
+        <div>
+          <b>AIA Vitality / AIA+</b>
+          <span>Identity, tracking, points, rewards</span>
+          <small>Adopt continuity and partner integration. Avoid reward-led participation as the core logic.</small>
+        </div>
+        <div>
+          <b>Insurance Service Apps</b>
+          <span>Policy servicing and customer convenience</span>
+          <small>Service apps manage the policy. AIRUUN should support the life around it.</small>
+        </div>
+        <div>
+          <b>YoungHappy / Sati / WHO Step-by-Step</b>
+          <span>Community, safety, and guided journeys</span>
+          <small>Strong reminder that belonging and structure matter as much as content volume.</small>
+        </div>
+        <div>
+          <b>ThaiHealth / Doctor Anywhere</b>
+          <span>Credibility, ecosystem breadth, and expert access</span>
+          <small>Useful models for sourcing, referral boundaries, and online-to-offline continuity.</small>
+        </div>
+      </div>
+      <div class="decision">No visible public benchmark currently combines Thai wisdom, whole-life wellbeing, insurer-sponsored non-sales experience, physical programmes, and progressive community participation in one platform.</div>
+    </div>
+  </section>
+
+  <section class="slide plain" id="appendix-comparison">
+    <div class="slide-no">23</div>
+    <div class="inner">
+      <div class="kicker">Market White Space</div>
+      <h1>AIRUUN’s white space is relationship + meaning, not another transaction layer.</h1>
+      <p class="lead">
+        The opportunity is to combine selected best practices while avoiding the typical market traps of fragmentation, rewards dependency, and shallow content-only positioning.
+      </p>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Platform Type</th>
+              <th>Strength</th>
+              <th>Typical Limitation</th>
+              <th>AIRUUN Opportunity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Insurer wellness / rewards</strong></td>
+              <td>Identity, tracking, incentives</td>
+              <td>Often ties wellbeing to product or reward logic</td>
+              <td>Separate core wellbeing from selling</td>
+            </tr>
+            <tr>
+              <td><strong>Service super apps</strong></td>
+              <td>Convenience and policy utility</td>
+              <td>Journeys start from service need, not life need</td>
+              <td>Support life around the policy, not duplicate servicing</td>
+            </tr>
+            <tr>
+              <td><strong>Public-health / ecosystem portals</strong></td>
+              <td>Credibility and breadth</td>
+              <td>Often fragmented and directory-like</td>
+              <td>Create one identity, one taxonomy, one journey model</td>
+            </tr>
+            <tr>
+              <td><strong>Community or guided programmes</strong></td>
+              <td>Belonging, safety, structured continuity</td>
+              <td>Operationally heavy when opened too widely</td>
+              <td>Start with curated participation and scale with governance</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="decision">AIRUUN should not be the platform that publishes the most content. It should be the platform that helps members take the most meaningful next action.</div>
+    </div>
+  </section>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    slides.forEach((slide) => slide.querySelector('.inner')?.classList.add('reveal'));
+
+    const nav = document.getElementById('nav');
+    slides.forEach((slide, index) => {
+      const dot = document.createElement('a');
+      dot.href = `#${slide.id}`;
+      dot.setAttribute('aria-label', `Slide ${index + 1}`);
+      nav.appendChild(dot);
+    });
+
+    const dots = [...nav.children];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelector('.inner')?.classList.add('in');
+          const index = slides.indexOf(entry.target);
+          dots.forEach((dot, dotIndex) => dot.classList.toggle('active', index === dotIndex));
+        }
+      });
+    }, { threshold: 0.55 });
+
+    slides.forEach((slide) => observer.observe(slide));
+    slides[0].querySelector('.inner')?.classList.add('in');
+
+    function go(direction) {
+      const current = slides.reduce((best, slide, index) => {
+        return Math.abs(slide.getBoundingClientRect().top) < Math.abs(slides[best].getBoundingClientRect().top)
+          ? index
+          : best;
+      }, 0);
+      const next = Math.max(0, Math.min(slides.length - 1, current + direction));
+      slides[next].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    addEventListener('keydown', (event) => {
+      if (['ArrowDown', 'PageDown', ' '].includes(event.key)) {
+        event.preventDefault();
+        go(1);
+      }
+      if (['ArrowUp', 'PageUp'].includes(event.key)) {
+        event.preventDefault();
+        go(-1);
+      }
+      if (event.key === 'Home') {
+        event.preventDefault();
+        slides[0].scrollIntoView({ behavior: 'smooth' });
+      }
+      if (event.key === 'End') {
+        event.preventDefault();
+        slides.at(-1).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    addEventListener('scroll', () => {
+      const height = document.documentElement.scrollHeight - innerHeight;
+      document.getElementById('progress').style.width = `${(scrollY / height) * 100}%`;
+    }, { passive: true });
+  </script>
+</body>
+</html>
