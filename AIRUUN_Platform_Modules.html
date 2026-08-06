@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIRUUN Platform Modules — Foundation & Pilot Launch</title>
+  <style>
+    :root{
+      --bg:#f5f2ec;
+      --surface:#ffffff;
+      --surface-soft:#fbfaf7;
+      --text:#1f2a2a;
+      --muted:#65706f;
+      --line:#dedbd3;
+      --brand:#194f4a;
+      --brand-2:#9a6d36;
+      --included:#e5f4ed;
+      --included-text:#1e6a4b;
+      --future:#f5ebe0;
+      --future-text:#8d5d2b;
+      --shadow:0 12px 32px rgba(31,42,42,.08);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,#f8f6f1 0%,var(--bg) 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .page{max-width:1180px;margin:0 auto;padding:18px 14px 48px}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:28px 22px;
+      border-radius:28px;
+      color:#fff;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 34%),
+        linear-gradient(135deg,#123d39 0%,#1d5f58 62%,#8f6a3c 140%);
+      box-shadow:var(--shadow);
+    }
+    .eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;opacity:.78;font-weight:700}
+    h1{font-size:clamp(2rem,8vw,4rem);line-height:1.03;margin:10px 0 14px;max-width:900px}
+    .hero p{margin:0;max-width:760px;color:rgba(255,255,255,.86);font-size:1rem}
+    .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}
+    .summary-card{padding:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);border-radius:16px;backdrop-filter:blur(8px)}
+    .summary-card strong{display:block;font-size:1.35rem}
+    .summary-card span{display:block;font-size:.75rem;color:rgba(255,255,255,.72);margin-top:2px}
+    .legend{display:flex;gap:8px;flex-wrap:wrap;margin:18px 2px}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-size:.75rem;font-weight:800;white-space:nowrap}
+    .badge.included{background:var(--included);color:var(--included-text)}
+    .badge.future{background:var(--future);color:var(--future-text)}
+    .section{background:var(--surface);border:1px solid rgba(222,219,211,.9);border-radius:var(--radius);margin-top:16px;box-shadow:0 8px 24px rgba(31,42,42,.04);overflow:hidden}
+    .section-head{padding:20px 18px 12px;background:linear-gradient(180deg,var(--surface-soft),#fff)}
+    .section-index{font-size:.72rem;font-weight:800;color:var(--brand-2);letter-spacing:.15em;text-transform:uppercase}
+    .section h2{margin:5px 0 3px;font-size:1.35rem;line-height:1.2}
+    .section-sub{font-size:.88rem;color:var(--muted);margin:0}
+    .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    table{width:100%;border-collapse:collapse;min-width:760px}
+    th,td{padding:14px 16px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+    th{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:#fcfbf8}
+    td{font-size:.88rem}
+    td:first-child{font-weight:750;color:#263735;width:28%}
+    td:last-child{width:14%}
+    .limitations{padding:0 18px 18px}
+    .limitations h3{font-size:.9rem;margin:14px 0 8px;color:var(--brand)}
+    .limits-grid{display:grid;grid-template-columns:1fr;gap:8px}
+    .limit{padding:10px 12px;border-radius:12px;background:#f8f6f1;color:#4e5a58;font-size:.84rem;border-left:3px solid #c5ad88}
+    .footer-summary{margin-top:18px;padding:22px;background:#1f2f2e;color:white;border-radius:22px}
+    .footer-summary h2{margin:0 0 8px;font-size:1.3rem}
+    .footer-summary p{margin:0;color:rgba(255,255,255,.78);font-size:.92rem}
+    .footer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}
+    .footer-metric{padding:12px;background:rgba(255,255,255,.08);border-radius:14px;text-align:center}
+    .footer-metric strong{display:block;font-size:1.25rem}
+    .footer-metric span{font-size:.7rem;color:rgba(255,255,255,.68)}
+    @media (min-width:720px){
+      .page{padding:28px 24px 70px}
+      .hero{padding:44px 40px}
+      .summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .section-head{padding:26px 26px 16px}
+      th,td{padding:16px 22px}
+      .limitations{padding:0 26px 24px}
+      .limits-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media print{
+      body{background:#fff}
+      .page{max-width:none;padding:0}
+      .hero,.section,.footer-summary{box-shadow:none;break-inside:avoid}
+      .section{margin-top:10px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">AIRUUN · Option 1</div>
+      <h1>Proposed Platform Modules</h1>
+      <p>Foundation & Pilot Launch — Custom Content and Basic Member Platform สำหรับ Public Experience, Member Foundation, CMS, Communication, Analytics, Consent และ DigitalOcean Infrastructure</p>
+      <div class="summary-grid">
+        <div class="summary-card"><strong>51</strong><span>Included capabilities</span></div>
+        <div class="summary-card"><strong>6</strong><span>Future / optional capabilities</span></div>
+        <div class="summary-card"><strong>6</strong><span>Core module groups</span></div>
+        <div class="summary-card"><strong>Pilot</strong><span>Phase 1 positioning</span></div>
+      </div>
+    </section>
+
+    <div class="legend">
+      <span class="badge included">● Included in Phase 1</span>
+      <span class="badge future">● Future Phase / Optional</span>
+    </div>
+
+    <section class="section">
+      <header class="section-head"><div class="section-index">01</div><h2>Public Experience Modules</h2><p class="section-sub">ประสบการณ์หลักสำหรับผู้ใช้ทั่วไปและสมาชิกที่เข้ามาสำรวจ AIRUUN</p></header>
+      <div class="table-wrap"><table><thead><tr><th>Module</th><th>Key Functions</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Homepage & AIRUUN Introduction</td><td>แนะนำ AIRUUN, Featured Content, Key Sections, Featured Activities และ Primary CTA</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>The Dawn Thread</td><td>Today’s Content, Editorial Highlight, Related CTA, Basic Archive และ View Tracking</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Five Wellbeing Pillars</td><td>Landing Page สำหรับ Jai, Kai, Katanyu, Por-piang และ Nam-jai</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Founding & Heritage</td><td>Founding Story, Thai Wisdom, Documentary และ Heritage Content</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Content Rooms</td><td>พื้นที่ Content แบบ Curated เช่น Practice, Heritage, Health, Financial และ The Commons</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Content Listing & Detail</td><td>Template สำหรับ Article, Video, Audio, Story, Practice และ Activity</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Search & Filtering</td><td>ค้นหาและกรอง Content ตาม Pillar, Content Type หรือ Tag</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Event & Programme Listing</td><td>Event Listing, Programme Detail, Date, Location, Facilitator และ Registration CTA</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Physical Space Information</td><td>Location, Opening Hours, Directions และ Programme Information</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Social Sharing</td><td>แชร์ Content ผ่าน LINE, Facebook หรือช่องทางที่รองรับ</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Legal & Policy Pages</td><td>Privacy Notice, Terms and Conditions, Cookie Policy และ Consent Information</td><td><span class="badge included">Included</span></td></tr>
+      </tbody></table></div>
+      <div class="limitations"><h3>Key Limitations</h3><div class="limits-grid"><div class="limit">ไม่มี Personalized Content Feed หรือ AI Search</div><div class="limit">ไม่มี Community Feed หรือ Advanced Referral Tracking</div><div class="limit">Event ยังไม่รวม Waitlist, Check-in และ Capacity Management</div><div class="limit">Content และ Media หลักจัดเตรียมโดยลูกค้า</div></div></div>
+    </section>
+
+    <section class="section">
+      <header class="section-head"><div class="section-index">02</div><h2>Member Experience Modules</h2><p class="section-sub">Member Foundation สำหรับการ Login, Onboarding, Consent และ Content Access</p></header>
+      <div class="table-wrap"><table><thead><tr><th>Module</th><th>Key Functions</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Basic Member Authentication</td><td>Login, Logout, Session Management และ Account Recovery</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Guest and Member States</td><td>กำหนด Public, Member-only และ Admin Access</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Wellbeing Onboarding</td><td>ให้ผู้ใช้เลือก Current Need หรือ Wellbeing Pillar ที่สนใจ</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Basic Member Record</td><td>เก็บ Identity, Consent, Communication Preference และ Pillar Preference ขั้นพื้นฐาน</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Pillar-based Recommendation</td><td>แนะนำ Content จาก Pillar ที่ผู้ใช้เลือกด้วย Rule-based Logic</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Event Registration</td><td>Registration Form, Consent Capture และ Confirmation</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Communication Preference</td><td>เก็บ Consent และช่องทางสื่อสารที่ผู้ใช้เลือก</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Member-only Content</td><td>จำกัด Content บางส่วนสำหรับผู้ใช้งานที่ Login</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Saved Content</td><td>บันทึก Content เพื่อกลับมาอ่านหรือใช้งานภายหลัง</td><td><span class="badge future">Future</span></td></tr>
+        <tr><td>Progress Tracking</td><td>บันทึก Activity History, Journey Progress และ Completion</td><td><span class="badge future">Future</span></td></tr>
+        <tr><td>Personalized Homepage</td><td>หน้าแรกที่แสดง Content และกิจกรรมตาม Preference และพฤติกรรม</td><td><span class="badge future">Future</span></td></tr>
+      </tbody></table></div>
+      <div class="limitations"><h3>Key Limitations</h3><div class="limits-grid"><div class="limit">รองรับ Authentication หลักหนึ่งรูปแบบ</div><div class="limit">ไม่มี Full Member Profile หรือ Policyholder Tier A–D</div><div class="limit">Recommendation เป็น Rule-based เท่านั้น</div><div class="limit">ไม่มี CRM/CDP Synchronization หรือ Member-level Behavioral History</div></div></div>
+    </section>
+
+    <section class="section">
+      <header class="section-head"><div class="section-index">03</div><h2>Content & CMS Modules</h2><p class="section-sub">ระบบจัดการ Content, Taxonomy, Workflow, Event และข้อมูลสมาชิกเบื้องต้น</p></header>
+      <div class="table-wrap"><table><thead><tr><th>Module</th><th>Key Functions</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Custom CMS</td><td>Create, Edit, Preview, Publish, Schedule และ Archive Content</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Content Types</td><td>Article, Story, Video, Audio, Practice, Activity, Documentary, Dawn และ Event</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Content Taxonomy</td><td>Pillar, Topic, Need, Format, Duration, Audience และ Access Level</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Media Management</td><td>Upload, Crop, Optimize และจัดการ Media Assets</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Editorial Workflow</td><td>Draft, Review และ Publish Workflow</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Admin Roles</td><td>Administrator, Editor และ Content Creator</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Content Scheduling</td><td>กำหนด Publish Date, Expiry Date และ Content Status</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Event Management</td><td>สร้าง Event, Programme Detail, Date, Registration Form และ Export</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Basic Member Records</td><td>ดูข้อมูลสมาชิก, Consent และ Registration เบื้องต้น</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Data Export</td><td>Export Member หรือ Event Registration ตามรูปแบบที่กำหนด</td><td><span class="badge included">Included</span></td></tr>
+      </tbody></table></div>
+      <div class="limitations"><h3>Key Limitations</h3><div class="limits-grid"><div class="limit">ไม่มี Enterprise DAM หรือ Multi-organization Approval</div><div class="limit">ไม่มี AI Content Generation, Auto-tagging หรือ Automated Translation</div><div class="limit">ไม่มี CRM-style Member 360 View</div><div class="limit">Data Export เป็น Manual Export ไม่ใช่ Automated Pipeline</div></div></div>
+    </section>
+
+    <section class="section">
+      <header class="section-head"><div class="section-index">04</div><h2>Communication Modules</h2><p class="section-sub">LINE, SMS และ EDM สำหรับ Entry, Notification, Confirmation และ Broadcast ระดับ Pilot</p></header>
+      <div class="table-wrap"><table><thead><tr><th>Module</th><th>Key Functions</th><th>Status</th></tr></thead><tbody>
+        <tr><td>LINE OA / Messaging API</td><td>Entry, Notification หรือ Confirmation Workflow ตาม Scope ที่อนุมัติ</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>SMS Service</td><td>OTP, Registration Confirmation หรือ Reminder ระดับ Pilot</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>EDM Platform</td><td>Email Broadcast, Newsletter และ Event Announcement</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>HTML Email Templates</td><td>Responsive HTML Email Template สูงสุด 3 รูปแบบ</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Event Announcement Template</td><td>ใช้ประกาศกิจกรรม, Agenda Update หรือเปิด Registration</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Newsletter / Update Template</td><td>ใช้ส่งข่าวสารรายเดือนหรือรายสองสัปดาห์</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>General Campaign Template</td><td>ใช้ส่ง Content Highlight หรือ General Communication</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Workflow Testing</td><td>ทดสอบ Device, Browser, Email Client, Bug Fixing และ Live Deployment</td><td><span class="badge included">Included</span></td></tr>
+      </tbody></table></div>
+      <div class="limitations"><h3>Key Limitations</h3><div class="limits-grid"><div class="limit">ไม่มี Advanced Marketing Automation หรือ Customer Journey Builder</div><div class="limit">ไม่รวม Campaign Strategy, Monthly Operation หรือ Artwork ราย Campaign</div><div class="limit">ค่า Message, SMS Credit และ EDM Usage ที่เกิน Package คิดตามจริง</div><div class="limit">HTML Email Template จำกัดสูงสุด 3 รูปแบบ</div></div></div>
+    </section>
+
+    <section class="section">
+      <header class="section-head"><div class="section-index">05</div><h2>Analytics, Consent & Compliance</h2><p class="section-sub">Basic Script-based Tracking, Consent Capture และ Technical SEO Foundation</p></header>
+      <div class="table-wrap"><table><thead><tr><th>Module</th><th>Key Functions</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Basic Analytics Script</td><td>ติดตั้ง Analytics Script และตรวจสอบการทำงาน</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Page-level Tracking</td><td>Page View, Traffic Source, Device และ Outbound Link</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Basic Conversion Script</td><td>Registration Success, Contact Submission และ Primary CTA</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Cookie Consent Platform</td><td>Cookie Banner, Cookie Categories, Consent Capture และ Script Blocking</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Consent Record</td><td>เก็บ Timestamp, Consent Status และ Form/Member Reference</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Basic SEO Foundation</td><td>Metadata, XML Sitemap, Indexability และ Technical Setup</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Custom Dashboard</td><td>Business Dashboard, Member Dashboard และ Content Performance Reporting</td><td><span class="badge future">Future</span></td></tr>
+        <tr><td>Advanced Behavioral Tracking</td><td>Completion, Save, Share, Return Visit, Funnel และ Member-level Events</td><td><span class="badge future">Future</span></td></tr>
+      </tbody></table></div>
+      <div class="limitations"><h3>Key Limitations</h3><div class="limits-grid"><div class="limit">ไม่รวม Full GTM, Custom Data Layer หรือ Event-specific Tracking Plan</div><div class="limit">ไม่มี Scroll-depth, Video/Audio Completion แบบ Advanced</div><div class="limit">ไม่มี CRM Attribution, Data Warehouse หรือ BI Integration</div><div class="limit">Cookie Consent License ต่ออายุรายปี</div></div></div>
+    </section>
+
+    <section class="section">
+      <header class="section-head"><div class="section-index">06</div><h2>Infrastructure & Technical Modules</h2><p class="section-sub">DigitalOcean Infrastructure สำหรับ Pilot พร้อม Production, Staging, Database, Storage และ Monitoring</p></header>
+      <div class="table-wrap"><table><thead><tr><th>Module</th><th>Key Functions</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Production Environment</td><td>DigitalOcean Production Server สำหรับ Web Application และ CMS</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Staging Environment</td><td>Environment สำหรับ Development Review และ UAT ก่อน Production</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Managed Database</td><td>Managed MySQL หรือ PostgreSQL Database</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Object Storage & CDN</td><td>DigitalOcean Spaces สำหรับ Media Storage และ CDN Delivery</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Backup</td><td>Automated Backup และ Snapshot ตาม Infrastructure Plan</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Firewall & Security Configuration</td><td>Cloud Firewall, SSL และ Basic Server Hardening</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Monitoring</td><td>Basic Uptime, Resource และ Infrastructure Monitoring</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>Scalability Readiness</td><td>สามารถเพิ่ม Server Resources ตาม Traffic และ Usage</td><td><span class="badge included">Included</span></td></tr>
+        <tr><td>High Availability</td><td>Multiple Production Nodes, Load Balancer, Database Failover และ Redundancy</td><td><span class="badge future">Future</span></td></tr>
+      </tbody></table></div>
+      <div class="limitations"><h3>Key Limitations</h3><div class="limits-grid"><div class="limit">Infrastructure ออกแบบสำหรับ Pilot Usage ไม่ใช่ High Availability</div><div class="limit">ไม่มี Cross-region DR, Kubernetes, SIEM หรือ Advanced Log Management</div><div class="limit">ไม่มี Video Streaming, Transcoding หรือ External Penetration Test</div><div class="limit">ค่า Scale, Storage และ Traffic ที่เกิน Package คิดตามจริง</div></div></div>
+    </section>
+
+    <section class="footer-summary">
+      <h2>Phase 1 Platform Definition</h2>
+      <p>AIRUUN Phase 1 คือ Custom Content and Basic Member Platform ที่รองรับ Public Experience, Basic Authentication, Wellbeing Onboarding, Custom CMS, Event Registration, LINE/SMS/EDM Communication, Basic Analytics, Cookie Consent และ DigitalOcean Infrastructure โดยวาง Saved Content, Progress Tracking, Personalized Homepage, Advanced Analytics, Custom Dashboard และ High Availability ไว้ใน Phase ถัดไป</p>
+      <div class="footer-grid">
+        <div class="footer-metric"><strong>51</strong><span>Included</span></div>
+        <div class="footer-metric"><strong>6</strong><span>Future</span></div>
+        <div class="footer-metric"><strong>Phase 1</strong><span>Pilot Foundation</span></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
