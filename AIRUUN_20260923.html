@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,6 +21,38 @@
   --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 *{box-sizing:border-box}
+
+/* --- Responsiveness / Don't Make Me Think hardening --- */
+html, body{
+  overscroll-behavior:none;
+}
+.slide{
+  overflow-x:hidden;
+}
+h1,h2,h3,.display,.big-quote,.transition-quote,.price,.network-principle{
+  overflow-wrap:break-word;
+  word-break:normal;
+  hyphens:auto;
+}
+.line-item span,
+.col-block p,
+.col-block li,
+.three .block p,
+.feature-map .map-card p,
+.feature-map .map-card .cap,
+.value-split .value-col p,
+.ref-table td,
+.ref-table th,
+.foot span,
+.lede,
+.member-action,
+.signal{
+  overflow-wrap:anywhere;
+}
+svg text{
+  dominant-baseline:auto;
+}
+
 html,body{margin:0;width:100%;height:100%;background:var(--paper);color:var(--ink);font-family:var(--sans);overflow:hidden}
 button{font:inherit}
 .deck{height:100dvh;width:100vw;position:relative}
@@ -44,7 +77,7 @@ button{font:inherit}
 .meta .count{color:var(--muted)}
 .stage{
   display:grid;align-content:center;gap:28px;
-  max-width:1500px;width:100%;margin:0 auto;
+  max-width:1900px;width:100%;margin:0 auto;
 }
 .eyebrow{
   font-size:16px;line-height:1.1;font-weight:900;
@@ -119,66 +152,61 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 .line-item span{font-size:22px;line-height:1.35;color:#3F4A45}
 .dark .line-item{border-color:rgba(255,255,255,.18)}
 .dark .line-item span{color:#CFD9D5}
-.editorial-photo{margin:0;overflow:hidden;min-height:0;background:var(--paper-2)}
-.editorial-photo img{display:block;width:100%;height:100%;object-fit:cover}
 .photo-value{
-  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(400px,.8fr);
-  gap:clamp(36px,4vw,68px);align-items:stretch
+  display:grid;grid-template-columns:minmax(320px,.78fr) minmax(540px,1.22fr);
+  gap:clamp(48px,6vw,96px);align-items:center
 }
-.photo-value-copy{display:grid;align-content:center;gap:22px}
-.photo-value .editorial-photo{min-height:580px}
-.photo-a{object-position:58% center}
+.photo-value-copy{display:contents}
+.value-intro{display:grid;gap:22px;align-content:center}
+.photo-value .line-list{border-top:2px solid var(--green)}
+.photo-value .line-item{grid-template-columns:minmax(150px,.42fr) 1fr}
 .hub-layout{
-  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(380px,.85fr);
-  gap:clamp(38px,5vw,78px);align-items:stretch
+  display:grid;grid-template-columns:1fr;align-content:center
 }
-.hub-copy{display:grid;align-content:center;gap:22px}
-.hub-copy .columns{grid-template-columns:repeat(2,1fr);gap:22px 30px}
-.hub-copy .col-block{padding-top:13px}
-.hub-copy .col-block h3{font-size:23px}
-.hub-copy .col-block ul{margin-top:10px}
-.hub-copy .col-block li{font-size:15px;margin:5px 0}
-.hub-layout .editorial-photo{min-height:560px}
-.photo-b{object-position:56% center}
+.hub-copy{display:grid;align-content:center;gap:24px}
+.hub-copy .columns{grid-template-columns:repeat(4,1fr);gap:30px}
+.hub-copy .col-block{padding-top:16px}
+.hub-copy .col-block h3{font-size:25px}
+.hub-copy .col-block ul{margin-top:12px}
+.hub-copy .col-block li{font-size:16px;margin:7px 0}
 .participation-layout{
-  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(420px,.9fr);
-  gap:clamp(42px,5vw,82px);align-items:stretch
+  display:grid;grid-template-columns:1fr;align-content:center
 }
-.participation-copy{display:grid;align-content:center;gap:28px}
+.participation-copy{
+  display:grid;grid-template-columns:minmax(320px,.8fr) minmax(560px,1.2fr);
+  align-items:center;gap:clamp(48px,7vw,110px)
+}
+.participation-intro{display:grid;gap:24px}
 .participation-flow{
-  border-top:2px solid var(--green);padding-top:24px;
+  border-left:2px solid var(--green);padding:20px 0 20px 34px;
   font-family:var(--serif);font-size:clamp(34px,3.7vw,58px);line-height:1.2;letter-spacing:-.035em
 }
 .participation-flow .arrow{color:var(--rust)}
-.participation-layout .editorial-photo{min-height:560px}
-.photo-c{object-position:52% center}
 .network-editorial{
-  display:grid;grid-template-columns:minmax(390px,.82fr) minmax(0,1fr);
-  gap:clamp(42px,5vw,82px);align-items:stretch
+  display:grid;grid-template-columns:1fr;align-content:center
 }
-.network-editorial .editorial-photo{min-height:610px}
-.photo-d{object-position:56% center}
-.network-concept{display:grid;align-content:center;gap:22px}
+.network-concept{
+  display:grid;grid-template-columns:minmax(360px,.78fr) minmax(560px,1.22fr);
+  align-items:center;gap:clamp(50px,7vw,110px)
+}
+.network-intro{display:grid;gap:22px}
 .network-concept h2{font-size:clamp(46px,5vw,78px)}
-.network-concept .network{min-height:310px}
-.network-concept .node{font-size:16px;max-width:150px}
-.network-concept .node.center{width:132px;height:132px;font-size:27px}
+.network-concept .network{min-height:460px}
+.network-concept .node{font-size:18px;max-width:170px}
+.network-concept .node.center{width:170px;height:170px;font-size:31px}
 .network-principle{
   border-top:2px solid var(--green);padding-top:16px;
   font-family:var(--serif);font-size:clamp(25px,2.4vw,38px);line-height:1.15
 }
 .ecosystem-editorial{
-  display:grid;grid-template-columns:minmax(0,3fr) minmax(260px,1fr);
-  gap:clamp(34px,4vw,64px);align-items:stretch
+  display:grid;grid-template-columns:1fr;align-content:center
 }
-.ecosystem-main{display:grid;align-content:center;gap:22px}
-.ecosystem-main h2{font-size:clamp(46px,5.4vw,84px)}
+.ecosystem-main{display:grid;align-content:center;gap:30px}
+.ecosystem-main h2{font-size:clamp(50px,5.8vw,92px);max-width:1280px}
 .ecosystem-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
 .ecosystem-outcome{border-top:2px solid var(--green);padding-top:15px}
-.ecosystem-outcome h3{font-family:var(--serif);font-weight:500;font-size:30px}
-.ecosystem-outcome p{font-size:16px;line-height:1.38;color:var(--muted);margin-top:11px}
-.ecosystem-editorial .editorial-photo{min-height:590px}
-.photo-e{object-position:50% center}
+.ecosystem-outcome h3{font-family:var(--serif);font-weight:500;font-size:34px}
+.ecosystem-outcome p{font-size:17px;line-height:1.38;color:var(--muted);margin-top:11px}
 .journey{
   display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
   border-top:1px solid var(--line);border-bottom:1px solid var(--line)
@@ -290,6 +318,212 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 .ref-table th{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .ref-table td:first-child{font-weight:800;color:var(--green);width:18%}
 .ref-table tr:nth-child(even) td{background:#F0EDE6}
+
+
+/* --- Responsive SVG infographic containment --- */
+.svg-stage{
+  overflow:hidden;
+}
+.infographic-svg{
+  max-width:100%;
+}
+.table-scroll{
+  max-width:100%;
+  overflow:auto;
+}
+.ref-table{
+  table-layout:fixed;
+}
+.ref-table td,
+.ref-table th{
+  word-break:normal;
+  overflow-wrap:anywhere;
+}
+
+/* --- Added: SVG infographic system for Community Network / Ecosystem slides --- */
+.svg-stage{
+  width:100%;
+  min-height:360px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:grid;
+  align-items:center;
+  padding:18px 0;
+}
+.infographic-svg{
+  width:100%;
+  height:auto;
+  display:block;
+  overflow:visible;
+}
+.infographic-svg text{
+  font-family:var(--sans);
+  fill:var(--ink);
+}
+.infographic-svg .serif{
+  font-family:var(--serif);
+  font-weight:500;
+  letter-spacing:-.02em;
+}
+.infographic-svg .muted-text{fill:var(--muted)}
+.infographic-svg .rust-text{fill:var(--rust)}
+.infographic-svg .white-text{fill:var(--white)}
+.infographic-svg .line{stroke:var(--line);stroke-width:1.4}
+.infographic-svg .green-line{stroke:var(--green);stroke-width:2}
+.infographic-svg .rust-line{stroke:var(--rust);stroke-width:2}
+.infographic-svg .thin{stroke-width:1}
+.infographic-svg .fill-paper{fill:var(--paper)}
+.infographic-svg .fill-white{fill:var(--white)}
+.infographic-svg .fill-green{fill:var(--green)}
+.infographic-svg .fill-dark{fill:var(--green-deep)}
+.infographic-svg .fill-rust{fill:var(--rust)}
+.infographic-svg .dash{stroke-dasharray:7 8}
+.pillar-tags{
+  display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;
+  padding-top:4px
+}
+.pillar-tags span{
+  font-size:14px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--green);
+  border-top:1px solid var(--line);padding-top:10px
+}
+.value-split{
+  display:grid;grid-template-columns:1fr 1fr;gap:34px;
+}
+.value-split .value-col{
+  border-top:2px solid var(--green);padding-top:16px
+}
+.value-split .value-col h3{
+  font-family:var(--serif);font-weight:500;font-size:34px;margin-bottom:12px
+}
+.value-split .value-col p{
+  font-size:18px;line-height:1.4;color:var(--muted)
+}
+.feature-map{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+}
+.feature-map .map-card{
+  border-top:2px solid var(--green);
+  padding-top:15px;
+}
+.feature-map .map-card h3{
+  font-family:var(--serif);font-weight:500;font-size:32px;
+}
+.feature-map .map-card p{
+  font-size:16px;line-height:1.38;color:var(--muted);margin-top:10px;
+}
+.feature-map .map-card .cap{
+  margin-top:16px;padding-top:12px;border-top:1px solid var(--line);
+  font-size:13px;line-height:1.35;color:#3f4a45;
+}
+
+@media(max-width:1280px){
+  .slide{padding:24px 34px 76px}
+  .stage{gap:16px}
+  .meta{font-size:11px}
+  .foot{font-size:11px;gap:16px}
+  .columns{gap:18px}
+  .col-block h3{font-size:22px}
+  .col-block p,.col-block li{font-size:14px}
+  .line-item{grid-template-columns:minmax(120px,.36fr) 1fr;gap:18px}
+  .line-item span{font-size:16px}
+  .photo-value .line-item span{font-size:14px}
+  .journey-plan{grid-template-columns:repeat(2,1fr)}
+  .journey-phase{border-bottom:1px solid var(--line)}
+  .feature-map{grid-template-columns:repeat(2,1fr)}
+  .ecosystem-outcomes{gap:18px}
+  .price-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .price-item{padding:18px 18px}
+  .price-item h3{font-size:25px}
+  .price-item p{font-size:13px}
+  .svg-stage{min-height:260px}
+}
+
+@media(max-width:1500px),(max-height:900px){
+  .svg-stage{min-height:280px;padding:10px 0}
+  .value-split .value-col h3{font-size:28px}
+  .value-split .value-col p{font-size:15px}
+  .feature-map{gap:14px}
+  .feature-map .map-card h3{font-size:26px}
+  .feature-map .map-card p{font-size:14px}
+  .feature-map .map-card .cap{font-size:12px}
+}
+@media(max-width:1100px){
+  .value-split,.feature-map{grid-template-columns:1fr}
+}
+
+
+/* --- Slide 2: Don't Make Me Think continuity contrast --- */
+.opportunity-contrast{
+  display:grid;
+  gap:32px;
+}
+.contrast-row{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:34px;
+  align-items:center;
+  padding:28px 0;
+  border-top:1px solid var(--line);
+}
+.contrast-row:last-child{
+  border-bottom:1px solid var(--line);
+}
+.contrast-label{
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--rust);
+}
+.contrast-flow{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.contrast-step{
+  font-family:var(--serif);
+  font-size:clamp(34px,4vw,64px);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.contrast-arrow{
+  color:var(--rust);
+  font-size:clamp(24px,2.5vw,36px);
+}
+.contrast-muted .contrast-step{
+  color:var(--muted);
+}
+.dead-end{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+}
+.dead-dot{
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:var(--rust);
+  display:inline-block;
+}
+.loop-note{
+  font-size:clamp(24px,2.2vw,36px);
+  line-height:1.22;
+  color:#34403B;
+  max-width:980px;
+  border-top:2px solid var(--green);
+  padding-top:18px;
+}
+@media(max-width:1100px){
+  .contrast-row{grid-template-columns:1fr;gap:18px}
+  .contrast-flow{gap:12px}
+}
+@media(max-width:760px){
+  .opportunity-contrast{gap:18px}
+  .contrast-row{padding:20px 0}
+  .contrast-step{font-size:clamp(34px,12vw,48px)}
+}
+
 .controls{
   position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:3px;
   background:rgba(21,42,38,.94);border-radius:999px;padding:6px;z-index:50
@@ -298,6 +532,29 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 .controls button:hover{background:rgba(255,255,255,.12)}
 .controls .jump{font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#CBD7D3}
 .progress{position:fixed;left:0;bottom:0;height:4px;background:var(--rust);width:0;z-index:60}
+
+@media(max-width:1280px){
+  .slide{padding:24px 34px 76px}
+  .stage{gap:16px}
+  .meta{font-size:11px}
+  .foot{font-size:11px;gap:16px}
+  .columns{gap:18px}
+  .col-block h3{font-size:22px}
+  .col-block p,.col-block li{font-size:14px}
+  .line-item{grid-template-columns:minmax(120px,.36fr) 1fr;gap:18px}
+  .line-item span{font-size:16px}
+  .photo-value .line-item span{font-size:14px}
+  .journey-plan{grid-template-columns:repeat(2,1fr)}
+  .journey-phase{border-bottom:1px solid var(--line)}
+  .feature-map{grid-template-columns:repeat(2,1fr)}
+  .ecosystem-outcomes{gap:18px}
+  .price-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .price-item{padding:18px 18px}
+  .price-item h3{font-size:25px}
+  .price-item p{font-size:13px}
+  .svg-stage{min-height:260px}
+}
+
 @media(max-width:1500px),(max-height:900px){
   .slide{padding:26px 42px 76px}
   .stage{gap:18px;max-width:1320px}
@@ -310,25 +567,22 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   .big-quote{font-size:clamp(30px,3.2vw,46px)}
   .compare{gap:54px}.display{font-size:clamp(38px,4vw,58px)}
   .line-item{padding:12px 0}.line-item b{font-size:16px}.line-item span{font-size:18px}
-  .photo-value{grid-template-columns:minmax(0,1.2fr) minmax(400px,.8fr);gap:38px}
-  .photo-value-copy{gap:16px}.photo-value .editorial-photo{min-height:470px}
+  .photo-value{grid-template-columns:minmax(290px,.78fr) minmax(500px,1.22fr);gap:48px}
+  .value-intro{gap:16px}
   .photo-value .line-item{grid-template-columns:135px 1fr;gap:18px;padding:9px 0}
   .photo-value .line-item b{font-size:14px}.photo-value .line-item span{font-size:15px}
-  .hub-layout{grid-template-columns:minmax(0,1.35fr) minmax(340px,.8fr);gap:42px}
-  .hub-copy{gap:15px}.hub-layout .editorial-photo{min-height:470px}
+  .hub-copy{gap:15px}
   .hub-copy .columns{gap:14px 24px}.hub-copy .col-block h3{font-size:20px}.hub-copy .col-block li{font-size:13px}
-  .participation-layout{grid-template-columns:minmax(0,1.1fr) minmax(370px,.9fr);gap:44px}
-  .participation-copy{gap:20px}.participation-layout .editorial-photo{min-height:470px}
-  .participation-flow{font-size:clamp(31px,3.2vw,46px);padding-top:17px}
-  .network-editorial{grid-template-columns:minmax(340px,.82fr) minmax(0,1fr);gap:44px}
-  .network-editorial .editorial-photo{min-height:500px}.network-concept{gap:14px}
-  .network-concept h2{font-size:clamp(40px,4.4vw,62px)}.network-concept .network{min-height:260px}
-  .network-concept .node{font-size:13px}.network-concept .node.center{width:110px;height:110px;font-size:23px}
+  .participation-copy{grid-template-columns:minmax(290px,.8fr) minmax(500px,1.2fr);gap:54px}
+  .participation-intro{gap:18px}
+  .participation-flow{font-size:clamp(31px,3.2vw,46px);padding:16px 0 16px 28px}
+  .network-concept{grid-template-columns:minmax(300px,.78fr) minmax(500px,1.22fr);gap:48px}
+  .network-intro{gap:14px}
+  .network-concept h2{font-size:clamp(40px,4.4vw,62px)}.network-concept .network{min-height:340px}
+  .network-concept .node{font-size:14px}.network-concept .node.center{width:125px;height:125px;font-size:25px}
   .network-principle{font-size:clamp(23px,2vw,31px);padding-top:12px}
-  .ecosystem-editorial{grid-template-columns:minmax(0,3fr) minmax(230px,1fr);gap:38px}
   .ecosystem-main{gap:15px}.ecosystem-main h2{font-size:clamp(40px,4.5vw,64px)}
-  .ecosystem-outcomes{gap:22px}.ecosystem-outcome h3{font-size:24px}.ecosystem-outcome p{font-size:13px}
-  .ecosystem-editorial .editorial-photo{min-height:480px}
+  .ecosystem-outcomes{gap:22px}.ecosystem-outcome h3{font-size:27px}.ecosystem-outcome p{font-size:14px}
   .journey-phase{padding:14px 17px 13px}
   .journey-phase h3{font-size:clamp(25px,2.2vw,32px);margin-top:8px}
   .journey-phase .member-action{font-size:15px;margin-top:11px;min-height:0}
@@ -353,10 +607,15 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   .controls{bottom:12px}
 }
 @media(max-width:1100px){
-  .slide{padding:34px 32px 72px}
-  .split,.compare,.network-wrap,.photo-value,.hub-layout,.participation-layout,.network-editorial,.ecosystem-editorial{grid-template-columns:1fr}
-  .network-editorial .network-concept{order:1}.network-editorial .editorial-photo{order:2}
-  .photo-value .editorial-photo,.hub-layout .editorial-photo,.participation-layout .editorial-photo,.network-editorial .editorial-photo,.ecosystem-editorial .editorial-photo{min-height:300px;height:34vh}
+  .slide{padding:30px 28px 74px}
+  .stage{align-content:start}
+  .svg-stage{min-height:auto;overflow:auto;padding:14px 0}
+  .infographic-svg{min-width:940px}
+  .meta{font-size:11px}
+  .foot{display:grid;grid-template-columns:1fr;font-size:11px}
+  .split,.compare,.network-wrap,.photo-value,.participation-copy,.network-concept{grid-template-columns:1fr}
+  .photo-value-copy{display:grid;gap:24px}
+  .participation-flow{border-left:0;border-top:2px solid var(--green);padding:22px 0 0}
   .columns{grid-template-columns:repeat(2,1fr)}
   .journey{grid-template-columns:repeat(4,1fr)} .journey .step{border-bottom:1px solid var(--line)}
   .journey-plan{grid-template-columns:repeat(2,1fr)}.journey-phase{border-bottom:1px solid var(--line)}
@@ -369,7 +628,75 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 }
 @media(max-width:760px){
   html,body{height:auto;overflow:auto}
+  body{background:var(--paper)}
   .deck{height:auto}
+
+  .slide,.slide.active{
+    min-height:auto;
+    padding:26px 18px 44px;
+  }
+  .stage{
+    align-content:start;
+    gap:20px;
+  }
+  .meta{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    font-size:10px;
+  }
+  h1{font-size:clamp(44px,13vw,62px);line-height:.96}
+  h2{font-size:clamp(34px,10vw,52px);line-height:1}
+  h3{font-size:clamp(26px,7vw,36px)}
+  .lede{font-size:22px;line-height:1.32}
+  .display{font-size:clamp(34px,9vw,48px)}
+  .big-quote{font-size:clamp(28px,8vw,42px)}
+  .transition-quote{font-size:clamp(38px,11vw,58px)}
+  .foot{
+    display:grid;
+    grid-template-columns:1fr;
+    font-size:11px;
+    gap:8px;
+  }
+  .svg-stage{
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    min-height:auto;
+    padding:10px 0;
+  }
+  .infographic-svg{
+    min-width:980px;
+  }
+  .feature-map,
+  .value-split,
+  .ecosystem-outcomes,
+  .three,
+  .price-row,
+  .compare{
+    grid-template-columns:1fr;
+  }
+  .feature-map .map-card h3,
+  .value-split .value-col h3,
+  .three .block h3{
+    font-size:28px;
+  }
+  .feature-map .map-card p,
+  .feature-map .map-card .cap,
+  .value-split .value-col p,
+  .three .block p{
+    font-size:15px;
+  }
+  .price-item{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+  .price-item:last-child{border-bottom:0}
+  .price{font-size:clamp(46px,14vw,64px)}
+  .ref-table{
+    min-width:760px;
+  }
+
   .slide,.slide.active{position:relative;display:grid;min-height:100svh;padding:28px 20px 50px;border-bottom:1px solid var(--line)}
   .controls,.progress{display:none}
   .columns{grid-template-columns:1fr}.journey{grid-template-columns:1fr}.journey .step{border-right:0}
@@ -384,9 +711,116 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   .transition-quote{font-size:clamp(44px,12vw,68px)}
   .foot{display:grid}
 }
+
+@media(max-height:760px) and (min-width:900px){
+  .slide{padding-top:18px;padding-bottom:66px}
+  .stage{gap:12px}
+  .meta{font-size:10px}
+  .eyebrow{font-size:12px;margin-bottom:8px}
+  h1{font-size:clamp(52px,6vw,84px)}
+  h2{font-size:clamp(36px,4.4vw,62px)}
+  h3{font-size:clamp(24px,2.2vw,34px)}
+  .lede{font-size:clamp(19px,1.6vw,25px)}
+  .foot{font-size:10px;padding-top:8px}
+  .svg-stage{min-height:230px;padding:6px 0}
+  .line-item{padding:8px 0}
+  .journey-phase{padding:10px 14px}
+  .loop>div{min-height:88px;padding:12px}
+  .shared-note{font-size:16px;padding-top:10px}
+  .price-item{padding:16px 18px}
+}
+
+@media(min-width:1441px) and (min-height:901px){
+  .slide{
+    padding:48px clamp(64px,5vw,112px) 92px;
+  }
+  .slide > .meta,
+  .slide > .stage,
+  .slide > .foot,
+  .slide > .transition-stage{
+    width:100%;
+    max-width:1900px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .stage{gap:clamp(28px,2vw,38px)}
+  .columns{gap:clamp(34px,2.4vw,52px)}
+  .three{gap:clamp(44px,3vw,68px)}
+  .feature-map{gap:clamp(18px,1.5vw,30px)}
+  .hub-copy .columns{gap:clamp(28px,2vw,44px)}
+  .svg-stage{min-height:400px}
+}
+
 @media print{
   html,body{height:auto;overflow:visible}
-  .deck{height:auto}.slide,.slide.active{position:relative;display:grid!important;min-height:100vh;page-break-after:always}
+  .deck{height:auto}
+
+  .slide,.slide.active{
+    min-height:auto;
+    padding:26px 18px 44px;
+  }
+  .stage{
+    align-content:start;
+    gap:20px;
+  }
+  .meta{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px;
+    font-size:10px;
+  }
+  h1{font-size:clamp(44px,13vw,62px);line-height:.96}
+  h2{font-size:clamp(34px,10vw,52px);line-height:1}
+  h3{font-size:clamp(26px,7vw,36px)}
+  .lede{font-size:22px;line-height:1.32}
+  .display{font-size:clamp(34px,9vw,48px)}
+  .big-quote{font-size:clamp(28px,8vw,42px)}
+  .transition-quote{font-size:clamp(38px,11vw,58px)}
+  .foot{
+    display:grid;
+    grid-template-columns:1fr;
+    font-size:11px;
+    gap:8px;
+  }
+  .svg-stage{
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    min-height:auto;
+    padding:10px 0;
+  }
+  .infographic-svg{
+    min-width:980px;
+  }
+  .feature-map,
+  .value-split,
+  .ecosystem-outcomes,
+  .three,
+  .price-row,
+  .compare{
+    grid-template-columns:1fr;
+  }
+  .feature-map .map-card h3,
+  .value-split .value-col h3,
+  .three .block h3{
+    font-size:28px;
+  }
+  .feature-map .map-card p,
+  .feature-map .map-card .cap,
+  .value-split .value-col p,
+  .three .block p{
+    font-size:15px;
+  }
+  .price-item{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+  .price-item:last-child{border-bottom:0}
+  .price{font-size:clamp(46px,14vw,64px)}
+  .ref-table{
+    min-width:760px;
+  }
+.slide,.slide.active{position:relative;display:grid!important;min-height:100vh;page-break-after:always}
   .controls,.progress{display:none}
 }
 </style>
@@ -395,42 +829,62 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 <main class="deck">
 
 <section class="slide active dark" id="slide-01" data-section="main">
-  <div class="meta"><div>AIRUUN · Community Network Pitch</div><div class="count">01 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Community Network Pitch</div><div class="count">01 / 15</div></div>
   <div class="stage split">
     <div>
       <div class="eyebrow">From wellbeing vision to a living platform</div>
       <h1>AIRUUN turns wisdom into useful action.</h1>
     </div>
-    <div class="big-quote">Action becomes participation.<br><br>Participation becomes return.</div>
+    <div class="big-quote" style="font-size:clamp(30px,3.1vw,52px)">The opportunity: connect useful content, programmes and communities into one continuous wellbeing relationship.</div>
   </div>
-  <div class="foot"><span>Content creates value</span><span>The platform creates continuity</span></div>
+  <div class="foot"><span>Value before complexity</span><span>Evidence before expansion</span></div>
 </section>
 
 <section class="slide" id="slide-02" data-section="main">
-  <div class="meta"><div>AIRUUN · Opportunity</div><div class="count">02 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Opportunity</div><div class="count">02 / 15</div></div>
   <div class="stage">
     <div class="eyebrow">The opportunity</div>
     <h2>Wellbeing content is everywhere. Continuity is missing.</h2>
-    <div class="compare">
-      <div class="col">
-        <div class="label">Most content journeys</div>
-        <div class="display">Read → Leave</div>
+
+    <div class="opportunity-contrast">
+      <div class="contrast-row contrast-muted">
+        <div class="contrast-label">Today</div>
+        <div class="contrast-flow">
+          <span class="contrast-step">Discover</span>
+          <span class="contrast-arrow">→</span>
+          <span class="contrast-step">Consume</span>
+          <span class="contrast-arrow">→</span>
+          <span class="contrast-step dead-end">End <span class="dead-dot" aria-hidden="true">&#8203;</span></span>
+        </div>
       </div>
-      <div class="col accent">
-        <div class="label">AIRUUN opportunity</div>
-        <div class="display">Discover → Try → Continue → Join → Return</div>
+
+      <div class="contrast-row">
+        <div class="contrast-label">AIRUUN</div>
+        <div class="contrast-flow">
+          <span class="contrast-step">Discover</span>
+          <span class="contrast-arrow">→</span>
+          <span class="contrast-step">Act</span>
+          <span class="contrast-arrow">→</span>
+          <span class="contrast-step">Return</span>
+          <span class="contrast-arrow">→</span>
+          <span class="contrast-step">Participate</span>
+        </div>
       </div>
     </div>
+
+    <div class="loop-note">AIRUUN turns one useful interaction into a reason to continue.</div>
   </div>
-  <div class="foot"><span>AIRUUN should connect the next useful step</span><span>Not simply publish more pages</span></div>
+  <div class="foot"><span>Normal content ends</span><span>AIRUUN creates continuity</span></div>
 </section>
 
 <section class="slide" id="slide-03" data-section="main">
-  <div class="meta"><div>AIRUUN · Value Engine</div><div class="count">03 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Value Engine</div><div class="count">03 / 15</div></div>
   <div class="stage photo-value">
     <div class="photo-value-copy">
-      <div class="eyebrow">Content is the value engine</div>
-      <h2>Useful content and programmes create return behaviour.</h2>
+      <div class="value-intro">
+        <div class="eyebrow">Content is the value engine</div>
+        <h2>Useful content and programmes create return behaviour.</h2>
+      </div>
       <div class="line-list">
         <div class="line-item"><b>Daily Dawn</b><span>Creates a daily relationship.</span></div>
         <div class="line-item"><b>Story / Wisdom</b><span>Builds understanding and trust.</span></div>
@@ -439,59 +893,54 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
         <div class="line-item"><b>Programme / Community</b><span>Turns digital interest into participation.</span></div>
       </div>
     </div>
-    <figure class="editorial-photo"><img class="photo-a" src="assets/airuun-image-a-expert-talk.jpg" alt="A ROOT expert leading a wellbeing talk with an audience at Thai Group headquarters"></figure>
   </div>
   <div class="foot"><span><strong>Webmaster ≠ content operation</strong></span><span>Technology enables the experience; it does not replace the operating engine</span></div>
 </section>
 
 <section class="slide" id="slide-04" data-section="main">
-  <div class="meta"><div>AIRUUN · Member Journey</div><div class="count">04 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Member Journey</div><div class="count">04 / 15</div></div>
   <div class="stage">
     <div class="eyebrow">The big-picture member journey</div>
     <h2>One need becomes a journey from discovery to belonging.</h2>
     <div class="journey-plan">
       <div class="journey-phase">
         <div class="phase-no">01 · Discover</div>
-        <h3>Find something relevant to what you need or care about.</h3>
-        <p class="member-action">Enter through a familiar channel and explore what feels relevant now.</p>
+        <h3>Find what feels relevant now.</h3>
+        <p class="member-action">Enter through a familiar channel and explore what feels useful or meaningful.</p>
         <p class="signal"><b>AIRUUN learns:</b> entry source and explicit intent.</p>
       </div>
       <div class="journey-phase">
-        <div class="phase-no">02 · Receive value</div>
-        <h3>Take action through content, practices, journeys, or programmes.</h3>
-        <p class="member-action">Take the next step through content, activities, journeys, or programmes.</p>
+        <div class="phase-no">02 · Participate</div>
+        <h3>Take the next meaningful step.</h3>
+        <p class="member-action">Engage through content, practices, journeys, activities or programmes.</p>
         <p class="signal"><b>AIRUUN learns:</b> pillar interest, start and completion.</p>
       </div>
       <div class="journey-phase">
-        <div class="phase-no">03 · Continue</div>
-        <h3>Engage with people, experts, and communities around shared interests..</h3>
-        <p class="member-action">Meet experts, members, or partner communities through shared programmes and activities.</p>
+        <div class="phase-no">03 · Connect</div>
+        <h3>Be part of something shared.</h3>
+        <p class="member-action">Join people, experts or communities around shared interests and experiences.</p>
         <p class="signal"><b>AIRUUN learns:</b> preference, return and journey progress.</p>
       </div>
       <div class="journey-phase">
-        <div class="phase-no">04 · Participate &amp; return</div>
-        <h3>Share a story, join an activity, volunteer, or help create value for the wider community.</h3>
-        <p class="member-action">Take part in relevant experiences, continue the journey, and find a reason to come back.</p>
-        <p class="signal"><b>AIRUUN learns:</b> registration, attendance and continued participation.</p>
+        <div class="phase-no">04 · Contribute</div>
+        <h3>Create value across connected communities.</h3>
+        <p class="member-action">Share experience, knowledge, time, support or participation back into the community.</p>
+        <p class="signal"><b>AIRUUN learns:</b> contribution, attendance and continued participation.</p>
       </div>
-    </div>
-    <div>
-      <div class="journey-summary"><b>Member journey</b><span>Relevant value → continuity → programme participation → a reason to return</span></div>
-      <div class="journey-summary"><b>Platform learning</b><span>Intent → action → progress → attendance → continued participation</span></div>
     </div>
   </div>
   <div class="foot"><span>Value appears before identity</span><span>The journey grows only when the next step is useful</span></div>
 </section>
 
 <section class="slide dark" id="slide-05" data-section="main">
-  <div class="meta"><div>AIRUUN · Growth Roadmap</div><div class="count">05 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Growth Roadmap</div><div class="count">05 / 15</div></div>
   <div class="stage">
     <div class="eyebrow">One platform, three stages of growth</div>
     <h2>Relationship maturity determines platform maturity.</h2>
     <div class="roadmap">
       <div class="road"><small>Phase 1</small><h3>AIRUUN Hub</h3><p class="soft">Discover. Learn. Experience.<br>Build the destination.</p></div>
       <div class="road-arrow">→</div>
-      <div class="road"><small>Phase 2</small><h3>Community Building</h3><p class="soft">Participate. Connect. Belong.<br>Build AIRUUN participation.</p></div>
+      <div class="road"><small>Phase 2</small><h3>Community Building</h3><p class="soft">Participate. Return. Belong.<br>Build AIRUUN participation.</p></div>
       <div class="bridge-link"><small>Bridge to Phase 3</small><strong>Community Network</strong><span>Shared experiences connect communities</span></div>
       <div class="road final"><small>Phase 3</small><h3>Community Ecosystem</h3><p class="soft">Collaborate. Contribute. Grow.<br>Build the connected ecosystem.</p></div>
     </div>
@@ -500,11 +949,11 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide" id="slide-06" data-section="main">
-  <div class="meta"><div>AIRUUN · Phase 1</div><div class="count">06 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Phase 1</div><div class="count">06 / 15</div></div>
   <div class="stage hub-layout">
     <div class="hub-copy">
       <div class="eyebrow">AIRUUN Hub</div>
-      <h2>How do we create enough value for someone to start?</h2>
+      <h2>How do we create enough </br/> value for someone to start?</h2>
       <div class="columns">
         <div class="col-block"><h3>Content & Experience</h3><ul><li>Daily Dawn and Five Pillars</li><li>Rooms and content</li><li>Programme discovery</li></ul></div>
         <div class="col-block"><h3>Member Foundation</h3><ul><li>Login and onboarding</li><li>Preferences and consent</li><li>Registration</li></ul></div>
@@ -513,81 +962,322 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
       </div>
       <div class="shared-note"><strong>Phase goal:</strong> prove value. Do people consume, act, register and return?</div>
     </div>
-    <figure class="editorial-photo"><img class="photo-b" src="assets/airuun-image-b-destination.jpg" alt="Wide view of an A ROOT activity and audience at Thai Group headquarters"></figure>
   </div>
   <div class="foot"><span>Rule-based relevance is enough for Phase 1</span><span>Advanced recommendations follow useful evidence</span></div>
 </section>
 
 <section class="slide" id="slide-07" data-section="main">
-  <div class="meta"><div>AIRUUN · Phase 2</div><div class="count">07 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Phase 2</div><div class="count">07 / 15</div></div>
   <div class="stage participation-layout">
-    <div class="participation-copy">
-      <div class="eyebrow">Community Building</div>
-      <h2>Participation behaviour comes before a community ecosystem.</h2>
-      <div class="participation-flow">Return <span class="arrow">→</span> Continue <span class="arrow">→</span> Join <span class="arrow">→</span> Attend <span class="arrow">→</span> Contribute <span class="arrow">→</span> Return Again</div>
+    <div class="eyebrow">Community Building</div>
+    <h2>Once they start, how do we give them a reason to return and participate?</h2>
+    <div class="loop">
+      <div><small>01</small><b>Discover something useful</b></div>
+      <div><small>02</small><b>Continue the journey</b></div>
+      <div><small>03</small><b>Join a programme</b></div>
+      <div><small>04</small><b>Attend &amp; interact</b></div>
+      <div><small>05</small><b>Follow up &amp; return</b></div>
+      <div><small>06</small><b>Contribute back</b></div>
     </div>
-    <figure class="editorial-photo"><img class="photo-c" src="assets/airuun-image-c-participation.jpg" alt="A ROOT participants actively following a guided stretching exercise"></figure>
+    <div class="three">
+      <div class="block"><h3>Continuity</h3><p>Saved content, journey history and progress give members a reason to come back.</p></div>
+      <div class="block"><h3>Participation</h3><p>Booking, waitlist, check-in, attendance and follow-up turn interest into action.</p></div>
+      <div class="block"><h3>Contribution</h3><p>Stories, reactions and moderated participation allow members to add value.</p></div>
+    </div>
+    <div class="shared-note"><strong>Content creates the reason to start.</strong> Repeated participation creates the reason to return and the conditions for community.</div>
   </div>
-  <div class="foot"><span><strong>Phase goal:</strong> prove continuity and participation</span><span>Personalization comes from continuity, not AI</span></div>
+  <div class="foot"><span><strong>Phase goal:</strong> prove that useful experiences can become repeated participation</span><span>Phase 2 creates the behaviour needed before a wider network can work</span></div>
 </section>
 
 <section class="slide" id="slide-08" data-section="main">
-  <div class="meta"><div>AIRUUN · Bridge</div><div class="count">08 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Bridge</div><div class="count">08 / 15</div></div>
   <div class="stage network-editorial">
-    <figure class="editorial-photo"><img class="photo-d" src="assets/airuun-image-d-community-network.jpg" alt="A ROOT expert panel engaging with a participating audience"></figure>
-    <div class="network-concept">
-      <div class="eyebrow">Community Network</div>
-      <h2>A common participation layer for shared experiences.</h2>
-      <div class="network">
-        <div class="node top">Experts</div>
-        <div class="node left">A ROOT</div>
-        <div class="node center">AIRUUN</div>
-        <div class="node right">Partners</div>
-        <div class="node bl">AIRUUN Members</div>
-        <div class="node br">Volunteer / Local Communities</div>
-      </div>
-      <div class="network-principle">Start with shared experiences.<br>Let stronger connections grow naturally.</div>
+    <div class="eyebrow">Community Network</div>
+    <h2>Once participation works, how do we extend it beyond AIRUUN itself?</h2>
+    <div class="svg-stage">
+      <svg class="infographic-svg" viewBox="0 0 1440 420" role="img" aria-label="AIRUUN participation becomes shared experiences, then connected communities">
+        <defs>
+          <marker id="arrow-rust-8" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M2,2 L10,6 L2,10" fill="none" stroke="var(--rust)" stroke-width="2"/>
+          </marker>
+        </defs>
+        <rect x="40" y="60" width="335" height="260" rx="18" class="fill-white" stroke="var(--line)"/>
+        <text x="70" y="105" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">PHASE 2 PROVES</text>
+        <text x="70" y="160" font-size="39" class="serif">AIRUUN</text>
+        <text x="70" y="205" font-size="39" class="serif">Participation</text>
+        <text x="70" y="250" font-size="20" class="muted-text">Members return, join,</text>
+        <text x="70" y="278" font-size="20" class="muted-text">attend and contribute.</text>
+
+        <line x1="405" y1="190" x2="565" y2="190" class="rust-line" marker-end="url(#arrow-rust-8)"/>
+        <text x="450" y="160" font-size="16" font-weight="800" class="rust-text">extend</text>
+
+        <rect x="595" y="42" width="330" height="296" rx="24" class="fill-green"/>
+        <text x="760" y="115" text-anchor="middle" font-size="18" font-weight="900" letter-spacing="2" class="white-text">THE BRIDGE</text>
+        <text x="760" y="180" text-anchor="middle" font-size="44" class="serif white-text">Shared</text>
+        <text x="760" y="232" text-anchor="middle" font-size="44" class="serif white-text">Experiences</text>
+        <text x="760" y="282" text-anchor="middle" font-size="19" class="white-text">Programmes · Journeys · Events</text>
+
+        <line x1="955" y1="190" x2="1110" y2="190" class="rust-line" marker-end="url(#arrow-rust-8)"/>
+        <text x="1002" y="160" font-size="16" font-weight="800" class="rust-text">connect</text>
+
+        <rect x="1140" y="60" width="260" height="260" rx="18" class="fill-white" stroke="var(--line)"/>
+        <text x="1170" y="105" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">NETWORK</text>
+        <text x="1170" y="155" font-size="26" font-weight="850">A ROOT</text>
+        <text x="1170" y="195" font-size="26" font-weight="850">Experts</text>
+        <text x="1170" y="235" font-size="26" font-weight="850">Partners</text>
+        <text x="1170" y="275" font-size="26" font-weight="850">Communities</text>
+      </svg>
+    </div>
+    <div class="network-principle">Start with shared experiences.<br>Let stronger connections grow from participation.</div>
+  </div>
+  <div class="foot"><span>The network begins when members can join valuable experiences created with other communities</span><span>Community Network is a bridge, not a fourth paid phase</span></div>
+</section>
+
+<section class="slide" id="slide-08a" data-section="main">
+  <div class="meta"><div>AIRUUN · Subslide 8A</div><div class="count">09 / 15</div></div>
+  <div class="stage">
+    <div class="eyebrow">Current practice around AIRUUN</div>
+    <h2>Relevant communities and experiences already exist.</h2>
+    <p class="lede">AIRUUN does not need to build everything from zero. The opportunity is to connect useful activities, knowledge and programmes into a continuous member journey.</p>
+    <div class="svg-stage">
+      <svg class="infographic-svg" viewBox="0 0 1440 450" role="img" aria-label="Activities, knowledge and programmes connect into shared experiences and the AIRUUN member journey">
+        <defs>
+          <marker id="arrow-rust-8a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M2,2 L10,6 L2,10" fill="none" stroke="var(--rust)" stroke-width="2"/>
+          </marker>
+        </defs>
+        <rect x="45" y="42" width="330" height="250" rx="16" class="fill-white" stroke="var(--line)"/>
+        <text x="75" y="86" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">ACTIVITIES</text>
+        <text x="75" y="132" font-size="22" font-weight="800">Health talks</text>
+        <text x="75" y="168" font-size="22" font-weight="800">Movement & active ageing</text>
+        <text x="75" y="204" font-size="22" font-weight="800">Family workshops</text>
+        <text x="75" y="240" font-size="22" font-weight="800">Reflection sessions</text>
+        <text x="75" y="276" font-size="22" font-weight="800">Volunteering</text>
+
+        <rect x="405" y="42" width="330" height="250" rx="16" class="fill-white" stroke="var(--line)"/>
+        <text x="435" y="86" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">KNOWLEDGE</text>
+        <text x="435" y="132" font-size="22" font-weight="800">Mental wellbeing</text>
+        <text x="435" y="168" font-size="22" font-weight="800">Healthy living</text>
+        <text x="435" y="204" font-size="22" font-weight="800">Family & caregiving</text>
+        <text x="435" y="240" font-size="22" font-weight="800">Financial wellbeing</text>
+        <text x="435" y="276" font-size="22" font-weight="800">Thai wisdom</text>
+
+        <rect x="765" y="42" width="330" height="250" rx="16" class="fill-white" stroke="var(--line)"/>
+        <text x="795" y="86" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">PROGRAMMES</text>
+        <text x="795" y="132" font-size="22" font-weight="800">A ROOT experiences</text>
+        <text x="795" y="168" font-size="22" font-weight="800">Healthy ageing journeys</text>
+        <text x="795" y="204" font-size="22" font-weight="800">Family / caregiver support</text>
+        <text x="795" y="240" font-size="22" font-weight="800">Financial wellbeing</text>
+        <text x="795" y="276" font-size="22" font-weight="800">Volunteer programmes</text>
+
+        <line x1="1118" y1="168" x2="1198" y2="168" class="rust-line" marker-end="url(#arrow-rust-8a)"/>
+        <rect x="1220" y="84" width="175" height="170" rx="18" class="fill-green"/>
+        <text x="1308" y="135" text-anchor="middle" font-size="18" font-weight="900" letter-spacing="1.5" class="white-text">AIRUUN</text>
+        <text x="1308" y="178" text-anchor="middle" font-size="30" class="serif white-text">Member</text>
+        <text x="1308" y="215" text-anchor="middle" font-size="30" class="serif white-text">Journey</text>
+
+        <line x1="60" y1="350" x2="1380" y2="350" class="line"/>
+        <text x="220" y="392" text-anchor="middle" font-size="20" font-weight="900" class="rust-text">Jai</text>
+        <text x="470" y="392" text-anchor="middle" font-size="20" font-weight="900" class="rust-text">Kai</text>
+        <text x="720" y="392" text-anchor="middle" font-size="20" font-weight="900" class="rust-text">Katanyu</text>
+        <text x="970" y="392" text-anchor="middle" font-size="20" font-weight="900" class="rust-text">Por-piang</text>
+        <text x="1220" y="392" text-anchor="middle" font-size="20" font-weight="900" class="rust-text">Nam-jai</text>
+      </svg>
     </div>
   </div>
-  <div class="foot"><span>Phase 2 capabilities power this bridge</span><span>AIRUUN connects communities without needing to own every one</span></div>
+  <div class="foot"><span>Direct value: more relevant experiences, expertise and ways to participate</span><span>Indirect value: extend programmes, leverage partners and learn what creates participation</span></div>
+</section>
+
+<section class="slide" id="slide-08b" data-section="main">
+  <div class="meta"><div>AIRUUN · Subslide 8B</div><div class="count">10 / 15</div></div>
+  <div class="stage">
+    <div class="eyebrow">How the network starts</div>
+    <h2>One shared programme is enough to start connecting the network.</h2>
+    <div class="svg-stage">
+      <svg class="infographic-svg" viewBox="0 0 1440 430" role="img" aria-label="One shared programme flow from discover to return">
+        <defs>
+          <marker id="arrow-rust-8b" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M2,2 L10,6 L2,10" fill="none" stroke="var(--rust)" stroke-width="2"/>
+          </marker>
+        </defs>
+        <g>
+          <circle cx="150" cy="135" r="62" class="fill-white" stroke="var(--line)"/>
+          <text x="150" y="126" text-anchor="middle" font-size="18" font-weight="900" class="rust-text">DISCOVER</text>
+          <text x="150" y="157" text-anchor="middle" font-size="16" class="muted-text">AIRUUN / LINE</text>
+        </g>
+        <line x1="216" y1="135" x2="320" y2="135" class="rust-line" marker-end="url(#arrow-rust-8b)"/>
+        <g>
+          <circle cx="395" cy="135" r="62" class="fill-white" stroke="var(--line)"/>
+          <text x="395" y="126" text-anchor="middle" font-size="18" font-weight="900" class="rust-text">JOIN</text>
+          <text x="395" y="157" text-anchor="middle" font-size="16" class="muted-text">Shared programme</text>
+        </g>
+        <line x1="461" y1="135" x2="565" y2="135" class="rust-line" marker-end="url(#arrow-rust-8b)"/>
+        <g>
+          <circle cx="640" cy="135" r="62" class="fill-green"/>
+          <text x="640" y="126" text-anchor="middle" font-size="18" font-weight="900" class="white-text">ATTEND</text>
+          <text x="640" y="157" text-anchor="middle" font-size="16" class="white-text">Experience</text>
+        </g>
+        <line x1="706" y1="135" x2="810" y2="135" class="rust-line" marker-end="url(#arrow-rust-8b)"/>
+        <g>
+          <circle cx="885" cy="135" r="62" class="fill-white" stroke="var(--line)"/>
+          <text x="885" y="126" text-anchor="middle" font-size="18" font-weight="900" class="rust-text">FOLLOW-UP</text>
+          <text x="885" y="157" text-anchor="middle" font-size="16" class="muted-text">Next action</text>
+        </g>
+        <line x1="951" y1="135" x2="1055" y2="135" class="rust-line" marker-end="url(#arrow-rust-8b)"/>
+        <g>
+          <circle cx="1130" cy="135" r="62" class="fill-white" stroke="var(--line)"/>
+          <text x="1130" y="126" text-anchor="middle" font-size="18" font-weight="900" class="rust-text">RETURN</text>
+          <text x="1130" y="157" text-anchor="middle" font-size="16" class="muted-text">Journey / event</text>
+        </g>
+
+        <rect x="85" y="252" width="1210" height="104" rx="18" class="fill-paper" stroke="var(--line)"/>
+        <text x="120" y="310" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">POWERED BY PHASE 2</text>
+        <text x="385" y="290" font-size="18" font-weight="800">
+          <tspan x="385" dy="0">Programme management · Booking · Capacity · Check-in</tspan>
+          <tspan x="385" dy="28">Attendance · Follow-up · Contribution · Segmented communication</tspan>
+        </text>
+      </svg>
+    </div>
+    <div class="shared-note"><strong>Phase 2 builds the capability.</strong> Community Network extends where that capability can be used.</div>
+  </div>
+  <div class="foot"><span>No large new network platform is required to test this behaviour</span><span>Start with one shared programme and measure participation</span></div>
 </section>
 
 <section class="slide" id="slide-09" data-section="main">
-  <div class="meta"><div>AIRUUN · Phase 3</div><div class="count">09 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Phase 3</div><div class="count">11 / 15</div></div>
   <div class="stage ecosystem-editorial">
-    <div class="ecosystem-main">
-      <div class="eyebrow">Community Ecosystem</div>
-      <h2>Connected communities can create value together.</h2>
-      <div class="ecosystem-outcomes">
-        <div class="ecosystem-outcome"><h3>Connect Communities</h3><p>Bring members, experts, partners and existing communities into shared experiences.</p></div>
-        <div class="ecosystem-outcome"><h3>Co-create Experiences</h3><p>Allow communities to contribute activities, stories, expertise and programmes.</p></div>
-        <div class="ecosystem-outcome"><h3>Grow Shared Initiatives</h3><p>Turn successful participation into recurring programmes and collaborations.</p></div>
-      </div>
-      <div class="shared-note"><strong>AIRUUN becomes the connecting platform</strong> — enabling the ecosystem to grow without needing to own every community.</div>
+    <div class="eyebrow">Community Ecosystem</div>
+    <h2>Once communities connect, how do we help them create value together at scale?</h2>
+    <div class="svg-stage">
+      <svg class="infographic-svg" viewBox="0 0 1440 430" role="img" aria-label="AIRUUN ecosystem model connect coordinate learn co-create">
+        <defs>
+          <marker id="arrow-rust-9" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M2,2 L10,6 L2,10" fill="none" stroke="var(--rust)" stroke-width="2"/>
+          </marker>
+        </defs>
+        <circle cx="720" cy="210" r="92" class="fill-green"/>
+        <text x="720" y="222" text-anchor="middle" font-size="38" class="serif white-text">AIRUUN</text>
+
+        <rect x="530" y="30" width="380" height="78" rx="16" class="fill-white" stroke="var(--line)"/>
+        <text x="720" y="78" text-anchor="middle" font-size="28" font-weight="850">CONNECT</text>
+
+        <rect x="975" y="170" width="340" height="78" rx="16" class="fill-white" stroke="var(--line)"/>
+        <text x="1145" y="218" text-anchor="middle" font-size="28" font-weight="850">COORDINATE</text>
+
+        <rect x="530" y="322" width="380" height="78" rx="16" class="fill-white" stroke="var(--line)"/>
+        <text x="720" y="370" text-anchor="middle" font-size="28" font-weight="850">LEARN</text>
+
+        <rect x="125" y="170" width="340" height="78" rx="16" class="fill-white" stroke="var(--line)"/>
+        <text x="295" y="218" text-anchor="middle" font-size="28" font-weight="850">CO-CREATE</text>
+
+        <path d="M760 116 C915 135 960 172 990 196" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
+        <path d="M1090 252 C1025 325 900 360 782 360" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
+        <path d="M660 360 C510 346 420 295 360 246" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
+        <path d="M360 168 C430 100 565 72 656 72" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
+      </svg>
     </div>
-    <figure class="editorial-photo"><img class="photo-e" src="assets/airuun-image-e-ecosystem.jpg" alt="A ROOT multi-expert panel with an audience representing a wider wellbeing ecosystem"></figure>
+    <div class="shared-note"><strong>AIRUUN becomes the platform that helps the ecosystem work together.</strong></div>
   </div>
-  <div class="foot"><span>Shared experiences create the foundation</span><span>Shared participation allows the ecosystem to grow</span></div>
+  <div class="foot"><span>Phase 3 is about ecosystem coordination, not just adding AI or CRM features</span><span>The technology sits underneath the experience</span></div>
 </section>
 
-<section class="slide transition" id="slide-10" data-section="main">
-  <div class="meta"><div>AIRUUN · Decision Principle</div><div class="count">10 / 11</div></div>
+<section class="slide" id="slide-09a" data-section="main">
+  <div class="meta"><div>AIRUUN · Subslide 9A</div><div class="count">12 / 15</div></div>
+  <div class="stage">
+    <div class="eyebrow">What AIRUUN becomes</div>
+    <h2>AIRUUN evolves from destination to ecosystem platform.</h2>
+    <div class="feature-map">
+      <div class="map-card"><h3>Connect</h3><p>Members discover communities, experts, partners and programmes.</p><div class="cap"><b>Capabilities:</b> groups, roles, expert Q&amp;A, partner participation.</div></div>
+      <div class="map-card"><h3>Coordinate</h3><p>Journeys, programmes and participation continue across touchpoints.</p><div class="cap"><b>Capabilities:</b> identity, consent, lifecycle and cross-channel journeys.</div></div>
+      <div class="map-card"><h3>Learn</h3><p>Experiences become more relevant based on participation signals.</p><div class="cap"><b>Capabilities:</b> Member 360, cohorts, analytics and recommendation.</div></div>
+      <div class="map-card"><h3>Co-create</h3><p>Successful participation becomes new activities and programmes.</p><div class="cap"><b>Capabilities:</b> member-led activities, contribution and governance.</div></div>
+    </div>
+    <div class="shared-note"><strong>CRM/CDP, Member 360, recommendation and AI are enablers.</strong> They support the ecosystem story; they are not the story itself.</div>
+  </div>
+  <div class="foot"><span>Connect · Coordinate · Learn · Co-create</span><span>Phase 3 makes ecosystem participation scalable</span></div>
+</section>
+
+<section class="slide" id="slide-09b" data-section="main">
+  <div class="meta"><div>AIRUUN · Subslide 9B</div><div class="count">13 / 15</div></div>
+  <div class="stage">
+    <div class="eyebrow">Phase 3 value for TGH</div>
+    <h2>AIRUUN builds a richer </br> understanding of member needs.</h2>
+
+    <div class="svg-stage">
+      <svg class="infographic-svg" viewBox="0 0 1440 470" role="img" aria-label="Phase 3 platform data becomes AIRUUN understanding and future TGH value">
+        <defs>
+          <marker id="arrow-rust-9b-v2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M2,2 L10,6 L2,10" fill="none" stroke="var(--rust)" stroke-width="2"/>
+          </marker>
+        </defs>
+
+        <rect x="45" y="48" width="390" height="320" rx="20" class="fill-white" stroke="var(--line)"/>
+        <text x="75" y="92" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">PHASE 3 PLATFORM</text>
+        <text x="75" y="138" font-size="22" font-weight="850">Unified member context</text>
+        <text x="75" y="174" font-size="22" font-weight="850">Programme registration</text>
+        <text x="75" y="210" font-size="22" font-weight="850">Attendance &amp; return</text>
+        <text x="75" y="246" font-size="22" font-weight="850">Journey progress</text>
+        <text x="75" y="282" font-size="22" font-weight="850">Community activity</text>
+        <text x="75" y="318" font-size="22" font-weight="850">Consent &amp; channel context</text>
+
+        <line x1="463" y1="208" x2="560" y2="208" class="rust-line" marker-end="url(#arrow-rust-9b-v2)"/>
+
+        <rect x="590" y="48" width="340" height="320" rx="20" class="fill-green"/>
+        <text x="760" y="92" text-anchor="middle" font-size="18" font-weight="900" letter-spacing="2" class="white-text">AIRUUN UNDERSTANDS</text>
+        <text x="760" y="143" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What people care about</text>
+        <text x="760" y="187" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What they actually join</text>
+        <text x="760" y="231" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What makes them return</text>
+        <text x="760" y="275" text-anchor="middle" font-size="22" font-weight="850" class="white-text">Which experiences work</text>
+        <text x="760" y="319" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What may be useful next</text>
+
+        <line x1="958" y1="208" x2="1055" y2="208" class="rust-line" marker-end="url(#arrow-rust-9b-v2)"/>
+
+        <rect x="1085" y="48" width="310" height="320" rx="20" class="fill-white" stroke="var(--line)"/>
+        <text x="1115" y="92" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">FUTURE TGH VALUE</text>
+        <text x="1115" y="130" font-size="18" font-weight="850">
+          <tspan x="1115" dy="0">Better programme</tspan>
+          <tspan x="1115" dy="21">planning</tspan>
+        </text>
+        <text x="1115" y="176" font-size="18" font-weight="850">
+          <tspan x="1115" dy="0">More relevant</tspan>
+          <tspan x="1115" dy="21">communication</tspan>
+        </text>
+        <text x="1115" y="226" font-size="18" font-weight="850">Better partner decisions</text>
+        <text x="1115" y="252" font-size="18" font-weight="850">
+          <tspan x="1115" dy="0">Richer customer</tspan>
+          <tspan x="1115" dy="21">understanding</tspan>
+        </text>
+        <text x="1115" y="300" font-size="18" font-weight="850">Future service innovation</text>
+        <text x="1115" y="332" font-size="18" font-weight="850">Relationship continuity</text>
+
+        <text x="720" y="420" text-anchor="middle" font-size="22" class="serif">
+          <tspan x="720" dy="0">AIRUUN creates value for members first; the resulting participation insight</tspan>
+          <tspan x="720" dy="28">helps TGH make better future decisions.</tspan>
+        </text>
+      </svg>
+    </div>
+  </div>
+  <div class="foot"><span>Phase 3 connects participation, context and consent</span><span>The promise is better future decisions, not immediate sales conversion</span></div>
+</section>
+
+<!-- <section class="slide transition" id="slide-10" data-section="main">
+  <div class="meta"><div>AIRUUN · Decision Principle</div><div class="count">14 / 15</div></div>
   <div class="transition-stage">
     <div class="eyebrow">Before the investment decision</div>
     <div class="transition-quote">“We don't think AIRUUN should build everything today.<span>It should earn the right to become an ecosystem.”</span></div>
   </div>
   <div class="foot"><span>Value before complexity</span><span>Evidence before expansion</span></div>
-</section>
+</section> -->
 
 <section class="slide dark" id="slide-11" data-section="main">
-  <div class="meta"><div>AIRUUN · Investment Path</div><div class="count">11 / 11</div></div>
+  <div class="meta"><div>AIRUUN · Investment Path</div><div class="count">15 / 15</div></div>
   <div class="stage">
     <div class="eyebrow">Start with the foundation. Earn the next phase.</div>
     <h2>Investment follows proven behaviour.</h2>
     <div class="price-row">
       <div class="price-item"><small>Phase 1 · AIRUUN Hub</small><h3>Prove value & first return</h3><div class="price">฿1.45M</div></div>
       <div class="price-item"><small>Phase 2 · Community Building</small><h3>Prove continuity & participation</h3><div class="price">+฿1.05M</div></div>
-      <div class="price-item"><small>Phase 3 · Community Ecosystem</small><h3>Scale network & intelligence</h3><div class="price">+฿0.75M</div></div>
+      <div class="price-item"><small>Phase 3 · Community Ecosystem</small><h3>Activate ecosystem value</h3><div class="price">+฿0.75M</div></div>
     </div>
     <p class="lede">Full roadmap implementation: <strong>฿3.25M</strong> </br> Full maturity recurring baseline: <strong>฿550K/year</strong></p>
   </div>
@@ -653,34 +1343,34 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-05" data-section="appendix">
-  <div class="meta"><div>Appendix A5 · Network Mapping</div><div class="count">A5 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Shared programme loop</div><h2>One programme connects the network through participation.</h2>
-    <div class="table-scroll"><table class="ref-table"><thead><tr><th>Step</th><th>Member experience</th><th>Capability</th><th>Signal</th></tr></thead><tbody>
-      <tr><td>Programme</td><td>Discovers an AIRUUN, A ROOT or partner experience</td><td>Programme page and taxonomy</td><td>Interest</td></tr>
-      <tr><td>Booking</td><td>Reserves a place</td><td>Capacity, waitlist and consent</td><td>Intent</td></tr>
-      <tr><td>Attendance</td><td>Checks in and joins</td><td>QR and attendance record</td><td>Participation</td></tr>
-      <tr><td>Follow-up</td><td>Receives content or a next activity</td><td>Triggered message and journey</td><td>Continuity</td></tr>
-      <tr><td>Contribution</td><td>Shares feedback, story or activity</td><td>Moderation and profile</td><td>Community value</td></tr>
+  <div class="meta"><div>Appendix A5 · Community Network Mapping</div><div class="count">A5 / A14</div></div>
+  <div class="stage"><div class="eyebrow">Phase 2 to Network bridge</div><h2>Shared programmes turn repeated participation into a network.</h2>
+    <div class="table-scroll"><table class="ref-table"><thead><tr><th>Bridge step</th><th>What Phase 2 proves</th><th>Network use</th><th>Core capability</th></tr></thead><tbody>
+      <tr><td>Useful journey</td><td>Members return to continue</td><td>A shared programme can extend the same journey</td><td>Saved journey, progress, content relationships</td></tr>
+      <tr><td>Programme participation</td><td>Members register, attend and follow up</td><td>Other communities can join the same experience</td><td>Booking, capacity, QR check-in, attendance</td></tr>
+      <tr><td>Expert / partner experience</td><td>External knowledge can create value</td><td>AIRUUN can host or publish partner-led experiences</td><td>Programme management, segment communication</td></tr>
+      <tr><td>Contribution</td><td>Members can share stories or reflections</td><td>Approved stories can become cross-community learning</td><td>Submission, moderation, contribution profile</td></tr>
+      <tr><td>Repeat participation</td><td>People return after the first activity</td><td>Network programmes can become recurring initiatives</td><td>Follow-up, triggers, dashboards</td></tr>
     </tbody></table></div>
   </div>
-  <div class="foot"><span>Phase 2 capabilities power the bridge</span><span>The network can grow without database merging</span></div>
+  <div class="foot"><span>Phase 2 capabilities power the bridge</span><span>The network grows through shared experiences before shared databases</span></div>
 </section>
 
 <section class="slide appendix" id="appendix-06" data-section="appendix">
   <div class="meta"><div>Appendix A6 · Phase 3 Modules</div><div class="count">A6 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Community Ecosystem detail</div><h2>Governance, connection and intelligence mature together.</h2>
+  <div class="stage"><div class="eyebrow">Community Ecosystem detail</div><h2>Technical capabilities enable Connect, Coordinate and Learn.</h2>
     <div class="three">
-      <div class="block"><h3>Community</h3><p>Groups, roles, activities, peer contribution, expert Q&A and volunteer programmes.</p></div>
-      <div class="block"><h3>CRM / CDP</h3><p>Identity, unified profile, consent synchronization and lifecycle orchestration.</p></div>
-      <div class="block"><h3>Intelligence</h3><p>Next best experience, adaptive journeys and AI-assisted search.</p></div>
+      <div class="block"><h3>Connect</h3><p>Community groups, expert Q&amp;A, volunteer programmes, partner participation, community roles and cross-channel journeys.</p></div>
+      <div class="block"><h3>Coordinate</h3><p>Unified profile, consent synchronization, lifecycle segmentation, member-led activities, governance and contribution history.</p></div>
+      <div class="block"><h3>Learn</h3><p>Member 360, cohort analysis, relationship dashboard, recommendation analytics, next best experience and adaptive journeys.</p></div>
     </div>
     <div class="three">
-      <div class="block"><h3>Data & Insight</h3><p>Member 360, cohorts, relationship dashboard, attribution and experiments.</p></div>
-      <div class="block"><h3>Editorial Intelligence</h3><p>Assisted tagging, semantic related content and human approval.</p></div>
-      <div class="block"><h3>Enterprise Readiness</h3><p>Availability, recovery, access control, audit and API governance.</p></div>
+      <div class="block"><h3>Content Intelligence</h3><p>Assisted tagging, semantic related content, content gap analysis and human approval workflow.</p></div>
+      <div class="block"><h3>Enterprise Readiness</h3><p>Availability, recovery, access control, audit, API governance and security monitoring.</p></div>
+      <div class="block"><h3>Scope Note</h3><p>Advanced CRM/CDP, AI, BI, enterprise security or external licenses may require separate scope and usage budget.</p></div>
     </div>
   </div>
-  <div class="foot"><span>External licenses and usage remain separate</span><span>Expert control remains for health and finance</span></div>
+  <div class="foot"><span>AI and CRM/CDP are enablers, not the story</span><span>The purpose is ecosystem value</span></div>
 </section>
 
 <section class="slide appendix" id="appendix-07" data-section="appendix">
@@ -785,7 +1475,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
       <div class="line-item"><b>Governance</b><span>Roles · Editorial approval · Expert review · Audit · Data access · Retention</span></div>
     </div>
   </div>
-  <div class="foot"><span>End of appendix</span><span>Return to Slide 11 for the investment decision</span></div>
+  <div class="foot"><span>End of appendix</span><span>Return to Slide 15 for the investment decision</span></div>
 </section>
 
 </main>
