@@ -34,9 +34,9 @@ html, body{
 }
 .slide :where(h1,h2,h3,p,li,span,b,strong,small,td,th,.display,.big-quote,.transition-quote,.price,.network-principle,.label,.eyebrow){
   max-width:100%;
-  overflow-wrap:anywhere;
+  overflow-wrap:normal;
   word-break:normal;
-  hyphens:auto;
+  hyphens:none;
 }
 .slide :where(ul,ol){
   max-width:100%;
@@ -343,7 +343,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 .ref-table td,
 .ref-table th{
   word-break:normal;
-  overflow-wrap:anywhere;
+  overflow-wrap:normal;
+  hyphens:none;
 }
 
 /* --- Added: SVG infographic system for Community Network / Ecosystem slides --- */
