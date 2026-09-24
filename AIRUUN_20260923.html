@@ -61,8 +61,9 @@ button{font:inherit}
 .slide{
   position:absolute;inset:0;display:none;
   grid-template-rows:auto 1fr auto;
+  row-gap:clamp(18px,2.4vh,30px);
   min-height:100dvh;
-  padding:40px 56px 84px;
+  padding:32px 56px 76px;
   overflow-y:auto;
   background:var(--paper);
 }
@@ -77,6 +78,9 @@ button{font:inherit}
   font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green)
 }
 .meta .count{color:var(--muted)}
+.meta-kicker{color:var(--rust)}
+.dark .meta-kicker{color:#D9A68C}
+.transition .meta-kicker{color:#F4DACE}
 .stage{
   display:grid;align-content:center;gap:28px;
   max-width:1900px;width:100%;margin:0 auto;
@@ -92,7 +96,7 @@ h1,h2{
   letter-spacing:-.045em;
 }
 h1{font-size:clamp(70px,8.5vw,138px);line-height:.92;max-width:1100px}
-h2{font-size:clamp(52px,6.4vw,100px);line-height:.95;max-width:1240px}
+h2{font-size:clamp(44px,calc(5.6vw - 2px),86px);line-height:.98;max-width:1340px}
 h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font-weight:650}
 .lede{font-size:clamp(26px,2.25vw,38px);line-height:1.34;max-width:950px;color:#36423D}
 .dark .lede{color:#DCE4E1}
@@ -192,7 +196,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   align-items:center;gap:clamp(50px,7vw,110px)
 }
 .network-intro{display:grid;gap:22px}
-.network-concept h2{font-size:clamp(46px,5vw,78px)}
+.network-concept h2{font-size:clamp(44px,calc(5vw - 2px),76px)}
 .network-concept .network{min-height:460px}
 .network-concept .node{font-size:18px;max-width:170px}
 .network-concept .node.center{width:170px;height:170px;font-size:31px}
@@ -204,7 +208,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   display:grid;grid-template-columns:1fr;align-content:center
 }
 .ecosystem-main{display:grid;align-content:center;gap:30px}
-.ecosystem-main h2{font-size:clamp(50px,5.8vw,92px);max-width:1280px}
+.ecosystem-main h2{font-size:clamp(48px,calc(5.8vw - 2px),90px);max-width:1280px}
 .ecosystem-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
 .ecosystem-outcome{border-top:2px solid var(--green);padding-top:15px}
 .ecosystem-outcome h3{font-family:var(--serif);font-weight:500;font-size:34px}
@@ -299,7 +303,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 .three .block{border-top:2px solid var(--green);padding-top:20px}
 .three .block h3{font-family:var(--serif);font-weight:500;font-size:38px}
 .three .block p{font-size:18px;line-height:1.4;color:var(--muted);margin-top:16px}
-.ecosystem-copy h2{font-size:clamp(44px,5.3vw,82px);max-width:1400px}
+.ecosystem-copy h2{font-size:clamp(42px,calc(5.3vw - 2px),80px);max-width:1400px}
 .ecosystem-copy .lede{max-width:1180px}
 .ecosystem-copy .three{gap:44px}
 .ecosystem-copy .three .block h3{font-size:34px}
@@ -313,7 +317,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 .price{font-family:var(--serif);font-size:clamp(52px,5.2vw,84px);line-height:1;letter-spacing:-.05em;margin-top:24px}
 .price-item p{font-size:16px;color:var(--muted);line-height:1.35;margin-top:14px}
 .appendix{background:var(--white)}
-.appendix h2{font-size:clamp(44px,5.4vw,82px)}
+.appendix h2{font-size:clamp(42px,calc(5.4vw - 2px),80px)}
 .appendix .stage{gap:20px}
 .ref-table{width:100%;border-collapse:collapse;border-top:2px solid var(--green)}
 .ref-table th,.ref-table td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);font-size:15px;line-height:1.35;vertical-align:top}
@@ -533,6 +537,21 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 .controls button{border:0;background:transparent;color:#fff;padding:9px 12px;border-radius:999px;cursor:pointer;font-size:14px}
 .controls button:hover{background:rgba(255,255,255,.12)}
 .controls .jump{font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#CBD7D3}
+.phase-controls{
+  position:fixed;left:50%;top:18px;transform:translateX(-50%);
+  display:flex;align-items:center;gap:3px;
+  background:rgba(21,42,38,.94);border-radius:999px;padding:5px;z-index:55;
+  box-shadow:0 8px 24px rgba(21,42,38,.12)
+}
+.phase-controls button{
+  border:0;background:transparent;color:#CBD7D3;
+  padding:8px 11px;border-radius:999px;cursor:pointer;
+  font-size:11px;font-weight:900;line-height:1;
+  letter-spacing:.06em;text-transform:uppercase
+}
+.phase-controls button:hover{background:rgba(255,255,255,.12);color:#fff}
+.phase-controls button.active{background:var(--rust);color:#fff}
+.phase-controls button:focus-visible{outline:2px solid var(--white);outline-offset:2px}
 .progress{position:fixed;left:0;bottom:0;height:4px;background:var(--rust);width:0;z-index:60}
 
 @media(max-width:1280px){
@@ -558,12 +577,12 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 }
 
 @media(max-width:1500px),(max-height:900px){
-  .slide{padding:26px 42px 76px}
+  .slide{padding:22px 42px 70px;row-gap:clamp(15px,2vh,24px)}
   .stage{gap:18px;max-width:1320px}
   .meta{font-size:12px}
   .eyebrow{font-size:13px}
   h1{font-size:clamp(58px,6.6vw,96px);max-width:960px}
-  h2{font-size:clamp(42px,5vw,72px);max-width:1100px}
+  h2{font-size:clamp(36px,calc(4.6vw - 2px),62px);max-width:1180px}
   h3{font-size:clamp(27px,2.5vw,38px)}
   .lede{font-size:clamp(21px,1.8vw,28px)}
   .big-quote{font-size:clamp(30px,3.2vw,46px)}
@@ -580,10 +599,10 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   .participation-flow{font-size:clamp(31px,3.2vw,46px);padding:16px 0 16px 28px}
   .network-concept{grid-template-columns:minmax(300px,.78fr) minmax(500px,1.22fr);gap:48px}
   .network-intro{gap:14px}
-  .network-concept h2{font-size:clamp(40px,4.4vw,62px)}.network-concept .network{min-height:340px}
+  .network-concept h2{font-size:clamp(38px,calc(4.4vw - 2px),60px)}.network-concept .network{min-height:340px}
   .network-concept .node{font-size:14px}.network-concept .node.center{width:125px;height:125px;font-size:25px}
   .network-principle{font-size:clamp(23px,2vw,31px);padding-top:12px}
-  .ecosystem-main{gap:15px}.ecosystem-main h2{font-size:clamp(40px,4.5vw,64px)}
+  .ecosystem-main{gap:15px}.ecosystem-main h2{font-size:clamp(38px,calc(4.5vw - 2px),62px)}
   .ecosystem-outcomes{gap:22px}.ecosystem-outcome h3{font-size:27px}.ecosystem-outcome p{font-size:14px}
   .journey-phase{padding:14px 17px 13px}
   .journey-phase h3{font-size:clamp(25px,2.2vw,32px);margin-top:8px}
@@ -599,21 +618,26 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   .network-wrap{gap:48px}.network{min-height:350px}.node.center{width:150px;height:150px;font-size:29px}
   .shared-note{padding-top:13px;font-size:18px}
   .three{gap:28px}.three .block{padding-top:14px}.three .block h3{font-size:30px}.three .block p{font-size:16px;margin-top:10px}
-  .ecosystem-copy h2{font-size:clamp(40px,4.5vw,66px)}
+  .ecosystem-copy h2{font-size:clamp(38px,calc(4.5vw - 2px),64px)}
   .ecosystem-copy .three{gap:28px}.ecosystem-copy .three .block h3{font-size:28px}
   .price-item{padding:20px 22px}.price-item h3{font-size:30px}.price{font-size:clamp(46px,4.5vw,66px);margin-top:16px}
   .transition-quote{font-size:clamp(52px,6vw,82px)}
-  .appendix h2{font-size:clamp(38px,4.5vw,66px)}
+  .appendix h2{font-size:clamp(36px,calc(4.5vw - 2px),64px)}
   .appendix .stage{gap:14px}.ref-table th,.ref-table td{padding:9px 11px;font-size:13px}
   .foot{font-size:12px;padding-top:10px}
   .controls{bottom:12px}
 }
 @media(max-width:1100px){
-  .slide{padding:30px 28px 74px}
+  .slide{padding:24px 28px 68px;row-gap:18px}
   .stage{align-content:start}
   .svg-stage{min-height:auto;overflow:auto;padding:14px 0}
   .infographic-svg{min-width:940px}
+  .infographic-svg.data-value-svg,
+  .infographic-svg.data-list-svg{min-width:1120px}
   .meta{font-size:11px}
+  .phase-controls{top:14px}
+  .phase-controls button{padding:7px 8px;font-size:10px}
+  .phase-controls .phase-word{display:none}
   .foot{display:grid;grid-template-columns:1fr;font-size:11px}
   .split,.compare,.network-wrap,.photo-value,.participation-copy,.network-concept{grid-template-columns:1fr}
   .photo-value-copy{display:grid;gap:24px}
@@ -648,7 +672,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     font-size:10px;
   }
   h1{font-size:clamp(44px,13vw,62px);line-height:.96}
-  h2{font-size:clamp(34px,10vw,52px);line-height:1}
+  h2{font-size:clamp(30px,calc(9vw - 2px),46px);line-height:1.02}
   h3{font-size:clamp(26px,7vw,36px)}
   .lede{font-size:22px;line-height:1.32}
   .display{font-size:clamp(34px,9vw,48px)}
@@ -699,8 +723,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     min-width:760px;
   }
 
-  .slide,.slide.active{position:relative;display:grid;min-height:100svh;padding:28px 20px 50px;border-bottom:1px solid var(--line)}
-  .controls,.progress{display:none}
+  .slide,.slide.active{position:relative;display:grid;min-height:100svh;padding:24px 20px 46px;row-gap:16px;border-bottom:1px solid var(--line)}
+  .controls,.phase-controls,.progress{display:none}
   .columns{grid-template-columns:1fr}.journey{grid-template-columns:1fr}.journey .step{border-right:0}
   .journey-plan{grid-template-columns:1fr}.journey-phase{border-right:0}.journey-summary{grid-template-columns:1fr}
   .loop{grid-template-columns:1fr}.loop>div{border-right:0;border-bottom:1px solid var(--line)}
@@ -715,12 +739,12 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 }
 
 @media(max-height:760px) and (min-width:900px){
-  .slide{padding-top:18px;padding-bottom:66px}
+  .slide{padding-top:16px;padding-bottom:62px;row-gap:12px}
   .stage{gap:12px}
   .meta{font-size:10px}
   .eyebrow{font-size:12px;margin-bottom:8px}
   h1{font-size:clamp(52px,6vw,84px)}
-  h2{font-size:clamp(36px,4.4vw,62px)}
+  h2{font-size:clamp(34px,calc(4.4vw - 2px),60px)}
   h3{font-size:clamp(24px,2.2vw,34px)}
   .lede{font-size:clamp(19px,1.6vw,25px)}
   .foot{font-size:10px;padding-top:8px}
@@ -734,7 +758,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 
 @media(min-width:1441px) and (min-height:901px){
   .slide{
-    padding:34px clamp(72px,6vw,120px) 72px;
+    padding:28px clamp(72px,6vw,120px) 68px;
+    row-gap:clamp(20px,2.5vh,34px);
   }
   .slide > .meta,
   .slide > .stage,
@@ -749,7 +774,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   .meta{font-size:11px}
   .eyebrow{font-size:13px}
   h1{font-size:clamp(56px,6.8vw,110px);max-width:1375px}
-  h2{font-size:clamp(42px,5.1vw,80px);max-width:1550px}
+  h2{font-size:clamp(36px,calc(4.6vw - 2px),70px);max-width:1600px}
   h3{font-size:clamp(25px,2.5vw,40px)}
   .lede{font-size:clamp(21px,1.8vw,30px);max-width:1190px}
   .display{font-size:clamp(35px,4vw,61px)}
@@ -796,7 +821,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   .price-item h3{font-size:29px}
   .price{font-size:clamp(42px,4.2vw,67px);margin-top:19px}
   .price-item p{font-size:13px}
-  .appendix h2{font-size:clamp(35px,4.3vw,66px)}
+  .appendix h2{font-size:clamp(33px,calc(4.3vw - 2px),64px)}
   .ref-table th,.ref-table td{padding:10px 11px;font-size:12px}
 
   .svg-stage{
@@ -808,9 +833,16 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   }
 }
 
+@media(min-width:761px) and (min-height:761px){
+  .slide[data-phase-group] > .stage{
+    padding-top:clamp(18px,2.2vh,30px);
+  }
+}
+
 @media print{
   html,body{height:auto;overflow:visible}
   .deck{height:auto}
+  .slide[data-phase-group] > .stage{padding-top:14px}
 
   .slide,.slide.active{
     min-height:auto;
@@ -827,7 +859,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     font-size:10px;
   }
   h1{font-size:clamp(44px,13vw,62px);line-height:.96}
-  h2{font-size:clamp(34px,10vw,52px);line-height:1}
+  h2{font-size:clamp(32px,calc(10vw - 2px),50px);line-height:1}
   h3{font-size:clamp(26px,7vw,36px)}
   .lede{font-size:22px;line-height:1.32}
   .display{font-size:clamp(34px,9vw,48px)}
@@ -878,7 +910,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     min-width:760px;
   }
 .slide,.slide.active{position:relative;display:grid!important;min-height:100vh;page-break-after:always}
-  .controls,.progress{display:none}
+  .controls,.phase-controls,.progress{display:none}
 }
 </style>
 </head>
@@ -886,10 +918,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 <main class="deck">
 
 <section class="slide active dark" id="slide-01" data-section="main">
-  <div class="meta"><div>AIRUUN · Community Network Pitch</div><div class="count">01 / 15</div></div>
+  <div class="meta"><div class="meta-kicker">From wellbeing vision to a living platform</div><div class="count">01 / 15</div></div>
   <div class="stage split">
     <div>
-      <div class="eyebrow">From wellbeing vision to a living platform</div>
       <h1>AIRUUN turns wisdom into useful action.</h1>
     </div>
     <div class="big-quote" style="font-size:clamp(30px,3.1vw,52px)">The opportunity: connect useful content, programmes and communities into one continuous wellbeing relationship.</div>
@@ -898,9 +929,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide" id="slide-02" data-section="main">
-  <div class="meta"><div>AIRUUN · Opportunity</div><div class="count">02 / 15</div></div>
+  <div class="meta"><div class="meta-kicker">The opportunity</div><div class="count">02 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">The opportunity</div>
     <h2>Wellbeing content is everywhere. Continuity is missing.</h2>
 
     <div class="opportunity-contrast">
@@ -935,11 +965,10 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide" id="slide-03" data-section="main">
-  <div class="meta"><div>AIRUUN · Value Engine</div><div class="count">03 / 15</div></div>
+  <div class="meta"><div class="meta-kicker">Content is the value engine</div><div class="count">03 / 15</div></div>
   <div class="stage photo-value">
     <div class="photo-value-copy">
       <div class="value-intro">
-        <div class="eyebrow">Content is the value engine</div>
         <h2>Useful content and programmes create return behaviour.</h2>
       </div>
       <div class="line-list">
@@ -955,9 +984,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide" id="slide-04" data-section="main">
-  <div class="meta"><div>AIRUUN · Member Journey</div><div class="count">04 / 15</div></div>
+  <div class="meta"><div class="meta-kicker">The big-picture member journey</div><div class="count">04 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">The big-picture member journey</div>
     <h2>One need becomes a journey from discovery to belonging.</h2>
     <div class="journey-plan">
       <div class="journey-phase">
@@ -990,9 +1018,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide dark" id="slide-05" data-section="main">
-  <div class="meta"><div>AIRUUN · Growth Roadmap</div><div class="count">05 / 15</div></div>
+  <div class="meta"><div class="meta-kicker">One platform, three stages of growth</div><div class="count">05 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">One platform, three stages of growth</div>
     <h2>Relationship maturity </br> determines platform maturity.</h2>
     <div class="roadmap">
       <div class="road"><small>Phase 1</small><h3>AIRUUN Hub</h3><p class="soft">Discover. Learn. Experience.<br>Build the destination.</p></div>
@@ -1005,11 +1032,10 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   <div class="foot"><span>Invest → Learn → Validate → Scale</span><span>Community Network is a bridge, not a fourth paid phase</span></div>
 </section>
 
-<section class="slide" id="slide-06" data-section="main">
-  <div class="meta"><div>AIRUUN · Phase 1</div><div class="count">06 / 15</div></div>
+<section class="slide" id="slide-06" data-section="main" data-phase-group="phase-1">
+  <div class="meta"><div class="meta-kicker">AIRUUN Hub</div><div class="count">06 / 15</div></div>
   <div class="stage hub-layout">
     <div class="hub-copy">
-      <div class="eyebrow">AIRUUN Hub</div>
       <h2>How do we create enough </br/> value for someone to start?</h2>
       <div class="columns">
         <div class="col-block"><h3>Content & Experience</h3><ul><li>Daily Dawn and Five Pillars</li><li>Rooms and content</li><li>Programme discovery</li></ul></div>
@@ -1017,16 +1043,15 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
         <div class="col-block"><h3>Operation</h3><ul><li>Custom CMS and taxonomy</li><li>Editorial workflow</li><li>Event management</li></ul></div>
         <div class="col-block"><h3>Distribution & Learning</h3><ul><li>LINE / EDM</li><li>Analytics and SEO</li><li>Infrastructure</li></ul></div>
       </div>
-      <div class="shared-note"><strong>Phase goal:</strong> prove value. Do people consume, act, register and return?</div>
+      <div class="shared-note"><strong>Success test:</strong> prove value. Do people consume, act, register and return?</div>
     </div>
   </div>
-  <div class="foot"><span>Rule-based relevance is enough for Phase 1</span><span>Advanced recommendations follow useful evidence</span></div>
+  <div class="foot"><span>Rule-based relevance is enough at launch</span><span>Advanced recommendations follow useful evidence</span></div>
 </section>
 
-<section class="slide" id="slide-07" data-section="main">
-  <div class="meta"><div>AIRUUN · Phase 2</div><div class="count">07 / 15</div></div>
+<section class="slide" id="slide-07" data-section="main" data-phase-group="phase-2">
+  <div class="meta"><div class="meta-kicker">Community Building</div><div class="count">07 / 15</div></div>
   <div class="stage participation-layout">
-    <div class="eyebrow">Community Building</div>
     <h2>Once they start, how do we give them a reason to return and participate?</h2>
     <div class="loop">
       <div><small>01</small><b>Discover something useful</b></div>
@@ -1043,13 +1068,12 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     </div>
     <div class="shared-note"><strong>Content creates the reason to start.</strong> Repeated participation creates the reason to return and the conditions for community.</div>
   </div>
-  <div class="foot"><span><strong>Phase goal:</strong> prove that useful experiences can become repeated participation</span><span>Phase 2 creates the behaviour needed before a wider network can work</span></div>
+  <div class="foot"><span><strong>Success test:</strong> prove that useful experiences can become repeated participation</span><span>This creates the behaviour needed before a wider network can work</span></div>
 </section>
 
-<section class="slide" id="slide-08" data-section="main">
-  <div class="meta"><div>AIRUUN · Bridge</div><div class="count">08 / 15</div></div>
+<section class="slide" id="slide-08" data-section="main" data-phase-group="bridge">
+  <div class="meta"><div class="meta-kicker">Community Network</div><div class="count">08 / 15</div></div>
   <div class="stage network-editorial">
-    <div class="eyebrow">Community Network</div>
     <h2>Once participation works, how do we extend it beyond AIRUUN itself?</h2>
     <div class="svg-stage">
       <svg class="infographic-svg" viewBox="0 0 1440 420" role="img" aria-label="AIRUUN participation becomes shared experiences, then connected communities">
@@ -1087,17 +1111,16 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     </div>
     <div class="network-principle">Start with shared experiences.<br>Let stronger connections grow from participation.</div>
   </div>
-  <div class="foot"><span>The network begins when members can join valuable experiences created with other communities</span><span>Community Network is a bridge, not a fourth paid phase</span></div>
+  <div class="foot"><span>The network begins when members can join valuable experiences created with other communities</span><span>Community Network is a bridge, not a separate paid stage</span></div>
 </section>
 
-<section class="slide" id="slide-08a" data-section="main">
-  <div class="meta"><div>AIRUUN · Subslide 8A</div><div class="count">09 / 15</div></div>
+<section class="slide" id="slide-08a" data-section="main" data-phase-group="bridge">
+  <div class="meta"><div class="meta-kicker">Current practice around AIRUUN</div><div class="count">09 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">Current practice around AIRUUN</div>
-    <h2>Relevant communities and </br> experiences already exist.</h2>
+    <h2>Relevant communities and<br>experiences already exist.</h2>
     <p class="lede">AIRUUN does not need to build everything from zero. The opportunity is to connect useful activities, knowledge and programmes into a continuous member journey.</p>
     <div class="svg-stage">
-      <svg class="infographic-svg" viewBox="0 0 1440 450" role="img" aria-label="Activities, knowledge and programmes connect into shared experiences and the AIRUUN member journey">
+      <svg class="infographic-svg data-list-svg" viewBox="0 0 1440 450" role="img" aria-label="Activities, knowledge and programmes connect into shared experiences and the AIRUUN member journey">
         <defs>
           <marker id="arrow-rust-8a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
             <path d="M2,2 L10,6 L2,10" fill="none" stroke="var(--rust)" stroke-width="2"/>
@@ -1105,27 +1128,27 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
         </defs>
         <rect x="45" y="42" width="330" height="250" rx="16" class="fill-white" stroke="var(--line)"/>
         <text x="75" y="86" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">ACTIVITIES</text>
-        <text x="75" y="132" font-size="22" font-weight="800">Health talks</text>
-        <text x="75" y="168" font-size="22" font-weight="800">Movement & active ageing</text>
-        <text x="75" y="204" font-size="22" font-weight="800">Family workshops</text>
-        <text x="75" y="240" font-size="22" font-weight="800">Reflection sessions</text>
-        <text x="75" y="276" font-size="22" font-weight="800">Volunteering</text>
+        <circle cx="75" cy="125" r="4" class="fill-rust"/><text x="92" y="132" font-size="20" font-weight="800">Health talks</text>
+        <circle cx="75" cy="161" r="4" class="fill-rust"/><text x="92" y="168" font-size="20" font-weight="800">Movement &amp; active ageing</text>
+        <circle cx="75" cy="197" r="4" class="fill-rust"/><text x="92" y="204" font-size="20" font-weight="800">Family workshops</text>
+        <circle cx="75" cy="233" r="4" class="fill-rust"/><text x="92" y="240" font-size="20" font-weight="800">Reflection sessions</text>
+        <circle cx="75" cy="269" r="4" class="fill-rust"/><text x="92" y="276" font-size="20" font-weight="800">Volunteering</text>
 
         <rect x="405" y="42" width="330" height="250" rx="16" class="fill-white" stroke="var(--line)"/>
         <text x="435" y="86" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">KNOWLEDGE</text>
-        <text x="435" y="132" font-size="22" font-weight="800">Mental wellbeing</text>
-        <text x="435" y="168" font-size="22" font-weight="800">Healthy living</text>
-        <text x="435" y="204" font-size="22" font-weight="800">Family & caregiving</text>
-        <text x="435" y="240" font-size="22" font-weight="800">Financial wellbeing</text>
-        <text x="435" y="276" font-size="22" font-weight="800">Thai wisdom</text>
+        <circle cx="435" cy="125" r="4" class="fill-rust"/><text x="452" y="132" font-size="20" font-weight="800">Mental wellbeing</text>
+        <circle cx="435" cy="161" r="4" class="fill-rust"/><text x="452" y="168" font-size="20" font-weight="800">Healthy living</text>
+        <circle cx="435" cy="197" r="4" class="fill-rust"/><text x="452" y="204" font-size="20" font-weight="800">Family &amp; caregiving</text>
+        <circle cx="435" cy="233" r="4" class="fill-rust"/><text x="452" y="240" font-size="20" font-weight="800">Financial wellbeing</text>
+        <circle cx="435" cy="269" r="4" class="fill-rust"/><text x="452" y="276" font-size="20" font-weight="800">Thai wisdom</text>
 
         <rect x="765" y="42" width="330" height="250" rx="16" class="fill-white" stroke="var(--line)"/>
         <text x="795" y="86" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">PROGRAMMES</text>
-        <text x="795" y="132" font-size="22" font-weight="800">A ROOT experiences</text>
-        <text x="795" y="168" font-size="22" font-weight="800">Healthy ageing journeys</text>
-        <text x="795" y="204" font-size="22" font-weight="800">Family / caregiver support</text>
-        <text x="795" y="240" font-size="22" font-weight="800">Financial wellbeing</text>
-        <text x="795" y="276" font-size="22" font-weight="800">Volunteer programmes</text>
+        <circle cx="795" cy="125" r="4" class="fill-rust"/><text x="812" y="132" font-size="20" font-weight="800">A ROOT experiences</text>
+        <circle cx="795" cy="161" r="4" class="fill-rust"/><text x="812" y="168" font-size="20" font-weight="800">Healthy ageing journeys</text>
+        <circle cx="795" cy="197" r="4" class="fill-rust"/><text x="812" y="204" font-size="20" font-weight="800">Family / caregiver support</text>
+        <circle cx="795" cy="233" r="4" class="fill-rust"/><text x="812" y="240" font-size="20" font-weight="800">Financial wellbeing</text>
+        <circle cx="795" cy="269" r="4" class="fill-rust"/><text x="812" y="276" font-size="20" font-weight="800">Volunteer programmes</text>
 
         <line x1="1118" y1="168" x2="1198" y2="168" class="rust-line" marker-end="url(#arrow-rust-8a)"/>
         <rect x="1220" y="84" width="175" height="170" rx="18" class="fill-green"/>
@@ -1145,10 +1168,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   <div class="foot"><span>Direct value: more relevant experiences, expertise and ways to participate</span><span>Indirect value: extend programmes, leverage partners and learn what creates participation</span></div>
 </section>
 
-<section class="slide" id="slide-08b" data-section="main">
-  <div class="meta"><div>AIRUUN · Subslide 8B</div><div class="count">10 / 15</div></div>
+<section class="slide" id="slide-08b" data-section="main" data-phase-group="bridge">
+  <div class="meta"><div class="meta-kicker">How the network starts</div><div class="count">10 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">How the network starts</div>
     <h2>One shared programme is enough to start connecting the network.</h2>
     <div class="svg-stage">
       <svg class="infographic-svg" viewBox="0 0 1440 430" role="img" aria-label="One shared programme flow from discover to return">
@@ -1200,10 +1222,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   <div class="foot"><span>No large new network platform is required to test this behaviour</span><span>Start with one shared programme and measure participation</span></div>
 </section>
 
-<section class="slide" id="slide-09" data-section="main">
-  <div class="meta"><div>AIRUUN · Phase 3</div><div class="count">11 / 15</div></div>
+<section class="slide" id="slide-09" data-section="main" data-phase-group="phase-3">
+  <div class="meta"><div class="meta-kicker">Community Ecosystem</div><div class="count">11 / 15</div></div>
   <div class="stage ecosystem-editorial">
-    <div class="eyebrow">Community Ecosystem</div>
     <h2>Once communities connect, how do we help them create value together at scale?</h2>
     <div class="svg-stage">
       <svg class="infographic-svg" viewBox="0 0 1440 430" role="img" aria-label="AIRUUN ecosystem model connect coordinate learn co-create">
@@ -1227,7 +1248,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
         <rect x="125" y="170" width="340" height="78" rx="16" class="fill-white" stroke="var(--line)"/>
         <text x="295" y="218" text-anchor="middle" font-size="28" font-weight="850">CO-CREATE</text>
 
-        <path d="M760 116 C915 135 960 172 990 196" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
+        <path d="M796 78 C900 82 1015 128 1090 170" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
         <path d="M1090 252 C1025 325 900 360 782 360" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
         <path d="M660 360 C510 346 420 295 360 246" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
         <path d="M360 168 C430 100 565 72 656 72" fill="none" class="rust-line" marker-end="url(#arrow-rust-9)"/>
@@ -1235,13 +1256,12 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     </div>
     <div class="shared-note"><strong>AIRUUN becomes the platform that helps the ecosystem work together.</strong></div>
   </div>
-  <div class="foot"><span>Phase 3 is about ecosystem coordination, not just adding AI or CRM features</span><span>The technology sits underneath the experience</span></div>
+  <div class="foot"><span>Ecosystem coordination—not simply adding AI or CRM features</span><span>The technology sits underneath the experience</span></div>
 </section>
 
-<section class="slide" id="slide-09a" data-section="main">
-  <div class="meta"><div>AIRUUN · Subslide 9A</div><div class="count">12 / 15</div></div>
+<section class="slide" id="slide-09a" data-section="main" data-phase-group="phase-3">
+  <div class="meta"><div class="meta-kicker">What AIRUUN becomes</div><div class="count">12 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">What AIRUUN becomes</div>
     <h2>AIRUUN evolves </br> from destination to ecosystem platform.</h2>
     <div class="feature-map">
       <div class="map-card"><h3>Connect</h3><p>Members discover communities, experts, partners and programmes.</p><div class="cap"><b>Capabilities:</b> groups, roles, expert Q&amp;A, partner participation.</div></div>
@@ -1251,17 +1271,16 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
     </div>
     <div class="shared-note"><strong>CRM/CDP, Member 360, recommendation and AI are enablers.</strong> They support the ecosystem story; they are not the story itself.</div>
   </div>
-  <div class="foot"><span>Connect · Coordinate · Learn · Co-create</span><span>Phase 3 makes ecosystem participation scalable</span></div>
+  <div class="foot"><span>Connect · Coordinate · Learn · Co-create</span><span>Makes ecosystem participation scalable</span></div>
 </section>
 
-<section class="slide" id="slide-09b" data-section="main">
-  <div class="meta"><div>AIRUUN · Subslide 9B</div><div class="count">13 / 15</div></div>
+<section class="slide" id="slide-09b" data-section="main" data-phase-group="phase-3">
+  <div class="meta"><div class="meta-kicker">Value for TGH</div><div class="count">13 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">Phase 3 value for TGH</div>
-    <h2>AIRUUN builds a richer </br> understanding of member needs.</h2>
+    <h2>AIRUUN builds a richer<br>understanding of member needs.</h2>
 
     <div class="svg-stage">
-      <svg class="infographic-svg" viewBox="0 0 1440 470" role="img" aria-label="Phase 3 platform data becomes AIRUUN understanding and future TGH value">
+      <svg class="infographic-svg data-value-svg" viewBox="0 0 1440 470" role="img" aria-label="Phase 3 platform data becomes AIRUUN understanding and future TGH value">
         <defs>
           <marker id="arrow-rust-9b-v2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
             <path d="M2,2 L10,6 L2,10" fill="none" stroke="var(--rust)" stroke-width="2"/>
@@ -1269,43 +1288,43 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
         </defs>
 
         <rect x="45" y="48" width="390" height="320" rx="20" class="fill-white" stroke="var(--line)"/>
-        <text x="75" y="92" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">PHASE 3 PLATFORM</text>
-        <text x="75" y="138" font-size="22" font-weight="850">Unified member context</text>
-        <text x="75" y="174" font-size="22" font-weight="850">Programme registration</text>
-        <text x="75" y="210" font-size="22" font-weight="850">Attendance &amp; return</text>
-        <text x="75" y="246" font-size="22" font-weight="850">Journey progress</text>
-        <text x="75" y="282" font-size="22" font-weight="850">Community activity</text>
-        <text x="75" y="318" font-size="22" font-weight="850">Consent &amp; channel context</text>
+        <text x="75" y="92" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">PLATFORM SIGNALS</text>
+        <circle cx="75" cy="131" r="4" class="fill-rust"/><text x="92" y="138" font-size="22" font-weight="800">Unified member context</text>
+        <circle cx="75" cy="167" r="4" class="fill-rust"/><text x="92" y="174" font-size="22" font-weight="800">Programme registration</text>
+        <circle cx="75" cy="203" r="4" class="fill-rust"/><text x="92" y="210" font-size="22" font-weight="800">Attendance &amp; return</text>
+        <circle cx="75" cy="239" r="4" class="fill-rust"/><text x="92" y="246" font-size="22" font-weight="800">Journey progress</text>
+        <circle cx="75" cy="275" r="4" class="fill-rust"/><text x="92" y="282" font-size="22" font-weight="800">Community activity</text>
+        <circle cx="75" cy="311" r="4" class="fill-rust"/><text x="92" y="318" font-size="22" font-weight="800">Consent &amp; channel context</text>
 
         <line x1="463" y1="208" x2="560" y2="208" class="rust-line" marker-end="url(#arrow-rust-9b-v2)"/>
 
         <rect x="590" y="48" width="340" height="320" rx="20" class="fill-green"/>
         <text x="760" y="92" text-anchor="middle" font-size="18" font-weight="900" letter-spacing="2" class="white-text">AIRUUN UNDERSTANDS</text>
-        <text x="760" y="143" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What people care about</text>
-        <text x="760" y="187" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What they actually join</text>
-        <text x="760" y="231" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What makes them return</text>
-        <text x="760" y="275" text-anchor="middle" font-size="22" font-weight="850" class="white-text">Which experiences work</text>
-        <text x="760" y="319" text-anchor="middle" font-size="22" font-weight="850" class="white-text">What may be useful next</text>
+        <circle cx="618" cy="136" r="4" class="fill-white"/><text x="636" y="143" font-size="22" font-weight="800" class="white-text">What people care about</text>
+        <circle cx="618" cy="180" r="4" class="fill-white"/><text x="636" y="187" font-size="22" font-weight="800" class="white-text">What they actually join</text>
+        <circle cx="618" cy="224" r="4" class="fill-white"/><text x="636" y="231" font-size="22" font-weight="800" class="white-text">What makes them return</text>
+        <circle cx="618" cy="268" r="4" class="fill-white"/><text x="636" y="275" font-size="22" font-weight="800" class="white-text">Which experiences work</text>
+        <circle cx="618" cy="312" r="4" class="fill-white"/><text x="636" y="319" font-size="22" font-weight="800" class="white-text">What may be useful next</text>
 
         <line x1="958" y1="208" x2="1055" y2="208" class="rust-line" marker-end="url(#arrow-rust-9b-v2)"/>
 
         <rect x="1085" y="48" width="310" height="320" rx="20" class="fill-white" stroke="var(--line)"/>
         <text x="1115" y="92" font-size="18" font-weight="900" letter-spacing="2" class="rust-text">FUTURE TGH VALUE</text>
-        <text x="1115" y="130" font-size="18" font-weight="850">
-          <tspan x="1115" dy="0">Better programme</tspan>
-          <tspan x="1115" dy="21">planning</tspan>
+        <circle cx="1116" cy="123" r="4" class="fill-rust"/><text x="1134" y="130" font-size="19" font-weight="800">
+          <tspan x="1134" dy="0">Better programme</tspan>
+          <tspan x="1134" dy="22">planning</tspan>
         </text>
-        <text x="1115" y="176" font-size="18" font-weight="850">
-          <tspan x="1115" dy="0">More relevant</tspan>
-          <tspan x="1115" dy="21">communication</tspan>
+        <circle cx="1116" cy="169" r="4" class="fill-rust"/><text x="1134" y="176" font-size="19" font-weight="800">
+          <tspan x="1134" dy="0">More relevant</tspan>
+          <tspan x="1134" dy="22">communication</tspan>
         </text>
-        <text x="1115" y="226" font-size="18" font-weight="850">Better partner decisions</text>
-        <text x="1115" y="252" font-size="18" font-weight="850">
-          <tspan x="1115" dy="0">Richer customer</tspan>
-          <tspan x="1115" dy="21">understanding</tspan>
+        <circle cx="1116" cy="219" r="4" class="fill-rust"/><text x="1134" y="226" font-size="19" font-weight="800">Better partner decisions</text>
+        <circle cx="1116" cy="245" r="4" class="fill-rust"/><text x="1134" y="252" font-size="19" font-weight="800">
+          <tspan x="1134" dy="0">Richer customer</tspan>
+          <tspan x="1134" dy="22">understanding</tspan>
         </text>
-        <text x="1115" y="300" font-size="18" font-weight="850">Future service innovation</text>
-        <text x="1115" y="332" font-size="18" font-weight="850">Relationship continuity</text>
+        <circle cx="1116" cy="293" r="4" class="fill-rust"/><text x="1134" y="300" font-size="19" font-weight="800">Future service innovation</text>
+        <circle cx="1116" cy="325" r="4" class="fill-rust"/><text x="1134" y="332" font-size="19" font-weight="800">Relationship continuity</text>
 
         <text x="720" y="420" text-anchor="middle" font-size="22" class="serif">
           <tspan x="720" dy="0">AIRUUN creates value for members first; the resulting participation insight</tspan>
@@ -1314,7 +1333,7 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
       </svg>
     </div>
   </div>
-  <div class="foot"><span>Phase 3 connects participation, context and consent</span><span>The promise is better future decisions, not immediate sales conversion</span></div>
+  <div class="foot"><span>Connects participation, context and consent</span><span>The promise is better future decisions, not immediate sales conversion</span></div>
 </section>
 
 <!-- <section class="slide transition" id="slide-10" data-section="main">
@@ -1327,9 +1346,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section> -->
 
 <section class="slide dark" id="slide-11" data-section="main">
-  <div class="meta"><div>AIRUUN · Investment Path</div><div class="count">15 / 15</div></div>
+  <div class="meta"><div class="meta-kicker">Start with the foundation. Earn the next phase.</div><div class="count">15 / 15</div></div>
   <div class="stage">
-    <div class="eyebrow">Start with the foundation. Earn the next phase.</div>
     <h2>Investment follows proven behaviour.</h2>
     <div class="price-row">
       <div class="price-item"><small>Phase 1 · AIRUUN Hub</small><h3>Prove value & first return</h3><div class="price">฿1.45M</div></div>
@@ -1343,9 +1361,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 
 <!-- APPENDIX -->
 <section class="slide appendix" id="appendix-01" data-section="appendix">
-  <div class="meta"><div>Appendix A1 · Five Pillars</div><div class="count">A1 / A14</div></div>
+  <div class="meta"><div class="meta-kicker">Product taxonomy</div><div class="count">A1 / A14</div></div>
   <div class="stage">
-    <div class="eyebrow">Product taxonomy</div><h2>Each pillar becomes a complete experience system.</h2>
+    <h2>Each pillar becomes a complete experience system.</h2>
     <div class="columns" style="grid-template-columns:repeat(5,1fr)">
       <div class="col-block"><h3>Jai</h3><p>Mind & Emotion<br>Reflection, breathing, quiet sessions.</p></div>
       <div class="col-block"><h3>Kai</h3><p>Body & Energy<br>Movement, sleep, healthy ageing.</p></div>
@@ -1358,9 +1376,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-02" data-section="appendix">
-  <div class="meta"><div>Appendix A2 · Experience Architecture</div><div class="count">A2 / A14</div></div>
+  <div class="meta"><div class="meta-kicker">Four connected experiences</div><div class="count">A2 / A14</div></div>
   <div class="stage">
-    <div class="eyebrow">Four connected experiences</div><h2>Receive. Return to the Root. Dwell. Walk In.</h2>
+    <h2>Receive. Return to the Root. Dwell. Walk In.</h2>
     <div class="columns">
       <div class="col-block"><h3>Receive</h3><p>Daily Dawn provides one useful reflection, insight, audio or action.</p></div>
       <div class="col-block"><h3>Return to the Root</h3><p>Thai wisdom, heritage, founding stories and cultural meaning.</p></div>
@@ -1371,9 +1389,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   <div class="foot"><span>Immediate value → meaning → depth → participation</span><span>Each experience needs an owner, cadence and measure</span></div>
 </section>
 
-<section class="slide appendix" id="appendix-03" data-section="appendix">
-  <div class="meta"><div>Appendix A3 · Phase 1 Modules</div><div class="count">A3 / A14</div></div>
-  <div class="stage"><div class="eyebrow">AIRUUN Hub detail</div><h2>Foundation modules and boundaries.</h2>
+<section class="slide appendix" id="appendix-03" data-section="appendix" data-phase-group="phase-1">
+  <div class="meta"><div class="meta-kicker">AIRUUN Hub detail</div><div class="count">A3 / A14</div></div>
+  <div class="stage"><h2>Foundation modules and boundaries.</h2>
     <div class="table-scroll"><table class="ref-table"><thead><tr><th>Module group</th><th>Included</th><th>Boundary</th></tr></thead><tbody>
       <tr><td>Public Experience</td><td>Homepage, Dawn, pillars, heritage, rooms, search, content and programmes</td><td>No personal feed or AI search</td></tr>
       <tr><td>Member Foundation</td><td>Login, onboarding, consent, preferences and registration</td><td>No CRM synchronization</td></tr>
@@ -1386,9 +1404,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   <div class="foot"><span>51 included capabilities · 6 future capabilities</span><span>Client supplies primary content and media</span></div>
 </section>
 
-<section class="slide appendix" id="appendix-04" data-section="appendix">
-  <div class="meta"><div>Appendix A4 · Phase 2 Modules</div><div class="count">A4 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Community Building detail</div><h2>Continuity turns content use into participation.</h2>
+<section class="slide appendix" id="appendix-04" data-section="appendix" data-phase-group="phase-2">
+  <div class="meta"><div class="meta-kicker">Community Building detail</div><div class="count">A4 / A14</div></div>
+  <div class="stage"><h2>Continuity turns content use into participation.</h2>
     <div class="columns">
       <div class="col-block"><h3>Member Continuity</h3><p>Saved content and journeys, history, progress and relevant homepage.</p></div>
       <div class="col-block"><h3>Programme Participation</h3><p>Booking, capacity, waitlist, check-in, attendance and follow-up.</p></div>
@@ -1399,9 +1417,9 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
   <div class="foot"><span>Core scope excludes open forum, direct messaging, payments and predictive churn</span><span>Community operation requires an owner and moderation policy</span></div>
 </section>
 
-<section class="slide appendix" id="appendix-05" data-section="appendix">
-  <div class="meta"><div>Appendix A5 · Community Network Mapping</div><div class="count">A5 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Phase 2 to Network bridge</div><h2>Shared programmes turn repeated participation into a network.</h2>
+<section class="slide appendix" id="appendix-05" data-section="appendix" data-phase-group="bridge">
+  <div class="meta"><div class="meta-kicker">Participation to network bridge</div><div class="count">A5 / A14</div></div>
+  <div class="stage"><h2>Shared programmes turn repeated participation into a network.</h2>
     <div class="table-scroll"><table class="ref-table"><thead><tr><th>Bridge step</th><th>What Phase 2 proves</th><th>Network use</th><th>Core capability</th></tr></thead><tbody>
       <tr><td>Useful journey</td><td>Members return to continue</td><td>A shared programme can extend the same journey</td><td>Saved journey, progress, content relationships</td></tr>
       <tr><td>Programme participation</td><td>Members register, attend and follow up</td><td>Other communities can join the same experience</td><td>Booking, capacity, QR check-in, attendance</td></tr>
@@ -1410,12 +1428,12 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
       <tr><td>Repeat participation</td><td>People return after the first activity</td><td>Network programmes can become recurring initiatives</td><td>Follow-up, triggers, dashboards</td></tr>
     </tbody></table></div>
   </div>
-  <div class="foot"><span>Phase 2 capabilities power the bridge</span><span>The network grows through shared experiences before shared databases</span></div>
+  <div class="foot"><span>Participation capabilities power the bridge</span><span>The network grows through shared experiences before shared databases</span></div>
 </section>
 
-<section class="slide appendix" id="appendix-06" data-section="appendix">
-  <div class="meta"><div>Appendix A6 · Phase 3 Modules</div><div class="count">A6 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Community Ecosystem detail</div><h2>Technical capabilities enable Connect, Coordinate and Learn.</h2>
+<section class="slide appendix" id="appendix-06" data-section="appendix" data-phase-group="phase-3">
+  <div class="meta"><div class="meta-kicker">Community Ecosystem detail</div><div class="count">A6 / A14</div></div>
+  <div class="stage"><h2>Technical capabilities enable Connect, Coordinate and Learn.</h2>
     <div class="three">
       <div class="block"><h3>Connect</h3><p>Community groups, expert Q&amp;A, volunteer programmes, partner participation, community roles and cross-channel journeys.</p></div>
       <div class="block"><h3>Coordinate</h3><p>Unified profile, consent synchronization, lifecycle segmentation, member-led activities, governance and contribution history.</p></div>
@@ -1431,8 +1449,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-07" data-section="appendix">
-  <div class="meta"><div>Appendix A7 · Shared vs Controlled Data</div><div class="count">A7 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Network governance</div><h2>Shared experiences do not require shared identity data.</h2>
+  <div class="meta"><div class="meta-kicker">Network governance</div><div class="count">A7 / A14</div></div>
+  <div class="stage"><h2>Shared experiences do not require shared identity data.</h2>
     <div class="compare">
       <div class="col accent"><div class="label">Shared across the network</div><p class="lede">Public content, journeys, programmes, open events, expert sessions, volunteer opportunities and approved stories.</p></div>
       <div class="col"><div class="label">Controlled by policy & consent</div><p class="lede">Identity, community membership, behaviour, attendance history, private discussion and CRM/CDP records.</p></div>
@@ -1442,8 +1460,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-08" data-section="appendix">
-  <div class="meta"><div>Appendix A8 · Content Operation</div><div class="count">A8 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Operating rhythm</div><h2>The content engine that keeps AIRUUN active.</h2>
+  <div class="meta"><div class="meta-kicker">Operating rhythm</div><div class="count">A8 / A14</div></div>
+  <div class="stage"><h2>The content engine that keeps AIRUUN active.</h2>
     <div class="table-scroll"><table class="ref-table"><thead><tr><th>Layer</th><th>Rhythm</th><th>Purpose</th></tr></thead><tbody>
       <tr><td>Daily Dawn</td><td>Daily</td><td>Habit and relationship</td></tr>
       <tr><td>Useful Short</td><td>3–5 / week</td><td>Search, social and sharing</td></tr>
@@ -1459,8 +1477,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-09" data-section="appendix">
-  <div class="meta"><div>Appendix A9 · Business Model</div><div class="count">A9 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Funding follows maturity</div><h2>Core-funded → partner-supported → ecosystem value.</h2>
+  <div class="meta"><div class="meta-kicker">Funding follows maturity</div><div class="count">A9 / A14</div></div>
+  <div class="stage"><h2>Core-funded → partner-supported → ecosystem value.</h2>
     <div class="three">
       <div class="block"><div class="label">Phase 1</div><h3>TGH-funded relationship platform</h3><p>Platform, editorial operation, experts and pilots.</p></div>
       <div class="block"><div class="label">Phase 2</div><h3>Partner-supported programmes</h3><p>Partners fund useful experiences under AIRUUN editorial control.</p></div>
@@ -1471,8 +1489,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-10" data-section="appendix">
-  <div class="meta"><div>Appendix A10 · Measurement & Gates</div><div class="count">A10 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Evidence before expansion</div><h2>Each gate requires a stronger relationship signal.</h2>
+  <div class="meta"><div class="meta-kicker">Evidence before expansion</div><div class="count">A10 / A14</div></div>
+  <div class="stage"><h2>Each gate requires a stronger relationship signal.</h2>
     <div class="journey" style="grid-template-columns:repeat(5,1fr)">
       <div class="step"><div class="n">01</div><div class="t">Value</div><div class="d">Starts, completions, usefulness</div></div>
       <div class="step"><div class="n">02</div><div class="t">Return</div><div class="d">7-day and 30-day return</div></div>
@@ -1485,8 +1503,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-11" data-section="appendix">
-  <div class="meta"><div>Appendix A11 · Investment Responsibilities</div><div class="count">A11 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Platform vs operation</div><h2>Technology delivery and AIRUUN operation are separate.</h2>
+  <div class="meta"><div class="meta-kicker">Platform vs operation</div><div class="count">A11 / A14</div></div>
+  <div class="stage"><h2>Technology delivery and AIRUUN operation are separate.</h2>
     <div class="compare">
       <div class="col accent"><div class="label">Platform Investment</div><p class="lede">Product & UX/UI · CMS · Member system · Integrations · Hosting · Maintenance · Webmaster · Analytics</p></div>
       <div class="col"><div class="label">AIRUUN Operating Investment</div><p class="lede">Editorial direction · Content production · Experts · Programme team · Community operation · Distribution · Research</p></div>
@@ -1496,8 +1514,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-12" data-section="appendix">
-  <div class="meta"><div>Appendix A12 · Pricing Detail</div><div class="count">A12 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Commercial options</div><h2>Phase 1 options and roadmap upgrades.</h2>
+  <div class="meta"><div class="meta-kicker">Commercial options</div><div class="count">A12 / A14</div></div>
+  <div class="stage"><h2>Phase 1 options and roadmap upgrades.</h2>
     <div class="table-scroll"><table class="ref-table"><thead><tr><th>Package / phase</th><th>Implementation</th><th>Recurring</th><th>Roadmap role</th></tr></thead><tbody>
       <tr><td>Essential Pilot</td><td>฿1.00M</td><td>฿360K/year</td><td>Focused pilot</td></tr>
       <tr><td>Balanced Launch</td><td>฿1.25M</td><td>฿450K/year</td><td>Standalone launch</td></tr>
@@ -1510,8 +1528,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-13" data-section="appendix">
-  <div class="meta"><div>Appendix A13 · Scope Boundary</div><div class="count">A13 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Outside core implementation</div><h2>Explicit boundaries protect delivery clarity.</h2>
+  <div class="meta"><div class="meta-kicker">Outside core implementation</div><div class="count">A13 / A14</div></div>
+  <div class="stage"><h2>Explicit boundaries protect delivery clarity.</h2>
     <div class="compare">
       <div class="col accent"><div class="label">Not included unless quoted</div><p class="lede">Full content production · Marketing / CRM operation · Community moderation manpower · Expert review · Enterprise licenses & certification</p></div>
       <div class="col"><div class="label">Final figure depends on</div><p class="lede">Content volume · Authentication · CRM / CDP readiness · Event / community depth · Infrastructure · Security · Compliance</p></div>
@@ -1521,8 +1539,8 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 </section>
 
 <section class="slide appendix" id="appendix-14" data-section="appendix">
-  <div class="meta"><div>Appendix A14 · Architecture</div><div class="count">A14 / A14</div></div>
-  <div class="stage"><div class="eyebrow">Progressive platform architecture</div><h2>Governed services connect channels, experiences and systems.</h2>
+  <div class="meta"><div class="meta-kicker">Progressive platform architecture</div><div class="count">A14 / A14</div></div>
+  <div class="stage"><h2>Governed services connect channels, experiences and systems.</h2>
     <div class="line-list">
       <div class="line-item"><b>Channels</b><span>Web · LINE · Email · SMS · Physical programmes</span></div>
       <div class="line-item"><b>Experience Layer</b><span>Daily Dawn · Five Pillars · Rooms · Journeys · Programmes · Community</span></div>
@@ -1537,6 +1555,12 @@ h3{font-size:clamp(31px,3.1vw,50px);line-height:1.03;letter-spacing:-.025em;font
 
 </main>
 
+<nav class="phase-controls" aria-label="Jump to phase">
+  <button data-phase-target="phase-1" data-target-id="slide-06" aria-label="Jump to Phase 1: AIRUUN Hub" title="Jump to Phase 1: AIRUUN Hub"><span class="phase-word">Phase </span>1</button>
+  <button data-phase-target="phase-2" data-target-id="slide-07" aria-label="Jump to Phase 2: Community Building" title="Jump to Phase 2: Community Building"><span class="phase-word">Phase </span>2</button>
+  <button data-phase-target="bridge" data-target-id="slide-08" aria-label="Jump to the Community Network bridge from Phase 2 to Phase 3" title="Jump to the Community Network bridge">2 → 3</button>
+  <button data-phase-target="phase-3" data-target-id="slide-09" aria-label="Jump to Phase 3: Community Ecosystem" title="Jump to Phase 3: Community Ecosystem"><span class="phase-word">Phase </span>3</button>
+</nav>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <nav class="controls" aria-label="Presentation controls">
   <button id="prev" aria-label="Previous slide">←</button>
@@ -1550,11 +1574,21 @@ let index=Math.max(0,slides.findIndex(s=>s.id===location.hash.slice(1)));
 const progress=document.getElementById('progress');
 const prev=document.getElementById('prev');
 const next=document.getElementById('next');
+const mainJump=document.getElementById('mainJump');
+const appendixJump=document.getElementById('appendixJump');
+const phaseButtons=[...document.querySelectorAll('[data-phase-target]')];
 function show(i,{hash=true}={}){
   index=Math.max(0,Math.min(slides.length-1,i));
   slides.forEach((s,n)=>s.classList.toggle('active',n===index));
   progress.style.width=((index+1)/slides.length*100)+'%';
   prev.disabled=index===0; next.disabled=index===slides.length-1;
+  const phaseGroup=slides[index].dataset.phaseGroup||'';
+  phaseButtons.forEach(button=>{
+    const active=button.dataset.phaseTarget===phaseGroup;
+    button.classList.toggle('active',active);
+    if(active) button.setAttribute('aria-current','page');
+    else button.removeAttribute('aria-current');
+  });
   if(hash&&innerWidth>760) history.replaceState(null,'','#'+slides[index].id);
   slides[index].scrollTop=0;
 }
@@ -1562,6 +1596,9 @@ prev.onclick=()=>show(index-1);
 next.onclick=()=>show(index+1);
 mainJump.onclick=()=>show(0);
 appendixJump.onclick=()=>show(slides.findIndex(s=>s.id==='appendix-01'));
+phaseButtons.forEach(button=>{
+  button.onclick=()=>show(slides.findIndex(slide=>slide.id===button.dataset.targetId));
+});
 document.addEventListener('keydown',e=>{
   if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(index+1)}
   if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(index-1)}
